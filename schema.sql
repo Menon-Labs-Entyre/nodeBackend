@@ -1,0 +1,50 @@
+
+DROP DATABASE IF EXISTS entyre;
+CREATE DATABASE entyre;
+USE entyre;
+
+CREATE TABLE patient (
+	id INT AUTO_INCREMENT PRIMARY KEY, 
+	fname VARCHAR(255) NOT NULL,
+	lname VARCHAR(255) NOT NULL,
+	gender INT NOT NULL,
+	weight INT NOT NULL,
+	company_name VARCHAR(255) NOT NULL, 
+	company_id INT NOT NULL,
+	subscriber INT NOT NULL, 
+	med_num INT NOT NULL, 
+	med_1 INT NOT NULL, 
+	med_2 INT NOT NULL, 
+	med_3 INT NOT NULL, 
+	med_4 INT NOT NULL, 
+	med_5 INT NOT NULL, 
+	med_6 INT NOT NULL, 
+	med_7 INT NOT NULL, 
+	med_8 INT NOT NULL, 
+	med_9 INT NOT NULL, 
+	med_10 INT NOT NULL, 
+	med_11 INT NOT NULL, 
+	med_12 INT NOT NULL, 
+	med_13 INT NOT NULL, 
+	med_14 INT NOT NULL, 
+	med_15 INT NOT NULL 
+);
+
+CREATE TABLE diagnosis (
+	id INT AUTO_INCREMENT PRIMARY KEY, 
+	icd VARCHAR(255), 
+	descp VARCHAR(255), 
+	med_1 INT NOT NULL, 
+	med_2 INT NOT NULL, 
+	med_3 INT NOT NULL
+	FOREIGN KEY (med_1) REFERENCES medication(id)
+	FOREIGN KEY (med_2) REFERENCES medication(id)
+	FOREIGN KEY (med_3) REFERENCES medication(id)
+);
+
+CREATE TABLE medication (
+	id INT AUTO_INCREMENT PRIMARY KEY, 
+	name VARCHAR(255) NOT NULL, 
+	manufacturer VARCHAR(255) NOT NULL, 
+);
+
