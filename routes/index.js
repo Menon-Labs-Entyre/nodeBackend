@@ -20,7 +20,7 @@ router.post('/patient-information', async function(req, res) {
 	var diagnoses = req.body.diagnoses; //I assume this will be sent like an array of objects?
 
 	//Inside the array I suppose it will look like this (?): 
-	[
+	/*[
 		{ 
 			"diagnosis": "Migraine", //diagnosis # 1, to be replaced by ICD_10
 			"medication": [
@@ -61,7 +61,7 @@ router.post('/patient-information', async function(req, res) {
 		{
 			...     //diagnosis # 3...
 		}
-	]
+	]*/
 
 	//having a separate section for side effects?
 	var sideEffects = req.body.sideEffects; //an array? ['Heart burn', '', ...]
@@ -72,7 +72,6 @@ router.post('/patient-information', async function(req, res) {
 
 	//What data are needed for data analysis? All of them/select some features?
 	let finalData = { //final data in json format
-		...
 	}
 	sendData(finalData);
 
