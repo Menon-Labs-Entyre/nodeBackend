@@ -2,6 +2,7 @@
 var express = require('express');
 var https = require('https');
 var router = express.Router();
+var patientInfo = require('../services/patientInfo')
 
 /** POST request from front end */
 router.post('/patient-information', async function(req, res) {
@@ -16,11 +17,13 @@ router.post('/patient-information', async function(req, res) {
 		subscriber: req.body.subscriber, 
 		rel: req.body.rel
 	};
+	console.log(demographic); //first integration with front end on Thursday?
 
+	/*
 	var diagnoses = req.body.diagnoses; //I assume this will be sent like an array of objects?
 
 	//Inside the array I suppose it will look like this (?): 
-	/*[
+	[
 		{ 
 			"diagnosis": "Migraine", //diagnosis # 1, to be replaced by ICD_10
 			"medication": [
@@ -61,20 +64,20 @@ router.post('/patient-information', async function(req, res) {
 		{
 			...     //diagnosis # 3...
 		}
-	]*/
+	]
 
 	//having a separate section for side effects?
 	var sideEffects = req.body.sideEffects; //an array? ['Heart burn', '', ...]
 
-	let primSide = sepPrimSide(diagnoses, sideEffects); //separate primary diagnosis and side effects?
+	let primSide = patientInfo.sepPrimSide(diagnoses, sideEffects); //separate primary diagnosis and side effects?
 	let primDiag = primSide.prim;
 	let sideDiag = primSide.side; //if sideDiag = [], no medication prescribed for side effects
 
 	//What data are needed for data analysis? All of them/select some features?
 	let finalData = { //final data in json format
 	}
-	sendData(finalData);
-
+	patientInfo.sendData(finalData);
+	*/
 });
 
 
@@ -83,54 +86,6 @@ router.post('/generate-report', async function(req, res) {
 
 });
 
-
-/** The part below (data processing) needs to go to the services layer later */
-
-function sepPrimSide(diagnoses, sideEffects) {
-	let prim = [];
-	let side = [];
-	for (int i = 0; i < diagnoses.length; ++i) { //w
-		if (isSideEffect(diagnoses[i].diagnosis)) {
-			side.push(diagnoses[i]); 
-		}
-		else prim.push(diagnoses[i]);
-	}
-	return {prim: prim, side: side};
-}
-
-function isSideEffect(diagnosis, sideEffects) { 
-	for (int i = 0; i < sideEffects.length; ++i) {
-		if (diagnosis === sideEffects[i]) {
-			return true;
-		}
-	}
-	return false;
-}
-
-function sendData(finalData) {
-	//Build connection with the data science server and send data
-	const data = JSON.stringify(finalData);
-	const options = {
-		hostname: '', 
-		port: ,
-		path: '', 
-		method: 'POST', 
-		headers: {
-			'Content-Type': 'application/json', 
-			'Content-Length': data.length
-		}
-	}
-	const req = https.request(options, res => {
-		console.log(`statusCode: ${res.statusCode}`) //check if it worked
-	});
-
-	req.on('error', (error) => {
-		console.error(error);
-	});
-
-	req.write(data);
-	req.end();
-}
 
 module.exports = router;
 
