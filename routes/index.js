@@ -14,8 +14,8 @@ router.post('/patient-information', async function(req, res) {
 		weight: req.body.weight, 
 		company: req.body.companyName, 
 		memId: req.body.memberId, 
-		subscriber: req.body.subscriber, 
-		rel: req.body.rel
+		subscriber: req.body.subscriberName, 
+		rel: req.body.subscriberRelationship
 	};
 	console.log(demographic); //first integration with front end on Thursday?
 
