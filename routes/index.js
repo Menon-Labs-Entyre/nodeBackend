@@ -1,12 +1,13 @@
 /* Load packages */
 var express = require('express');
-var https = require('https');
 var router = express.Router();
-var patientInfo = require('../services/patientInfo')
+var patientInfo = require('../services/parseDiagnosis')
 
-/** POST request from front end */
+var patientData = {}; //key is the session id
+
+/** POST request after the user enters personal information */
 router.post('/patient-information', async function(req, res) {
-	var demographic = {
+	var patientInfo = {
 		fname: req.body.firstName, //specific var name passed by front end
 		lname: req.body.lastName, 
 		gender: req.body.gender,
@@ -17,72 +18,62 @@ router.post('/patient-information', async function(req, res) {
 		subscriber: req.body.subscriberName, 
 		rel: req.body.subscriberRelationship
 	};
-	console.log(demographic); //first integration with front end on Thursday?
+	console.log(patientInfo);
 
-	/*
-	var diagnoses = req.body.diagnoses; //I assume this will be sent like an array of objects?
+	var sess = req.session; //set unique session id
+	patientData[sess.id] = {
+		patientInfo: patientInfo, 
+		diagnoses: null,
+		sideEffects: null
+	};
+	console.log(sess);
+	console.log(sess.id);
+	console.log(patientData[sess.id]);
 
-	//Inside the array I suppose it will look like this (?): 
-	[
-		{ 
-			"diagnosis": "Migraine", //diagnosis # 1, to be replaced by ICD_10
-			"medication": [
-				{
-					"name": "Ibuprofen", //replaced with standard medication name
-					"dosage": x, 
-					"mode": 0, //categorical var 0 - pill, 1 - syrup, 2 - injection, ...
-					"amount": 1,
-					"units": 0,  //categorical as well? 0 - tablet, ...
-					"frequency": 0 //0 - daily, 1 - hourly, 2 - alternate days, 3 - weekly
-				}, 
-				{
-					"name": "Other", 
-					"dosage": xx.xx, 
-					"mode": xx, 
-					"amount": xx,
-					"units": xx, 
-					"frequency": xx
-				}
-			]
-		}, 
-
-		{
-			"diagnosis": "Heart burn", //diagnosis # 2
-			"medication": [
-				{
-					"name": "Esmolol",
-					"dosage": x, 
-					"mode": 0, 
-					"amount": x,
-					"units": 2, 
-					"frequency": 2
-				}
-			]
-
-		}, 
-
-		{
-			...     //diagnosis # 3...
-		}
-	]
-
-	//having a separate section for side effects?
-	var sideEffects = req.body.sideEffects; //an array? ['Heart burn', '', ...]
-
-	let primSide = patientInfo.sepPrimSide(diagnoses, sideEffects); //separate primary diagnosis and side effects?
-	let primDiag = primSide.prim;
-	let sideDiag = primSide.side; //if sideDiag = [], no medication prescribed for side effects
-
-	//What data are needed for data analysis? All of them/select some features?
-	let finalData = { //final data in json format
-	}
-	patientInfo.sendData(finalData);
-	*/
 });
 
+/** POST request after the user enters diagnosis details */
+router.post('/diagnosis-details', async function (req, res) {
+	var pid = req.session.id;
+	if (!pid || !patientData[pid]) {
+		res.status(401).send("Invalid session id");
+	}
+	patientData[pid].diagnoses = req.body.diagnoses; //probably needs to format this later
+});
 
-/** POST request when the data analysis is done */
+/** POST request after the user enters side effects */
+router.post('/side-effects', async function(req, res) {
+	var pid = req.session.id;
+	if (!pid || !patientData[pid]) {
+		res.status(401).send("Invalid session id");
+	}
+	patientData[pid].sideEffects = req.body.sideEffects; //needs formatting later
+});
+
+/** POST request when the user presses the submit button */
 router.post('/generate-report', async function(req, res) {
+	var pid = req.session.id;
+	if (!pid || !patientData[pid]) {
+		res.status(401).send("Invalid session id");
+	}
+	else if (!patientData[pid].patientInfo) {
+		res.status(400).send("Patient information missing");
+	}
+	else if (!patientData[pid].diagnoses) {
+		res.status(400).send("Diagnoses details missing");
+	}
+	else if (!patientData[pid].sideEffects) {
+		res.status(400).send("Side effects details missing");
+	}
+	else {
+		let finalData = { 
+			patientInfo: patientData[pid].patientInfo, 
+			diagnoses: patientData[pid].diagnoses,
+			sideEffects: patientData[pid].sideEffects
+		}
+	
+		parseDiagnosis.sendData(finalData);
+	}
 
 });
 

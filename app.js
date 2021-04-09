@@ -1,5 +1,6 @@
 var createError = require('http-errors');
 var express = require('express');
+var session = require('express-session');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -9,8 +10,14 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var searchRouter = require('./routes/search');
 
-var app = express();
+const app = express();
 app.use(cors());
+app.use(session({
+	secret: 'keyboard warrior', 
+	resave: false,
+	saveUninitialized: true, 
+	cookie: {secure: true}
+}))
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
