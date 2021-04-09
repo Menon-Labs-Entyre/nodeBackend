@@ -1,0 +1,46 @@
+
+
+//an array of objects (diagnoses), arr.length = # of diagnoses
+
+[
+	{ 
+		"diagnosis": "Migraine", //diagnosis # 1, to be replaced by ICD_10
+		"medication": [
+			{
+				"name": "Ibuprofen", //replaced with standard medication name
+				"dosage": 2,
+				"mode": 0, //categorical var 0 - pill, 1 - syrup, 2 - injection, ...?
+				"amount": 1,
+				"units": 0,  //categorical as well? 0 - tablet, ...
+				"frequency": 0, //0 - daily, 1 - hourly, 2 - alternate days, 3 - weekly
+			}, 
+			{
+				"name": "Other", 
+				"dosage": 1, 
+				"mode": 1, 
+				"amount": 2,
+				"units": 0, 
+				"frequency": 2
+			}
+		]
+	}, 
+
+	{
+		"diagnosis": "Heart burn", //diagnosis # 2, to be replaced by icd_10
+		"medication": [
+			{
+				"name": "Esmolol",
+				"dosage": 3, 
+				"mode": 0, 
+				"amount": 2,
+				"units": 2, 
+				"frequency": 2
+			}
+		]
+
+	}, 
+
+	{
+		...     //diagnosis # 3...
+	}
+]
