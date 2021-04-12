@@ -1,22 +1,24 @@
-var createError = require('http-errors');
-var express = require('express');
-var session = require('express-session');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var cors = require('cors');
+const createError = require('http-errors');
+const express = require('express');
+const session = require('express-session');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const cors = require('cors');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var searchRouter = require('./routes/search');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+const searchRouter = require('./routes/search');
 
 const app = express();
-app.use(cors());
+app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
+
+app.set('trust proxy', 1) // trust first proxy
 app.use(session({
-	secret: 'keyboard warrior', 
-	resave: false,
-	saveUninitialized: true, 
-	cookie: {secure: true}
+  secret: 'keyboard warrior',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false }
 }))
 
 // view engine setup
