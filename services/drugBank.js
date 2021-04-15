@@ -54,6 +54,13 @@ const getDrug = async(drugBankId) => {
   return drugInfo;
 }
 
+const getCondition = async(conditionId) => {
+  const callEndpoint = "/conditions/"+drugBankId; //using the simple return
+  const response = await axios.get(host+callEndpoint);
+  const conditionDetails = response.data.map(data => data.effect.name);
+  return conditionDetails;
+}
+
 
 /* Given a list of drugBankId's  retrieve a list of interactions */
 const getInteractions = async(drugBankIds) => {
@@ -92,11 +99,30 @@ const getIndicationsbyCondition = async(conditionId) => {
   }
   const response = await axios.get(host+callEndpoint,callParamters);
   const indiciationData = response.data;
-  return drugData;
+  return indiciationData;
+}
+
+/* Given a drug Id, return the list of assosiated drugs linked to a condition */
+/* could potentially add caching to speed this whole thing up */
+const getIndicationsbyDrug = async(drugBankId) => {
+  const callEndpoint = "/drugs/" + drugBankId + "/indications" 
+  const callParamters = {
+    params: {
+      kind: null,
+      otc_use:null,
+      off_label:null
+    }
+  }
+  const response = await axios.get(host+callEndpoint,callParamters);
+  const indiciationData = response.data;
+  return indiciationData;
 }
 
 const createDrugPackage = async() => {
-  
+  const drugDetails = getDrug(drugId);
+  const indications = getIndicationsbyDrug(drugId);
+  return {details:drugDetails,indications:indications};
+
 }
 
 const createPatientPackage = async() => {
@@ -104,10 +130,9 @@ const createPatientPackage = async() => {
   const drugIds = testData.map((diagnosis) => diagnosis.drugBankId);  // add code to make sure t here are no dups
   const conditionIds = testData.map((diagnosis) => diagnosis.conditionId); // add code to make sure t here are no dups
   const interactions = getInteractions(drugIds);
-  const drugData = drugIds.map((drugId) => getDrug(drugId)); 
-  const conditionData = conditionIds.map((drugId) => getDrug(drugId)); 
-  return {}
-  
+  const drugData = drugIds.map((drugId) => createDrugPackage(drugId)); 
+  const conditionData = conditionIds.map((conditionId) => getCondition(conditionId)); 
+  return {drugs:drugData, conditions:conditionData, interactions:interactions};
 }
 
 //export methods for use
@@ -115,7 +140,6 @@ module.exports = {
   getMedications: getMedications,
   getConditions: getConditions,
   getSideEffects: getSideEffects,
-  getDrug: getDrug,
-  getInteractions: getInteractions
+  createPatientPackage: createPatientPackage,
 }
 
