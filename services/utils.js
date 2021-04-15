@@ -1,8 +1,9 @@
 
 const getIngredients = require('./drugBank').getIngredients
+
 /** 
- * Format the data to 
- * Desired JSON format result
+ * Get the ingredients associated with each med and format output
+ * Desired format as below
 {
 	"condition A":
 	{"medications": # list of dictionary
@@ -24,14 +25,24 @@ const getIngredients = require('./drugBank').getIngredients
 	},
 	"condition B": {"medications": [...]}
 }
+* @param data: diagnosis details of a specific patient
+* @return stringified json output ready to be passed to python file
 */
+function formatDiag(data) {
 
-function format(data) {
+}
+
+/**
+ * Generates the final report given data analysis results
+ * @param data: stringified json data containing the results of analysis
+ */
+function generateReport(data) {
 
 }
 
 module.exports = {
-	format
+	formatDiag, 
+	generateReport
 }
 
 

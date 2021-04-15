@@ -1,8 +1,8 @@
 /* Load packages */
 const express = require('express');
 const router = express.Router();
-const spawn = require("child_process").spawn;
-const parseDiagnosis = require('../services/parseDiagnosis')
+const utils = require('../services/utils');
+const spawn = require('child_process').spawn;
 
 var numUsers = -1;
 var patientData = {}; //key is the user id
@@ -34,26 +34,24 @@ router.post('/patient-information', async function(req, res) {
 	};
 	console.log(`user # ${sess.user}:`);
 	console.log(patientData[sess.user]);
-	res.send(200);
+	res.sendStatus(200);
 });
 
 /** POST request after the user enters diagnosis details 
- * [
-    {
-      diagnosis: 'Diag1',
-      medication: 'Med1',
-      amount: '1',
-      units: '1',
-      frequency: '1',
-      mode: 'Pill',
-      note: 'N/A'
-    },
-    {
-	  ...
-    }
-  ]
- * }
- * 
+ * 	[
+		{
+			diagnosis: 'Diag1',
+			medication: 'Med1',
+			amount: '1',
+			units: '1',
+			frequency: '1',
+			mode: 'Pill',
+			note: 'N/A'
+		},
+		{
+			...
+		}
+	]
  */
 router.post('/diagnosis-details', async function (req, res) {
 	console.log(req.session);
@@ -66,7 +64,17 @@ router.post('/diagnosis-details', async function (req, res) {
 		patientData[currUser].diagnoses = req.body.symptoms;
 		console.log(`user # ${currUser}`);
 		console.log(patientData[currUser]);
-		res.send(200);
+		res.sendStatus(200);
+		
+		/**
+		 * Simply for testing, will remove from this function later
+		 */
+		let finalData = JSON.stringify(patientData[currUser].diagnoses)
+    	var pyProcess = spawn('python', ['./services/test.py', finalData]);
+		pyProcess.stdout.on('data', function(data) {
+			console.log(data.toString());
+		});
+
 	}
 });
 
@@ -80,7 +88,7 @@ router.post('/side-effects', async function(req, res) {
 		patientData[currUser].sideEffects = req.body.sideEffects;
 		console.log(`user # ${currUser}`);
 		console.log(patientData[currUser]);
-		res.send(200);
+		res.sendStatus(200);
 	}
 });
 
@@ -101,11 +109,14 @@ router.post('/generate-report', async function(req, res) {
 	}
 	else {
 		res.send(200);
-		let finalData = parseDiagnosis.format(patientData[currUser]);
-		const pythonPath = "xxx.py";
-		const pythonProcess = spawn('python', [pythonPath, finalData]);
-		pythonProcess.stdout.on('data', (data) => {
+		let finalData = utils.formatDiag(patientData[currUser]);
+		const pyProcess = spawn('python', ['./services/test.py', finalData]);
+		pyProcess.stdout.on('data', (data) => {
 			// Do something with the data returned from python script
+			console.log(data);
+
+			//...
+			utils.generateReport(JSON.stringify(data));
 		});
 	}
 });
