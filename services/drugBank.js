@@ -44,10 +44,19 @@ const getSideEffects = async(drugBankId) => {
   return sideEffects;
 }
 
+/**
+ * return an array of ingredients given a user-entered `medName`
+ * @param medName 
+ */
+async function getIngredients(medName) {
+
+}
+
 //export methods for use
 module.exports = {
   getMedications: getMedications,
   getConditions: getConditions,
-  getSideEffects: getSideEffects
+  getSideEffects: getSideEffects, 
+  getIngredients
 }
 
