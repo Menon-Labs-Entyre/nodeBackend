@@ -5,7 +5,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const host = 'https://api.drugbank.com/v1'
-const apiKey = process.env.DRUGBANKAPI;
+const apiKey = "310bffd2cf2be1608045231355596b19";//process.env.DRUGBANKAPI;
 axios.defaults.headers.common['Authorization'] = apiKey
 
 /* Based on passed in string, search for drugs with similar name */
@@ -19,7 +19,10 @@ const getMedications = async(drugName) => {
   }
   const response = await axios.get(host+callEndpoint,callParamters);
   const drugNames = response.data.products.map(product => product.name);
-  return drugNames;
+  const uniqueDrugNames = drugNames.filter(function(elem, pos) {
+    return drugNames.indexOf(elem) == pos;
+  })
+  return uniqueDrugNames;
 }
 
 //given the name of condition, return formalized name of conditions
@@ -142,4 +145,3 @@ module.exports = {
   getSideEffects: getSideEffects,
   createPatientPackage: createPatientPackage,
 }
-
