@@ -1,5 +1,4 @@
-
-const getIngredients = require('./drugBank').getIngredients
+const drugBank = require('./drugBank');
 
 /** 
  * Get the ingredients associated with each med and format output
@@ -25,12 +24,27 @@ const getIngredients = require('./drugBank').getIngredients
 	},
 	"condition B": {"medications": [...]}
 }
-* @param data: diagnosis details of a specific patient
+*/
+
+const createDrugPackage = async() => {
+	const drugDetails = drugBank.getDrug(drugId);
+	const indications = drugBank.getIndicationsbyDrug(drugId);
+	return {details:drugDetails,indications:indications};
+  }
+
+/* @param data: diagnosis details of a specific patient
 * @return stringified json output ready to be passed to python file
 */
-function formatDiag(data) {
-
+const createPatientPackage = async(patientData) => {
+	const diagnoses = patientData.diagnoses
+	const drugIds = diagnoses.map((pair) => drugBank.drugToId[pair.medication]);  
+	const conditionIds = testData.map((pair) => drugBank.conditonToId[pair.diagnosis]);
+	const interactions = getInteractions(drugIds);
+	const drugData = drugIds.map((drugId) => createDrugPackage(drugId)); 
+	const conditionData = conditionIds.map((conditionId) => getCondition(conditionId)); 
+	return {drugs:drugData, conditions:conditionData, interactions:interactions};
 }
+  
 
 /**
  * Generates the final report given data analysis results
@@ -42,7 +56,8 @@ function generateReport(data) {
 
 module.exports = {
 	formatDiag, 
-	generateReport
+	generateReport,
+	createPatientPackage
 }
 
 

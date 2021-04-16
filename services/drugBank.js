@@ -7,6 +7,8 @@ if (process.env.NODE_ENV !== 'production') {
 const host = 'https://api.drugbank.com/v1'
 const apiKey = process.env.DRUGBANKAPI;
 axios.defaults.headers.common['Authorization'] = apiKey
+const drugToId = {};
+const conditonToId = {};
 
 /* Based on passed in string, search for drugs with similar name */
 const getMedications = async(drugName) => {
@@ -22,6 +24,7 @@ const getMedications = async(drugName) => {
   const uniqueDrugNames = drugNames.filter(function(elem, pos) {
     return drugNames.indexOf(elem) == pos;
   })
+  response.data.products.forEach(product => drugToId[product.name] = product.drugbank_id);
   return uniqueDrugNames;
 }
 
@@ -35,7 +38,8 @@ const getConditions = async(conditionName) => {
     }
   }
   const response = await axios.get(host+callEndpoint,callParamters);
-  const conditionNames = response.data;
+  const conditionNames = response.data.products.map(condition => condition.name)
+  response.data.forEach(condition => conditonToId[condition.name] = condition.drugbank_id);
   return conditionNames;
 }
 
@@ -122,27 +126,12 @@ const getIndicationsbyDrug = async(drugBankId) => {
   return indiciationData;
 }
 
-const createDrugPackage = async() => {
-  const drugDetails = getDrug(drugId);
-  const indications = getIndicationsbyDrug(drugId);
-  return {details:drugDetails,indications:indications};
-
-}
-
-const createPatientPackage = async() => {
-  const testData = [{conditionId:null,drugBankId:null}]
-  const drugIds = testData.map((diagnosis) => diagnosis.drugBankId);  // add code to make sure t here are no dups
-  const conditionIds = testData.map((diagnosis) => diagnosis.conditionId); // add code to make sure t here are no dups
-  const interactions = getInteractions(drugIds);
-  const drugData = drugIds.map((drugId) => createDrugPackage(drugId)); 
-  const conditionData = conditionIds.map((conditionId) => getCondition(conditionId)); 
-  return {drugs:drugData, conditions:conditionData, interactions:interactions};
-}
-
 //export methods for use
 module.exports = {
   getMedications: getMedications,
   getConditions: getConditions,
   getSideEffects: getSideEffects,
   createPatientPackage: createPatientPackage,
+  drugToId: drugToId,
+  conditonToId: conditonToId
 }
