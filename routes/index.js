@@ -63,13 +63,13 @@ router.post('/diagnosis-details', async function (req, res) {
 		patientData[currUser].numDiag = req.body.numberOfDiagnosis;
 		patientData[currUser].diagnoses = req.body.symptoms;
 		console.log(`user # ${currUser}`);
-		console.log(patientData[currUser]);
+		//console.log(patientData[currUser]);
 		res.sendStatus(200);
-		
+		let finalData = await utils.createPatientPackage(patientData[currUser]);
+		console.log(finalData)
 		/**
 		 * Simply for testing, will remove from this function later
 		 */
-		let finalData = JSON.stringify(patientData[currUser].diagnoses)
     	var pyProcess = spawn('python', ['./services/test.py', finalData]);
 		pyProcess.stdout.on('data', function(data) {
 			console.log(data.toString());
@@ -109,7 +109,7 @@ router.post('/generate-report', async function(req, res) {
 	}
 	else {
 		res.send(200);
-		let finalData = utils.formatDiag(patientData[currUser]);
+		let finalData = utils.createPatientPackage(patientData[currUser]);
 		const pyProcess = spawn('python', ['./services/test.py', finalData]);
 		pyProcess.stdout.on('data', (data) => {
 			// Do something with the data returned from python script
