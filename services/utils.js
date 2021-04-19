@@ -1,50 +1,54 @@
 const drugBank = require('./drugBank');
 
-/** 
- * Get the ingredients associated with each med and format output
- * Desired format as below
-{
-	"condition A":
-	{"medications": # list of dictionary
-		[{"medication_name": "drugA",
-		"ingredients" : # list of dictionary
-			[{ "ingredient_name": "ingredientA",
-				"patient_dose": "xxx kg",
-				"db_dose": "Adult: xx kg/hour, Children: xx kk/hour",
-				"associate_conditions":["conditionX","conditionY","conditionZ",...],
-			},
-			{"ingredient_name": "ingredientB",
-			"patient_dose": "xxx kg",
-				"db_dose": "Adult: xx kg/hour, Children: xx kk/hour",
-				"associate_conditions":["conditionT","conditionS","conditionF",...],
-				},....]
-		},
-		{"medication_name": "drugB",
-		"ingredients" : [....]}]
-	},
-	"condition B": {"medications": [...]}
-}
+/**
+  * @desc creates an object of all related data to a product
+  * @param Object productDetails - an object of product data
+  * @return {Object} - returns an object containing all ingredients, indications, and details for a product
 */
-
-const createDrugPackage = async() => {
-	const drugDetails = drugBank.getDrug(drugId);
-	const indications = drugBank.getIndicationsbyDrug(drugId);
-	return {details:drugDetails,indications:indications};
+const createProductPackage = async(productDetails) => {
+	const indications = await drugBank.getIndicationsbyProduct(productDetails.drugbank_pcid);
+	const drugDetails = await Promise.all(productDetails.ingredients.map(ingredient => drugBank.getDrug(ingredient.drug.drugbank_id)));
+	return {details:productDetails,ingredients:drugDetails,indications:indications};
   }
 
-/* @param data: diagnosis details of a specific patient
-* @return stringified json output ready to be passed to python file
+/**
+  * @desc returns all data relevant to patient diagnosises that need to be returned from the api
+  * @param Object patientData - an object of all user input
+  * @return {Object} - returns an object containing a list of products, conditions, and interactions
 */
 const createPatientPackage = async(patientData) => {
-	const diagnoses = patientData.diagnoses
-	const drugIds = diagnoses.map((pair) => drugBank.drugToId[pair.medication]);  
-	const conditionIds = testData.map((pair) => drugBank.conditonToId[pair.diagnosis]);
-	const interactions = getInteractions(drugIds);
-	const drugData = drugIds.map((drugId) => createDrugPackage(drugId)); 
-	const conditionData = conditionIds.map((conditionId) => getCondition(conditionId)); 
-	return {drugs:drugData, conditions:conditionData, interactions:interactions};
+	const products = {};
+	console.log("Creating Package");
+	for(const pair of patientData.diagnoses){
+		products[pair.medication] = await createProductPackage(drugBank.productNameToProduct[pair.medication]) //create dictonary of products mapped from name to object
+	}
+	const productIds = Object.values(products).map((product) => product.details.drugbank_pcid); //create list of pcid for all products
+	console.log("Pulling interactions...")
+	const interactions = await drugBank.getInteractions(productIds); // pull interactions based on productIds
+	console.log("Pulled Interactions")
+	const conditionData = await Promise.all(patientData.diagnoses.map((pair)=> drugBank.getCondition(drugBank.conditonToId[pair.diagnosis]))); // pull data for each condition and create an array
+	console.log("Package created");
+	return {products:products, conditions:conditionData, interactions:interactions};
 }
-  
+
+/**
+  * @desc returns formated data relevant to patient diagnosises that need to be returned from the api to be passed to python.
+  * @param Object patientData - an object of all user input
+  * @return {Object} - returns an object containing a list of products, conditions, and interactions
+*/
+const formatData = async(userInput) => {
+	const drugBankData = await createPatientPackage(userInput);
+	const finalData = {}
+	await userInput.diagnoses.forEach((diagnosis) => {
+		const medication = drugBankData.products[diagnosis.medication];
+		if(diagnosis.diagnosis in finalData){
+			finalData[diagnosis.diagnosis].push(medication)
+		} else {
+			finalData[diagnosis.diagnosis] = [medication]
+		}
+	})
+	return finalData;
+}
 
 /**
  * Generates the final report given data analysis results
@@ -55,9 +59,8 @@ function generateReport(data) {
 }
 
 module.exports = {
-	formatDiag, 
 	generateReport,
-	createPatientPackage
+	createPatientPackage,
+	formatData
 }
-
 
