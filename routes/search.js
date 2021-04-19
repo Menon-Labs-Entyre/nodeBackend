@@ -4,17 +4,10 @@ const drugBank = require('../services/drugBank');
 var router = express.Router();
 
 //request list of medications with similar name
-router.get("/medication",async(req, res) => {
+router.get("/product",async(req, res) => {
     const nameInput = req.query.q;
-    const medications = await drugBank.getMedications(nameInput);
+    const medications = await drugBank.getProducts(nameInput);
     res.json(medications);
-})
-
-//request list of medications with similar name
-router.get("/side_effects",async(req, res) => {
-    const idInput = req.query.id;
-    const sideEffects = await drugBank.getMedications(idInput);
-    res.json(sideEffects);
 })
 
 //request list of medications with similar name
