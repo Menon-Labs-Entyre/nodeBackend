@@ -6,7 +6,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 const host = 'https://api.drugbank.com/v1'
 const apiKey = process.env.DRUGBANKAPI;
-axios.defaults.headers.common['Authorization'] = "310bffd2cf2be1608045231355596b19"//apiKey
+axios.defaults.headers.common['Authorization'] = apiKey//apiKey
 
 const productNameToProduct = {};
 const conditonToId = {};
