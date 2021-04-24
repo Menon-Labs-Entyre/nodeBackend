@@ -1,4 +1,6 @@
 const drugBank = require('./drugBank');
+const pdf = require('pdfkit');
+const fs = require('fs');
 
 /**
   * @desc creates an object of all related data to a product
@@ -57,16 +59,7 @@ const formatData = async(userInput) => {
 	return finalData;
 }
 
-/**
- * Generates the final report given data analysis results
- * @param data: stringified json data containing the results of analysis
- */
-function generateReport(data) {
-
-}
-
 module.exports = {
-	generateReport,
 	createPatientPackage,
 	formatData
 }
