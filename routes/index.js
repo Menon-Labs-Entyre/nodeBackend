@@ -1,39 +1,48 @@
 /* Load packages */
 const express = require('express');
 const router = express.Router();
-const utils = require('../services/utils');
 const spawn = require('child_process').spawn;
+const utils = require('../services/utils');
+const {generateReport} = require("../services/generateReport");
+const {sendReport} = require("../services/sendReport");
 
 var numUsers = -1;
 var patientData = {}; //key is the user id
 
-/** POST request after the user enters personal information 
- * {
-		firstName: "",
-		lastName: "",
-		age: "",
-		weight: "",
-		gender: "",
-		companyName: "",
-		subscriberName: "",
-		memberId: "",
-		subscriberRelationship: ""
-	}
- */
+/** POST request after the user enters personal information */
 router.post('/patient-information', async function(req, res) {
 	var sess = req.session;
 	if (sess.user === undefined) {
 		sess.user = ++numUsers; //set unique user # for each session
 		req.session.save();
 	}
+
+	info = {
+		name: `${req.body.firstName} ${req.body.lastName}`,
+		age: req.body.age,
+		weight: req.body.weight,
+		gender: req.body.gender, 
+		email: req.body.emailAddress, 
+		insr: req.body.companyName, 
+		subscriber: req.body.subscriberName, 
+		memId: req.body.memberId, 
+		rel: req.body.subscriberRelationship
+	}
+
 	patientData[sess.user] = {
-		patientInfo: req.body, 
+		patientInfo: info, 
 		numDiag: null, 
 		diagnoses: null,
 		sideEffects: null
 	};
+
 	console.log(`user # ${sess.user}:`);
 	console.log(patientData[sess.user]);
+
+	//add it for testing
+	const file = generateReport(patientData[sess.user], "");
+	sendReport(info.email, info.name, file);
+
 	res.sendStatus(200);
 });
 
@@ -74,7 +83,6 @@ router.post('/diagnosis-details', async function (req, res) {
 		pyProcess.stdout.on('data', function(data) {
 			console.log(data.toString());
 		});
-
 	}
 });
 
@@ -114,9 +122,11 @@ router.post('/generate-report', async function(req, res) {
 		pyProcess.stdout.on('data', (data) => {
 			// Do something with the data returned from python script
 			console.log(data);
-
 			//...
-			utils.generateReport(JSON.stringify(data));
+			const report = generateReport(JSON.stringify(data));
+			const email = patientData[currUser].patientInfo.email;
+			const name = patientData[currUser].patientInfo.name;
+			sendReport(email, name, report);
 		});
 	}
 });

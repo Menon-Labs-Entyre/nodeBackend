@@ -1,4 +1,6 @@
 const drugBank = require('./drugBank');
+const pdf = require('pdfkit');
+const fs = require('fs');
 
 /**
   * @desc creates an object of all related data to a product
@@ -20,6 +22,7 @@ const createPatientPackage = async(patientData) => {
 	const products = {};
 	console.log("Creating Package");
 	for(const pair of patientData.diagnoses){
+		console.log(pair)
 		products[pair.medication] = await createProductPackage(drugBank.productNameToProduct[pair.medication]) //create dictonary of products mapped from name to object
 	}
 	const productIds = Object.values(products).map((product) => product.details.drugbank_pcid); //create list of pcid for all products
@@ -41,6 +44,13 @@ const formatData = async(userInput) => {
 	const finalData = {}
 	await userInput.diagnoses.forEach((diagnosis) => {
 		const medication = drugBankData.products[diagnosis.medication];
+		medication['patient_input'] = {
+			dose:diagnosis.amount,
+			unit:diagnosis.units,
+			frequency:diagnosis.frequency,
+			mode:diagnosis.mode
+
+		}
 		if(diagnosis.diagnosis in finalData){
 			finalData[diagnosis.diagnosis].push(medication)
 		} else {
@@ -50,17 +60,10 @@ const formatData = async(userInput) => {
 	return finalData;
 }
 
-/**
- * Generates the final report given data analysis results
- * @param data: stringified json data containing the results of analysis
- */
-function generateReport(data) {
-
-}
-
 module.exports = {
-	generateReport,
 	createPatientPackage,
 	formatData
 }
+
+
 
