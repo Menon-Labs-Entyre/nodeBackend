@@ -44,16 +44,16 @@ function writePatientInfo(doc, info) {
         .moveDown()
         .fontSize(12);
     doc
-        .text(`Name: ${info.firstName} ${info.lastName}`)
+        .text(`Name: ${info.name}`)
         .text(`Date of Birth: `)
         .text(`Age: ${info.age}`)
         .text(`Gender: ${info.gender}`)
         .text(`Weight: ${info.weight} kg`);
     doc
         .moveUp(5)
-        .text(`Doctor/Consultant: ${info.subscriberName}`, { align: 'right' })
-        .text(`Insurer: ${info.companyName}`, {align: 'right'})
-        .text(`Insurance ID: ${info.memberId}`, {align: 'right'})
+        .text(`Doctor/Consultant: ${info.subscriber}`, { align: 'right' })
+        .text(`Insurer: ${info.insr}`, {align: 'right'})
+        .text(`Insurance ID: ${info.memId}`, {align: 'right'})
         .moveDown(3);
 }
 
@@ -100,7 +100,7 @@ function writeAnalysisResults(doc, results) {
  */
 function generateReport(userInput, results) {
     let doc = new PDFDocument();
-    const file = `analysis-result-${userInput.patientInfo.firstName}-${userInput.patientInfo.lastName}.pdf`;
+    const file = `analysis-result-${userInput.patientInfo.name}.pdf`;
     doc.pipe(fs.createWriteStream(file));
     writePatientInfo(doc, userInput.patientInfo);
     writeMedicalSummary(doc, userInput.diagnoses);

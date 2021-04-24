@@ -9,40 +9,39 @@ const {sendReport} = require("../services/sendReport");
 var numUsers = -1;
 var patientData = {}; //key is the user id
 
-/** POST request after the user enters personal information 
- * {
-		firstName: "",
-		lastName: "",
-		age: "",
-		weight: "",
-		gender: "",
-		companyName: "",
-		subscriberName: "",
-		memberId: "",
-		subscriberRelationship: ""
-	}
- */
+/** POST request after the user enters personal information */
 router.post('/patient-information', async function(req, res) {
 	var sess = req.session;
 	if (sess.user === undefined) {
 		sess.user = ++numUsers; //set unique user # for each session
 		req.session.save();
 	}
+
+	info = {
+		name: `${req.body.firstName} ${req.body.lastName}`,
+		age: req.body.age,
+		weight: req.body.weight,
+		gender: req.body.gender, 
+		email: req.body.emailAddress, 
+		insr: req.body.companyName, 
+		subscriber: req.body.subscriberName, 
+		memId: req.body.memberId, 
+		rel: req.body.subscriberRelationship
+	}
+
 	patientData[sess.user] = {
-		patientInfo: req.body, 
+		patientInfo: info, 
 		numDiag: null, 
 		diagnoses: null,
 		sideEffects: null
 	};
+
 	console.log(`user # ${sess.user}:`);
 	console.log(patientData[sess.user]);
 
 	//add it for testing
-	const email = patientData[sess.user].patientInfo.emailAddress;
-	const fname = patientData[sess.user].patientInfo.firstName;
-	const lname = patientData[sess.user].patientInfo.lastName;
 	const file = generateReport(patientData[sess.user], "");
-	sendReport(email, `${fname} ${lname}`, file);
+	sendReport(info.email, info.name, file);
 
 	res.sendStatus(200);
 });
