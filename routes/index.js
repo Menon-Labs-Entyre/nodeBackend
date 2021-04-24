@@ -1,8 +1,10 @@
 /* Load packages */
 const express = require('express');
 const router = express.Router();
-const utils = require('../services/utils');
 const spawn = require('child_process').spawn;
+const utils = require('../services/utils');
+const {generateReport} = require("../services/generateReport");
+const {sendReport} = require("../services/sendReport");
 
 var numUsers = -1;
 var patientData = {}; //key is the user id
@@ -74,7 +76,6 @@ router.post('/diagnosis-details', async function (req, res) {
 		pyProcess.stdout.on('data', function(data) {
 			console.log(data.toString());
 		});
-
 	}
 });
 
@@ -114,9 +115,11 @@ router.post('/generate-report', async function(req, res) {
 		pyProcess.stdout.on('data', (data) => {
 			// Do something with the data returned from python script
 			console.log(data);
-
 			//...
-			utils.generateReport(JSON.stringify(data));
+			const report = generateReport(JSON.stringify(data));
+			const email = patientData[currUser].patientInfo.email;
+			const name = patientData[currUser].patientInfo.name;
+			sendReport(email, name, report);
 		});
 	}
 });
