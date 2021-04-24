@@ -95,16 +95,12 @@ function writeAnalysisResults(doc, results) {
  */
 function generateReport(userInput, results) {
     let doc = new PDFDocument();
-    doc.pipe(
-        fs.createWriteStream(
-            `analysis-result-${userInput.patientInfo.firstName}-${userInput.patientInfo.lastName}.pdf`
-        )
-    );
+    const file =  `analysis-result-${userInput.patientInfo.firstName}-${userInput.patientInfo.lastName}.pdf`;
+    doc.pipe(fs.createWriteStream(file));
     writePatientInfo(doc, userInput.patientInfo);
     writeMedicalSummary(doc, userInput.diagnoses);
     writeSideEffects(doc, null);
     writeAnalysisResults(doc, null);
     doc.end();
+    return file;
 }
-
-generateReport(FAKEDATA, {});

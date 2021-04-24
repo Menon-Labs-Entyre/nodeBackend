@@ -52,20 +52,7 @@ const formatData = async(userInput) => {
 	return finalData;
 }
 
-/**
- * Generates the final report given data analysis results
- * @param data: stringified json data containing the results of analysis
- */
-function generateReport(data) {
-	let report = new pdf;
-	report.pipe(fs.createWriteStream('analysis-result.pdf'));
-	report.text('This is where the analysis is gonna go:');
-	report.text(data);
-	report.end();
-}
-
 module.exports = {
-	generateReport,
 	createPatientPackage,
 	formatData
 }
