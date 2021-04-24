@@ -1,0 +1,1314 @@
+{
+  "ADHD, ADD": [
+    {
+      "details": {
+        "hits": [
+          {
+            "value": "Amphetamine / Dextroamphetamine [<em>Adderall</em>]"
+          },
+          {
+            "value": "<em>Adderall</em>"
+          },
+          {
+            "value": "<em>Adderall</em> XR"
+          }
+        ],
+        "name": "Amphetamine / Dextroamphetamine [Adderall]",
+        "display_name": "Adderall",
+        "drugbank_pcid": "DBPC0103345",
+        "brand": "Adderall",
+        "level": 2,
+        "route": null,
+        "form": null,
+        "strengths": null,
+        "standing": "active",
+        "standing_updated_at": "2018-09-12",
+        "standing_active_since": "1996-02-13",
+        "regions": {
+          "us": true,
+          "canada": true,
+          "eu": false,
+          "germany": false
+        },
+        "rxnorm_concepts": [],
+        "ingredients": [
+          {
+            "name": "Dextroamphetamine",
+            "drug": {
+              "name": "Dextroamphetamine",
+              "drugbank_id": "DB01576",
+              "clinical_description": "A sympathomimetic agent used in the treatment of attention deficit hyperactivity disorder (ADHD) and narcolepsy."
+            }
+          },
+          {
+            "name": "Amphetamine",
+            "drug": {
+              "name": "Amphetamine",
+              "drugbank_id": "DB00182",
+              "clinical_description": "A CNS stimulant and sympathomimetic agent indicated for the treatment of Attention Deficit Hyperactivity Disorder (ADHD)."
+            }
+          }
+        ]
+      },
+      "ingredients": [
+        {
+          "drugbank_id": "DB01576",
+          "name": "Dextroamphetamine",
+          "cas_number": "51-64-9",
+          "annotation_status": "complete",
+          "availability_by_region": [
+            {
+              "region": "ca",
+              "max_phase": 4,
+              "marketed_prescription": true,
+              "generic_available": true,
+              "pre_market_cancelled": false,
+              "post_market_cancelled": false
+            },
+            {
+              "region": "de",
+              "max_phase": 0,
+              "marketed_prescription": false,
+              "generic_available": false,
+              "pre_market_cancelled": false,
+              "post_market_cancelled": false
+            },
+            {
+              "region": "eu",
+              "max_phase": 0,
+              "marketed_prescription": false,
+              "generic_available": false,
+              "pre_market_cancelled": false,
+              "post_market_cancelled": false
+            },
+            {
+              "region": "us",
+              "max_phase": 4,
+              "marketed_prescription": true,
+              "generic_available": true,
+              "pre_market_cancelled": false,
+              "post_market_cancelled": false
+            }
+          ],
+          "description": "Dextroamphetamine is the dextrorotary enantiomer of amphetamine[A2505]. Dextroamphetamine was approved by the FDA in 2001 for the treatment of attention deficit hyperactivity disorder[L6010,Label].",
+          "simple_description": "A medication used to treat attention deficit hyperactivity disorder (ADHD) and daytime sleepiness.",
+          "clinical_description": "A sympathomimetic agent used in the treatment of attention deficit hyperactivity disorder (ADHD) and narcolepsy.",
+          "synonyms": [
+            "(+)-(S)-amphetamine",
+            "(+)-amphetamine",
+            "(+)-α-methylphenethylamine",
+            "(+)-α-methylphenylethylamine",
+            "(S)-(+)-amphetamine",
+            "(S)-(+)-β-phenylisopropylamine",
+            "(S)-1-phenyl-2-aminopropane",
+            "(S)-1-phenyl-2-propylamine",
+            "(S)-amphetamine",
+            "(S)-α-methylbenzeneethanamine",
+            "(αS)-α-methylbenzeneethanamine",
+            "d-amphetamine",
+            "Desamfetamina",
+            "Dexamfetamina",
+            "Dexamfetamine",
+            "Dexamfetaminum",
+            "Dexamphetamine",
+            "Dexanfetamina",
+            "Dextroamphetamine"
+          ],
+          "pharmacology": {
+            "indication_descripton": "Dextroamphetamine is indicated for the treatment of attention deficit hyperactivity disorder (ADHD).[Label]",
+            "pharmacodynamic_description": "Dextroamphetamine is a noncatecholamine, sympathomimetic amine that acts as a CNS stimulant.[Label] Dextroamphetamine raises systolic and diastolic blood pressure, acts as a weak bronchodilator, and also acts as a respiratory stimulant.[Label] The general mechanism of action of dextroamphetamine has not been well established.[Label]",
+            "mechanism_of_action_description": "The exact mechanism of amphetamines as a class is not known. Dextroamphetamine acts by preventing reuptake, increasing release, and stimulating reverse-transport of dopamine in synaptic clefts in the striatum.[A177253] Newer evidence shows amphetamines may also alter the number of dopamine transporters in synaptic clefts.[A177220]",
+            "absorption": "Bioavailability data of dextroamphetamine is not readily available, however there is no difference in bioavailability when taken with or without a meal.[Label]",
+            "protein_binding": "",
+            "volume_of_distribution": [
+              "195L.[A177247]"
+            ],
+            "clearance": [
+              "17L/h.[A177247]"
+            ],
+            "half_life": "11.75 hours.[Label] In a study of post-stroke patients the half life was 16.0 hours in females and 12.4 hours in males.[A2505] Studies in healthy populations show a half life of 7.9 hours.[A177247]",
+            "route_of_elimination": "A third of the drug is eliminated renally.[A2505]",
+            "toxicity_description": "Dextroamphetamine has been shown to be teratogenic and embryotoxic in mice at 41 times the maximum human dose.[Label] These effects were not seen in rat or rabbit studies, and the effects on human pregnancy have not been studied.[Label] The risk and benefit of use during pregnancy should be weighed as bone deformities, tracheoesophageal fistula, anal atresia, low birthweight, and withdrawl have been reported in the children of mothers who were taking dextroamphetamine during pregnancy.[Label] Mothers should not take amphetamines while nursing as the drug is excreted in breast milk.[Label] Long term effects of dextroamphetamine have not bee determined in pediatric patients and dextroamphetamine should be avoided in children under 3 years.[Label]"
+          },
+          "food_interactions": [
+            "Avoid fruit juice. Fruit juice may acidify the gastrointestinal tract, decreasing absorption of amphetamines."
+          ],
+          "identifiers": {
+            "drugbank_id": "DB01576",
+            "inchi": "InChI=1S/C9H13N/c1-8(10)7-9-5-3-2-4-6-9/h2-6,8H,7,10H2,1H3/t8-/m0/s1",
+            "inchikey": "KWTSXDURSIMDCE-QMMMGPOBSA-N",
+            "atc_codes": [
+              {
+                "code": "N06BA02",
+                "title": "dexamfetamine",
+                "combination": false
+              }
+            ]
+          },
+          "therapeutic_categories": [
+            {
+              "drugbank_id": "DBCAT000431",
+              "name": "Amphetamines",
+              "mesh_id": "D000662",
+              "mesh_tree_numbers": [
+                "D02.092.471.683.152"
+              ],
+              "atc_code": null,
+              "atc_level": null,
+              "synonyms": [],
+              "description": "Analogs or derivatives of AMPHETAMINE. Many are sympathomimetics and central nervous system stimulators causing excitation, vasopressin, bronchodilation, and to varying degrees, anorexia, analepsis, nasal decongestion, and some smooth muscle relaxation."
+            },
+            {
+              "drugbank_id": "DBCAT000437",
+              "name": "Central Nervous System Stimulants",
+              "mesh_id": "D000697",
+              "mesh_tree_numbers": [
+                "D27.505.696.282",
+                "D27.505.954.427.220"
+              ],
+              "atc_code": null,
+              "atc_level": null,
+              "synonyms": [
+                "Agents, Analeptic",
+                "Analeptic Agents",
+                "Analeptic Drugs",
+                "Analeptics",
+                "Central Stimulants",
+                "Drugs, Analeptic",
+                "Stimulants, Central"
+              ],
+              "description": "A loosely defined group of drugs that tend to increase behavioral alertness, agitation, or excitation. They work by a variety of mechanisms, but usually not by direct excitation of neurons. The many drugs that have such actions as side effects to their main therapeutic use are not included here."
+            },
+            {
+              "drugbank_id": "DBCAT000438",
+              "name": "Sympathomimetics",
+              "mesh_id": "D013566",
+              "mesh_tree_numbers": [
+                "D27.505.696.663.050.870"
+              ],
+              "atc_code": "R01BA",
+              "atc_level": 4,
+              "synonyms": [
+                "Agents, Sympathomimetic",
+                "Amines, Sympathomimetic",
+                "Drugs, Sympathomimetic",
+                "Effect, Sympathomimetic",
+                "Effects, Sympathomimetic",
+                "Sympathomimetic",
+                "Sympathomimetic Agents",
+                "Sympathomimetic Amines",
+                "Sympathomimetic Drugs",
+                "Sympathomimetic Effect",
+                "Sympathomimetic Effects"
+              ],
+              "description": "Drugs that mimic the effects of stimulating postganglionic adrenergic sympathetic nerves. Included here are drugs that directly stimulate adrenergic receptors and drugs that act indirectly by provoking the release of adrenergic transmitters."
+            }
+          ]
+        },
+        {
+          "drugbank_id": "DB00182",
+          "name": "Amphetamine",
+          "cas_number": "300-62-9",
+          "annotation_status": "complete",
+          "availability_by_region": [
+            {
+              "region": "ca",
+              "max_phase": 4,
+              "marketed_prescription": true,
+              "generic_available": true,
+              "pre_market_cancelled": false,
+              "post_market_cancelled": false
+            },
+            {
+              "region": "de",
+              "max_phase": 0,
+              "marketed_prescription": false,
+              "generic_available": false,
+              "pre_market_cancelled": false,
+              "post_market_cancelled": false
+            },
+            {
+              "region": "eu",
+              "max_phase": 1,
+              "marketed_prescription": false,
+              "generic_available": false,
+              "pre_market_cancelled": false,
+              "post_market_cancelled": false
+            },
+            {
+              "region": "us",
+              "max_phase": 4,
+              "marketed_prescription": true,
+              "generic_available": true,
+              "pre_market_cancelled": false,
+              "post_market_cancelled": false
+            }
+          ],
+          "description": "Amphetamine, a compound discovered over 100 years ago, is one of the more restricted controlled drugs. It was previously used for a large variety of conditions and this changed until this point where its use is highly restricted. Amphetamine, with the chemical formula alpha-methylphenethylamine, was discovered in 1910 and first synthesized by 1927. After being proven to reduce drug-induced anesthesia and produce arousal and insomnia, amphetamine racemic mix was registered by Smith, Kline and French in 1935. Amphetamine structure presents one chiral center and it exists in the form of dextro- and levo-isomers.[A18540] The first product of Smith, Kline and French was approved by the FDA on 1976.[L5194]\r\n\r\nDuring World War II, amphetamine was used to promote wakefulness in the soldiers. This use derived into a large overproduction of amphetamine and all the surplus after the war finalized ended up in the black market, producing the initiation of the illicit abuse.[A18540]",
+          "simple_description": "A medication used to treat ADHD.",
+          "clinical_description": "A CNS stimulant and sympathomimetic agent indicated for the treatment of Attention Deficit Hyperactivity Disorder (ADHD).",
+          "synonyms": [
+            "(+-)-alpha-Methylphenylethylamine",
+            "1-phenyl-2-aminopropane",
+            "alpha-Methylbenzeneethaneamine",
+            "Amfetamina",
+            "Amfetamine",
+            "Amfetaminum",
+            "Amphetamine",
+            "beta-Aminopropylbenzene",
+            "beta-Phenylisopropylamin",
+            "Desoxynorephedrine",
+            "rac-(2R)-1-phenylpropan-2-amine",
+            "rac-amphetamine",
+            "α-methylbenzeneethaneamine",
+            "α-methylphenethylamine",
+            "β-aminopropylbenzene",
+            "β-phenylisopropylamine"
+          ],
+          "pharmacology": {
+            "indication_descripton": "Amphetamine is indicated for the treatment of attention-deficit/hyperactivity disorders (ADHD) as well as for the treatment of central nervous system disorders such as narcolepsy.[A18540] \r\n\r\nADHD is a complex disorder associated with the substantial heterogeneity in etiology, clinical presentation, and treatment outcome. ADHD comes from a complex interplay between interdependent genetic and non-genetic factors which cause complex mental disorders in children and teenagers.[A174271]\r\n\r\nOn the other hand, narcolepsy is a chronic sleep disorder typically resenting during adolescence and characterized by excessive daytime sleepiness.[A174274]\r\n\r\nAmphetamine is also being used nowadays off-label for the treatment of obesity, depression and chronic pain.[A174268, A174283]",
+            "pharmacodynamic_description": "From its mechanism of action, it has been demonstrated that amphetamine augments the concentration of noradrenaline in the prefrontal cortex and dopamine in the striatum on a dose and time-dependent manner. The indistinct release of neurotransmitters which include adrenaline is known to produce cardiovascular side effects.[A174214] \r\n\r\nThere are old reports of a cognitive enhancement related to the administration of amphetamine in which improvements in intelligence test scores were reported.[A174196]\r\n\r\nIn ADHD, amphetamine has been largely showed to produce remarkable improvements in school performance, behavior, and demeanor.[A18540] The effect was shown to be produced through both racemic forms and to this date, the use of racemic forms 3:1 (D:L) is very common.[A174199] The therapeutic effect of amphetamine on serotonin does not seem to have a significant clinical effect on ADHD as observed on comparative studies with amphetamine and fenfluramine, a powerful serotonin releasing factor. However, the indirect effect on serotonin might have an effect on the depression and anxiety profile of ADHD.[A174241]\r\n\r\nStudies regarding the illicit use of amphetamine in which heavy consumers were studied proved the generation of a paranoid state which flagged this drug as a psychiatric danger compound.[L5197] This observation was supported by the continuous reports of misuse in patients under depression.[A18540]",
+            "mechanism_of_action_description": "It is important to consider that amphetamine has a very similar structure to the catecholamine neurotransmitters mainly on the presence of a long planar conformation, the presence of an aromatic ring and nitrogen in the aryl side chain. Amphetamine, as well as other catecholamines, is taken into presynaptic nerve terminals by the association with two sodium ions and one chloride ion. The complex of the amphetamine with the ions is actively transported by monoamine reuptake transporters. As amphetamine acts competitively with the endogenous monoamines, the greater the number of amphetamines the more internalized amphetamine will be found.[A18540]\r\n\r\nOnce inside the presynaptic terminal, amphetamine displaces other monoamines to be stored by VMAT2 which produces the pumping of the neurotransmitters into the synapse by a process called retro-transport.[A174211] This process of release of neurotransmitters is approximately fourfold more potent in the d-isomer for the release of dopamine.[A174214]\r\n\r\nThe mechanism of action of amphetamine is complemented by the inhibition of the reuptake and of monoamine oxidase which acts synergistically to produce a significant increase the monoamine concentration.[A18540] This activity is not done as an inhibitor per se but more as a competitive substrate and thus, amphetamine is known to be a weak dopamine reuptake inhibitor, moderate noradrenaline reuptake inhibitor and very weak serotonin reuptake inhibitor. From this specific action, the l-isomer is known to be significantly less potent.[A174214]\r\n\r\nLastly, amphetamine is known to be an inhibitor of the mitochondrial-bound enzyme MAO which is the catalytic enzyme in charge of degrading all the excess of neurotransmitters. This mechanism of action is often overpassed as amphetamine is a weak MAO inhibitor but this mechanism cannot be dismissed.[A18540]",
+            "absorption": "Amphetamine is well absorbed in the gut and as it is a weak base hence the more basic the environment the more of the drug is found in a lipid-soluble form and the absorption through lipid-rich cell membranes is highly favored.[A174292] The peak response of amphetamine occurs 1-3 hours after oral administration and approximately 15 minutes after injection and it presents a bioavailability of over 75%.[L5206] Complete amphetamine absorption is usually done after 4-6 hours.[L5209]",
+            "protein_binding": "The reported protein binding of amphetamine is relatively low and register to be of 20%.[A174292]",
+            "volume_of_distribution": [
+              "Amphetamine is reported to have a high volume of distribution of 4 L/kg.[A174292]"
+            ],
+            "clearance": [
+              "The reported normal clearance rate is of 0.7 L.h/kg. This clearance has been shown to get significantly reduced in patients with renal impairment reaching a value of 0.4 L.h/kg.[F3244]"
+            ],
+            "half_life": "The half-life of amphetamine highly depends on the isomer. For d-amphetamine, the reported half-life is of approximately 9-11 hours while for l-amphetamine the half-life is reported to be of 11-14 hours. The urine pH can modify this pharmacokinetic parameter which can vary from 7 hours in acid urine to 34 hours for alkaline urine.[A174292]",
+            "route_of_elimination": "The elimination of amphetamine is mainly via the urine from which about 40% of the excreted dose is found as unchanged amphetamine. About 90% of the administered amphetamine is eliminated 3 days after oral administration.[A174292] The rate of elimination of amphetamine highly depends on the urine pH in which acidic pH will produce a higher excretion of amphetamine and basic pH produces a lower excretion.[L5206]",
+            "toxicity_description": "The mean lethal serum concentration is reported to be of 6.4 mg/l. Acute amphetamine overdose can lead to hyperthermia, respiratory depression, seizures, metabolic acidosis, renal failure, hepatic injury, and coma. Some of the neurologic effects have been shown to be agitation, aggressive behavior, irritability, headache, and hallucinations. In the cardiovascular site, there have been reports of arrhythmia, cardiomyopathy, myocardial infarction or ischemic stroke. Lastly, in the GI tract, there are reports if abdominal pain, vomiting, diarrhea, cramps, anorexia and GI hemorrhage. A dose of 1-2 g of amphetamine is known to cause severe intoxication but some chronic abusers can report usage of even 5-15 g per day.[L5212]\r\n\r\nIn animal studies, there is no evidence of carcinogenic potential, not clastogenic or to affect fertility or early embryonic development.[FDA label]"
+          },
+          "food_interactions": [
+            "Take with or without food."
+          ],
+          "identifiers": {
+            "drugbank_id": "DB00182",
+            "inchi": "InChI=1S/C9H13N/c1-8(10)7-9-5-3-2-4-6-9/h2-6,8H,7,10H2,1H3",
+            "inchikey": "KWTSXDURSIMDCE-UHFFFAOYSA-N",
+            "atc_codes": [
+              {
+                "code": "N06BA01",
+                "title": "amfetamine",
+                "combination": false
+              }
+            ]
+          },
+          "therapeutic_categories": [
+            {
+              "drugbank_id": "DBCAT000431",
+              "name": "Amphetamines",
+              "mesh_id": "D000662",
+              "mesh_tree_numbers": [
+                "D02.092.471.683.152"
+              ],
+              "atc_code": null,
+              "atc_level": null,
+              "synonyms": [],
+              "description": "Analogs or derivatives of AMPHETAMINE. Many are sympathomimetics and central nervous system stimulators causing excitation, vasopressin, bronchodilation, and to varying degrees, anorexia, analepsis, nasal decongestion, and some smooth muscle relaxation."
+            },
+            {
+              "drugbank_id": "DBCAT000437",
+              "name": "Central Nervous System Stimulants",
+              "mesh_id": "D000697",
+              "mesh_tree_numbers": [
+                "D27.505.696.282",
+                "D27.505.954.427.220"
+              ],
+              "atc_code": null,
+              "atc_level": null,
+              "synonyms": [
+                "Agents, Analeptic",
+                "Analeptic Agents",
+                "Analeptic Drugs",
+                "Analeptics",
+                "Central Stimulants",
+                "Drugs, Analeptic",
+                "Stimulants, Central"
+              ],
+              "description": "A loosely defined group of drugs that tend to increase behavioral alertness, agitation, or excitation. They work by a variety of mechanisms, but usually not by direct excitation of neurons. The many drugs that have such actions as side effects to their main therapeutic use are not included here."
+            },
+            {
+              "drugbank_id": "DBCAT000438",
+              "name": "Sympathomimetics",
+              "mesh_id": "D013566",
+              "mesh_tree_numbers": [
+                "D27.505.696.663.050.870"
+              ],
+              "atc_code": "R01BA",
+              "atc_level": 4,
+              "synonyms": [
+                "Agents, Sympathomimetic",
+                "Amines, Sympathomimetic",
+                "Drugs, Sympathomimetic",
+                "Effect, Sympathomimetic",
+                "Effects, Sympathomimetic",
+                "Sympathomimetic",
+                "Sympathomimetic Agents",
+                "Sympathomimetic Amines",
+                "Sympathomimetic Drugs",
+                "Sympathomimetic Effect",
+                "Sympathomimetic Effects"
+              ],
+              "description": "Drugs that mimic the effects of stimulating postganglionic adrenergic sympathetic nerves. Included here are drugs that directly stimulate adrenergic receptors and drugs that act indirectly by provoking the release of adrenergic transmitters."
+            }
+          ]
+        }
+      ],
+      "indications": [
+        {
+          "kind": "used_in_combination_to_manage",
+          "off_label": false,
+          "otc_use": false,
+          "adjunct_use": false,
+          "route": [],
+          "dose_form": [],
+          "dose_strength": [],
+          "combination_type": "product",
+          "age_groups": [
+            "adult"
+          ],
+          "drug": {
+            "name": "Amphetamine",
+            "drugbank_id": "DB00182"
+          },
+          "regions": "US",
+          "min_age": {
+            "amount": 18,
+            "unit": "year"
+          },
+          "condition": {
+            "name": "Attention Deficit Hyperactivity Disorder",
+            "drugbank_id": "DBCOND0020620"
+          },
+          "combination_drugs": [
+            {
+              "name": "Dextroamphetamine",
+              "drugbank_id": "DB01576"
+            }
+          ]
+        },
+        {
+          "kind": "used_in_combination_to_manage",
+          "off_label": false,
+          "otc_use": false,
+          "adjunct_use": false,
+          "route": [],
+          "dose_form": [],
+          "dose_strength": [],
+          "combination_type": "product",
+          "age_groups": [
+            "adolescent"
+          ],
+          "drug": {
+            "name": "Dextroamphetamine",
+            "drugbank_id": "DB01576"
+          },
+          "regions": "US",
+          "min_age": {
+            "amount": 13,
+            "unit": "year"
+          },
+          "max_age": {
+            "amount": 17,
+            "unit": "year"
+          },
+          "condition": {
+            "name": "Attention Deficit Hyperactivity Disorder",
+            "drugbank_id": "DBCOND0020620"
+          },
+          "combination_drugs": [
+            {
+              "name": "Amphetamine",
+              "drugbank_id": "DB00182"
+            }
+          ]
+        },
+        {
+          "kind": "used_in_combination_to_manage",
+          "off_label": false,
+          "otc_use": false,
+          "adjunct_use": false,
+          "route": [],
+          "dose_form": [],
+          "dose_strength": [],
+          "combination_type": "product",
+          "age_groups": [
+            "adolescent"
+          ],
+          "drug": {
+            "name": "Amphetamine",
+            "drugbank_id": "DB00182"
+          },
+          "regions": "US",
+          "min_age": {
+            "amount": 13,
+            "unit": "year"
+          },
+          "max_age": {
+            "amount": 17,
+            "unit": "year"
+          },
+          "condition": {
+            "name": "Attention Deficit Hyperactivity Disorder",
+            "drugbank_id": "DBCOND0020620"
+          },
+          "combination_drugs": [
+            {
+              "name": "Dextroamphetamine",
+              "drugbank_id": "DB01576"
+            }
+          ]
+        },
+        {
+          "kind": "used_in_combination_to_manage",
+          "off_label": false,
+          "otc_use": false,
+          "adjunct_use": false,
+          "route": [],
+          "dose_form": [],
+          "dose_strength": [],
+          "combination_type": "product",
+          "age_groups": [
+            "children"
+          ],
+          "drug": {
+            "name": "Dextroamphetamine",
+            "drugbank_id": "DB01576"
+          },
+          "regions": "US",
+          "min_age": {
+            "amount": 6,
+            "unit": "year"
+          },
+          "max_age": {
+            "amount": 12,
+            "unit": "year"
+          },
+          "condition": {
+            "name": "Attention Deficit Hyperactivity Disorder",
+            "drugbank_id": "DBCOND0020620"
+          },
+          "combination_drugs": [
+            {
+              "name": "Amphetamine",
+              "drugbank_id": "DB00182"
+            }
+          ]
+        },
+        {
+          "kind": "used_in_combination_to_manage",
+          "off_label": false,
+          "otc_use": false,
+          "adjunct_use": false,
+          "route": [],
+          "dose_form": [],
+          "dose_strength": [],
+          "combination_type": "product",
+          "age_groups": [
+            "children"
+          ],
+          "drug": {
+            "name": "Amphetamine",
+            "drugbank_id": "DB00182"
+          },
+          "regions": "US",
+          "min_age": {
+            "amount": 6,
+            "unit": "year"
+          },
+          "max_age": {
+            "amount": 12,
+            "unit": "year"
+          },
+          "condition": {
+            "name": "Attention Deficit Hyperactivity Disorder",
+            "drugbank_id": "DBCOND0020620"
+          },
+          "combination_drugs": [
+            {
+              "name": "Dextroamphetamine",
+              "drugbank_id": "DB01576"
+            }
+          ]
+        },
+        {
+          "kind": "used_in_combination_to_manage",
+          "off_label": false,
+          "otc_use": false,
+          "adjunct_use": false,
+          "combination_type": "product",
+          "age_groups": [
+            "adolescent"
+          ],
+          "drug": {
+            "name": "Amphetamine",
+            "drugbank_id": "DB00182"
+          },
+          "regions": "US",
+          "condition": {
+            "name": "Attention Deficit Hyperactivity Disorder",
+            "drugbank_id": "DBCOND0020620"
+          },
+          "combination_drugs": [
+            {
+              "name": "Dextroamphetamine",
+              "drugbank_id": "DB01576"
+            }
+          ]
+        },
+        {
+          "kind": "used_in_combination_to_manage",
+          "off_label": false,
+          "otc_use": false,
+          "adjunct_use": false,
+          "route": [],
+          "dose_form": [],
+          "dose_strength": [],
+          "combination_type": "product",
+          "age_groups": [
+            "adult"
+          ],
+          "drug": {
+            "name": "Dextroamphetamine",
+            "drugbank_id": "DB01576"
+          },
+          "regions": "US",
+          "min_age": {
+            "amount": 18,
+            "unit": "year"
+          },
+          "condition": {
+            "name": "Attention Deficit Hyperactivity Disorder",
+            "drugbank_id": "DBCOND0020620"
+          },
+          "combination_drugs": [
+            {
+              "name": "Amphetamine",
+              "drugbank_id": "DB00182"
+            }
+          ]
+        }
+      ],
+      "patient_input": {
+        "dose": "1",
+        "unit": "1",
+        "frequency": "1",
+        "mode": "Pill"
+      }
+    }
+  ],
+  "Depression": [
+    {
+      "details": {
+        "hits": [
+          {
+            "value": "<em>Fluoxetine</em>"
+          }
+        ],
+        "name": "Fluoxetine",
+        "display_name": null,
+        "drugbank_pcid": "DBPC0000000",
+        "brand": null,
+        "level": 1,
+        "route": null,
+        "form": null,
+        "strengths": null,
+        "standing": "active",
+        "standing_updated_at": "2018-09-12",
+        "standing_active_since": "1987-12-29",
+        "regions": {
+          "us": true,
+          "canada": true,
+          "eu": false,
+          "germany": true
+        },
+        "rxnorm_concepts": [
+          {
+            "name": "fluoxetine",
+            "RXCUI": "4493"
+          }
+        ],
+        "ingredients": [
+          {
+            "name": "Fluoxetine",
+            "drug": {
+              "name": "Fluoxetine",
+              "drugbank_id": "DB00472",
+              "clinical_description": "A selective serotonin reuptake inhibitor used to treat major depressive disorder, bulimia, OCD, premenstrual dysphoric disorder, panic disorder, and bipolar I."
+            }
+          }
+        ]
+      },
+      "ingredients": [
+        {
+          "drugbank_id": "DB00472",
+          "name": "Fluoxetine",
+          "cas_number": "54910-89-3",
+          "annotation_status": "complete",
+          "availability_by_region": [
+            {
+              "region": "ca",
+              "max_phase": 4,
+              "marketed_prescription": true,
+              "generic_available": true,
+              "pre_market_cancelled": false,
+              "post_market_cancelled": false
+            },
+            {
+              "region": "de",
+              "max_phase": 0,
+              "marketed_prescription": false,
+              "generic_available": false,
+              "pre_market_cancelled": false,
+              "post_market_cancelled": false
+            },
+            {
+              "region": "eu",
+              "max_phase": 4,
+              "marketed_prescription": false,
+              "generic_available": false,
+              "pre_market_cancelled": true,
+              "post_market_cancelled": false
+            },
+            {
+              "region": "us",
+              "max_phase": 4,
+              "marketed_prescription": true,
+              "generic_available": true,
+              "pre_market_cancelled": false,
+              "post_market_cancelled": false
+            }
+          ],
+          "description": "Fluoxetine is a 2nd generation antidepressant categorized as a selective serotonin reuptake inhibitor (SSRI).[A181673] It gained FDA approval in 1987 and although it was initially intended for the treatment of depression, today it is commonly prescribed to manage depression in addition to various other pathologies.[L7721]",
+          "simple_description": "A medication used to treat major depression, obsessive compulsive disorder, and panic disorders.",
+          "clinical_description": "A selective serotonin reuptake inhibitor used to treat major depressive disorder, bulimia, OCD, premenstrual dysphoric disorder, panic disorder, and bipolar I.",
+          "synonyms": [
+            "(+-)-N-Methyl-3-phenyl-3-((alpha,alpha,alpha-trifluoro-P-tolyl)oxy)propylamine",
+            "(+-)-N-Methyl-gamma-(4-(trifluoromethyl)phenoxy)benzenepropanamine",
+            "Fluoxetin",
+            "Fluoxetina",
+            "Fluoxétine",
+            "Fluoxetine",
+            "Fluoxetinum"
+          ],
+          "pharmacology": {
+            "indication_descripton": "Fluoxetine is indicated for both acute and maintenance treatment of major depressive disorder, obsessive compulsive disorder, and bulimia nervosa; however, it is only indicated for acute treatment of panic disorder independent of whether agoraphobia is present.[L7664] Fluoxetine may also be used in combination with olanzapine to treat depression related to Bipolar I Disorder, and treatment resistant depression.[L7664]",
+            "pharmacodynamic_description": "Fluoxetine blocks the serotonin reuptake transporter in the presynaptic terminal, which ultimately results in sustained levels of 5-hydroxytryptamine (5-HT) in certain brain areas.[L7721] However, fluoxetine binds with relatively poor affinity to 5-HT, dopaminergic, adrenergic, cholinergic, muscarinic, and histamine receptors which explains why it has a far more desirable adverse effect profile compared to earlier developed classes of antidepressants such as tricyclic antidepressants.[L7721][A181673] ",
+            "mechanism_of_action_description": "The monoaminergic hypothesis of depression emerged in 1965 and linked depression with dysfunction of neurotransmitters such as noradrenaline and serotonin.[L7721] Indeed, low levels of serotonin have been observed in the cerebrospinal fluid of patients diagnosed with depression.[A181793] As a result of this hypothesis, drugs that modulate levels of serotonin such as fluoxetine were developed.[L7721]\r\n\r\nFluoxetine is a selective serotonin reuptake inhibitor (SSRI) and as the name suggests, it exerts it's therapeutic effect by inhibiting the presynaptic reuptake of the neurotransmitter serotonin.[A181673] As a result, levels of 5-hydroxytryptamine (5-HT) are increased in various parts of the brain.[L7721] Further, fluoxetine has high affinity for 5-HT transporters, weak affinity for noradrenaline transporters and no affinity for dopamine transporters indicating that it is 5-HT selective.[L7721]\r\n\r\nFluoxetine interacts to a degree with the 5-HT<sub>2C</sub> receptor and it has been suggested that through this mechanism, it is able to increase noradrenaline and dopamine levels in the prefrontal cortex.[L7721]",
+            "absorption": "The oral bioavailability of fluoxetine is <90% as a result of hepatic first pass metabolism.[L7721]\r\n\r\nIn a bioequivalence study, the Cmax of fluoxetine 20 mg for the established reference formulation was 11.754 ng/mL while the Cmax for the proposed generic formulation was 11.786 ng/ml.[A185285]\r\n\r\nFluoxetine is very lipophilic and highly plasma protein bound, allowing the drug and it's active metabolite, norfluoxetine, to be distributed to the brain.[L7721]",
+            "protein_binding": "Approximately 94% of fluoxetine is plasma protein bound.[A181673]",
+            "volume_of_distribution": [
+              "The volume of distribution of fluoxetine and it's metabolite varies between 20 to 42 L/kg.[A182216]"
+            ],
+            "clearance": [
+              "The clearance value of fluoxetine in healthy patients is reported to be 9.6 ml/min/kg.[A185210]"
+            ],
+            "half_life": "The half life of fluoxetine is significant with the elimination half-life of the parent drug averaging 1-3 days after acute administration, and 4-6 days after chronic administration.[L7664] Further, the elimination half life of it's active metabolite, norfluoxetine, ranges from 4-16 days after both acute and chronic administration.[L7664] The half-life of fluoxetine should be considered when switching patients from fluoxetine to another antidepressant since marked accumulation occurs after chronic use.[L7664] Fluoxetine's long half-life may even be beneficial when discontinuing the drug since the risk of withdrawal is minimized.[L7721]  ",
+            "route_of_elimination": "Fluoxetine is primarily eliminated in the urine.[L8468]",
+            "toxicity_description": "In a report that included 234 fluoxetine overdose cases, it was concluded that symptoms resulting from fluoxetine overdose were generally minor and short in duration.[A181898] The most common overdose adverse effects included drowsiness, tremor, tachycardia, nausea and vomiting, and providing the patient with aggressive supportive care was the recommended intervention.[A181892][A181898]\r\n\r\nDespite this evidence, more severe adverse effects have been linked to fluoxetine ingestion although most of these reports involved co-ingestion with other substances or drugs as well as other factors.[A181892] For example, there is a case report that details a patient who ingested 1400 mg of fluoxetine in a suicide attempt and as a result, experienced a generalized seizure three hours later.[A181892] In a separate case, a 14 year old patient ingested 1.2 g of fluoxetine and subsequently experienced tonic/clonic seizures, symptoms consistent with serotonin syndrome, and rhabdomyolysis, although the patient did not experience sustained renal injury.[A182216]"
+          },
+          "food_interactions": [
+            "Avoid alcohol.",
+            "Take with or without food."
+          ],
+          "identifiers": {
+            "drugbank_id": "DB00472",
+            "inchi": "InChI=1S/C17H18F3NO/c1-21-12-11-16(13-5-3-2-4-6-13)22-15-9-7-14(8-10-15)17(18,19)20/h2-10,16,21H,11-12H2,1H3",
+            "inchikey": "RTHCYVBBDHJXIQ-UHFFFAOYSA-N",
+            "atc_codes": [
+              {
+                "code": "N06CA03",
+                "title": "fluoxetine and psycholeptics",
+                "combination": true
+              },
+              {
+                "code": "N06AB03",
+                "title": "fluoxetine",
+                "combination": false
+              }
+            ]
+          },
+          "therapeutic_categories": [
+            {
+              "drugbank_id": "DBCAT000533",
+              "name": "Anticholinergic Agents",
+              "mesh_id": "D018680",
+              "mesh_tree_numbers": [
+                "D27.505.519.625.120.200",
+                "D27.505.696.577.120.200"
+              ],
+              "atc_code": "N04A",
+              "atc_level": 3,
+              "synonyms": [
+                "Acetylcholine Antagonists",
+                "Agents, Anticholinergic",
+                "Agents, Cholinergic-Blocking",
+                "Antagonist, Cholinergic",
+                "Antagonists, Acetylcholine",
+                "Antagonists, Cholinergic",
+                "Antagonists, Cholinergic Receptor",
+                "Anti Cholinergics",
+                "Anti-Cholinergics",
+                "Anti-cholinergic Drugs",
+                "Anticholinergic Drugs",
+                "Anticholinergics",
+                "Cholinergic Antagonist",
+                "Cholinergic Antagonists",
+                "Cholinergic Blocking Agents",
+                "Cholinergic Receptor Antagonists",
+                "Cholinergic-Blocking Agents",
+                "Cholinolytics",
+                "Receptor Antagonists, Cholinergic"
+              ],
+              "description": "Drugs that bind to but do not activate CHOLINERGIC RECEPTORS, thereby blocking the actions of ACETYLCHOLINE or cholinergic agonists."
+            },
+            {
+              "drugbank_id": "DBCAT000345",
+              "name": "Antidepressive Agents",
+              "mesh_id": "D000928",
+              "mesh_tree_numbers": [
+                "D27.505.954.427.700.122"
+              ],
+              "atc_code": "N06A",
+              "atc_level": 3,
+              "synonyms": [
+                "Agents, Antidepressive",
+                "Antidepressant Drugs",
+                "Antidepressants",
+                "Drugs, Antidepressant",
+                "Thymoanaleptics",
+                "Thymoleptics"
+              ],
+              "description": "Mood-stimulating drugs used primarily in the treatment of affective disorders and related conditions. Several MONOAMINE OXIDASE INHIBITORS are useful as antidepressants apparently as a long-term consequence of their modulation of catecholamine levels. The tricyclic compounds useful as antidepressive agents (ANTIDEPRESSIVE AGENTS, TRICYCLIC) also appear to act through brain catecholamine systems. A third group (ANTIDEPRESSIVE AGENTS, SECOND-GENERATION) is a diverse group of drugs including some that act specifically on serotonergic systems."
+            },
+            {
+              "drugbank_id": "DBCAT000399",
+              "name": "Central Nervous System Depressants",
+              "mesh_id": "D002492",
+              "mesh_tree_numbers": [
+                "D27.505.696.277",
+                "D27.505.954.427.210"
+              ],
+              "atc_code": null,
+              "atc_level": null,
+              "synonyms": [
+                "CNS Depressants",
+                "Depressants, CNS"
+              ],
+              "description": "A very loosely defined group of drugs that tend to reduce the activity of the central nervous system. The major groups included here are ethyl alcohol, anesthetics, hypnotics and sedatives, narcotics, and tranquilizing agents (antipsychotics and antianxiety agents)."
+            },
+            {
+              "drugbank_id": "DBCAT000911",
+              "name": "Cytochrome P-450 CYP2D6 Inhibitors",
+              "mesh_id": "D065690",
+              "mesh_tree_numbers": [
+                "D27.505.389.500.368",
+                "D27.505.519.389.335.368"
+              ],
+              "atc_code": null,
+              "atc_level": null,
+              "synonyms": [
+                "CYP2D6 Inhibitors",
+                "CYP2D6 Inhibitors, P450",
+                "Cytochrome P 450 CYP2D6 Inhibitors",
+                "Cytochrome P-450 CYP2D6-Inhibitors",
+                "Cytochrome P450 2D6 Inhibitor",
+                "Cytochrome P450 2D6 Inhibitors",
+                "Inhibitors, CYP2D6",
+                "Inhibitors, P450 CYP2D6",
+                "P450 CYP2D6 Inhibitors"
+              ],
+              "description": "Drugs and compounds which inhibit or antagonize the biosynthesis or actions of CYTOCHROME P-450 CYP2D6."
+            },
+            {
+              "drugbank_id": "DBCAT000934",
+              "name": "Cytochrome P-450 CYP3A Inhibitors",
+              "mesh_id": "D065692",
+              "mesh_tree_numbers": [
+                "D27.505.389.500.503",
+                "D27.505.519.389.335.503"
+              ],
+              "atc_code": null,
+              "atc_level": null,
+              "synonyms": [
+                "CYP3A Inhibitors",
+                "Cytochrome P 450 CYP3A Inhibitors",
+                "Cytochrome P-450 CYP3A-Inhibitors",
+                "Cytochrome P450 3A Inhibitor",
+                "Cytochrome P450 3A Inhibitors",
+                "Inhibitors, CYP3A",
+                "Inhibitors, P450 CYP3A",
+                "P450 CYP3A Inhibitors"
+              ],
+              "description": "Drugs and compounds which inhibit or antagonize the biosynthesis or actions of CYTOCHROME P-450 CYP3A."
+            },
+            {
+              "drugbank_id": "DBCAT000003",
+              "name": "Enzyme Inhibitors",
+              "mesh_id": "D004791",
+              "mesh_tree_numbers": [
+                "D27.505.519.389"
+              ],
+              "atc_code": null,
+              "atc_level": null,
+              "synonyms": [
+                "Inhibitors, Enzyme"
+              ],
+              "description": "Compounds or agents that combine with an enzyme in such a manner as to prevent the normal substrate-enzyme combination and the catalytic reaction."
+            },
+            {
+              "drugbank_id": "DBCAT002772",
+              "name": "Selective Serotonin Reuptake Inhibitors",
+              "mesh_id": "D017367",
+              "mesh_tree_numbers": [
+                "D27.505.519.562.437.850",
+                "D27.505.519.625.600.850",
+                "D27.505.519.625.850.900",
+                "D27.505.696.577.600.850",
+                "D27.505.696.577.850.900"
+              ],
+              "atc_code": "N06AB",
+              "atc_level": 4,
+              "synonyms": [
+                "5 HT Uptake Inhibitors",
+                "5 Hydroxytryptamine Uptake Inhibitors",
+                "5-HT Uptake Inhibitors",
+                "5-Hydroxytryptamine Uptake Inhibitors",
+                "Antidepressants (Serotonin Reuptake Inhibitor/Antagonist)",
+                "Inhibitors, 5 HT Uptake",
+                "Inhibitors, 5 Hydroxytryptamine Uptake",
+                "Inhibitors, 5-HT Uptake",
+                "Inhibitors, 5-Hydroxytryptamine Uptake",
+                "Inhibitors, Serotonin Reuptake",
+                "Inhibitors, Serotonin Uptake",
+                "Reuptake Inhibitors, Serotonin",
+                "SSRI",
+                "SSRIs",
+                "Selective-serotonin Reuptake Inhibitors",
+                "Serotonin Reuptake Inhibitors",
+                "Serotonin Uptake Inhibitors",
+                "Uptake Inhibitors, 5 HT",
+                "Uptake Inhibitors, 5 Hydroxytryptamine",
+                "Uptake Inhibitors, 5-HT",
+                "Uptake Inhibitors, 5-Hydroxytryptamine",
+                "Uptake Inhibitors, Serotonin",
+                "serotonin-specific reuptake inhibitors"
+              ],
+              "description": "Selective serotonin re-uptake inhibitors or serotonin-specific reuptake inhibitors (SSRIs) are a class of drugs that are typically used as antidepressants in the treatment of major depressive disorder and anxiety disorders."
+            },
+            {
+              "drugbank_id": "DBCAT000401",
+              "name": "Serotonin Agents",
+              "mesh_id": "D018490",
+              "mesh_tree_numbers": [
+                "D27.505.519.625.850",
+                "D27.505.696.577.850"
+              ],
+              "atc_code": null,
+              "atc_level": null,
+              "synonyms": [
+                "Agents, Serotonergic",
+                "Agents, Serotonin",
+                "Drugs, Serotonergic",
+                "Drugs, Serotonin",
+                "Effect, Serotonin",
+                "Effect, Serotoninergic",
+                "Effects, Serotonin",
+                "Effects, Serotoninergic",
+                "Serotonergic Agents",
+                "Serotonergic Drugs",
+                "Serotonin Drugs",
+                "Serotonin Effect",
+                "Serotonin Effects",
+                "Serotoninergic Effect",
+                "Serotoninergic Effects"
+              ],
+              "description": "Drugs used for their effects on serotonergic systems. Among these are drugs that affect serotonin receptors, the life cycle of serotonin, and the survival of serotonergic neurons."
+            },
+            {
+              "drugbank_id": "DBCAT002706",
+              "name": "Serotonin Modulators",
+              "mesh_id": null,
+              "mesh_tree_numbers": [],
+              "atc_code": null,
+              "atc_level": null,
+              "synonyms": [
+                "Serotonin Modulators-Inhibitors"
+              ],
+              "description": null
+            },
+            {
+              "drugbank_id": "DBCAT000604",
+              "name": "Serotonin Receptor Antagonists",
+              "mesh_id": "D012702",
+              "mesh_tree_numbers": [
+                "D27.505.519.625.850.850",
+                "D27.505.696.577.850.850"
+              ],
+              "atc_code": "A03AE",
+              "atc_level": 4,
+              "synonyms": [
+                "5 HT Antagonists",
+                "5 Hydroxytryptamine Antagonists",
+                "5-HT Antagonists",
+                "5-Hydroxytryptamine Antagonists",
+                "Agents, Antiserotonergic",
+                "Antagonists, 5 HT",
+                "Antagonists, 5 Hydroxytryptamine",
+                "Antagonists, 5-HT",
+                "Antagonists, 5-Hydroxytryptamine",
+                "Antagonists, Serotonin",
+                "Antagonists, Serotonin Receptor",
+                "Antiserotonergic Agents",
+                "Blockaders, Serotonin",
+                "Blockers, Serotonin Receptor",
+                "Receptor Antagonists, Serotonin",
+                "Receptor Blockers, Serotonin",
+                "Serotonin Antagonists",
+                "Serotonin Blockaders",
+                "Serotonin Receptor Blockers"
+              ],
+              "description": "Drugs that bind to but do not activate serotonin receptors, thereby blocking the actions of serotonin or SEROTONIN RECEPTOR AGONISTS."
+            },
+            {
+              "drugbank_id": "DBCAT003676",
+              "name": "Vasodilating Agents",
+              "mesh_id": "D014665",
+              "mesh_tree_numbers": [
+                "D27.505.954.411.918"
+              ],
+              "atc_code": null,
+              "atc_level": null,
+              "synonyms": [
+                "Agents, Vasodilator",
+                "Antagonists, Vasoactive",
+                "Drugs, Vasodilator",
+                "Vasoactive Antagonists",
+                "Vasodilating Drugs",
+                "Vasodilator Agents",
+                "Vasodilator Drugs",
+                "Vasodilators",
+                "Vasorelaxants"
+              ],
+              "description": "Drugs used to cause dilation of the blood vessels."
+            }
+          ]
+        }
+      ],
+      "indications": [
+        {
+          "kind": "treatment_of",
+          "off_label": true,
+          "otc_use": false,
+          "adjunct_use": false,
+          "drug": {
+            "name": "Fluoxetine",
+            "drugbank_id": "DB00472"
+          },
+          "condition": {
+            "name": "Alcohol Dependence",
+            "drugbank_id": "DBCOND0027943"
+          }
+        },
+        {
+          "kind": "management_of",
+          "off_label": true,
+          "otc_use": false,
+          "adjunct_use": false,
+          "drug": {
+            "name": "Fluoxetine",
+            "drugbank_id": "DB00472"
+          },
+          "condition": {
+            "name": "Anorexia Nervosa",
+            "drugbank_id": "DBCOND0006073"
+          }
+        },
+        {
+          "kind": "treatment_of",
+          "off_label": false,
+          "otc_use": false,
+          "adjunct_use": false,
+          "drug": {
+            "name": "Fluoxetine",
+            "drugbank_id": "DB00472"
+          },
+          "regions": "US",
+          "condition": {
+            "name": "Bulimia Nervosa",
+            "drugbank_id": "DBCOND0006074"
+          }
+        },
+        {
+          "kind": "treatment_of",
+          "off_label": true,
+          "otc_use": false,
+          "adjunct_use": false,
+          "drug": {
+            "name": "Fluoxetine",
+            "drugbank_id": "DB00472"
+          },
+          "condition": {
+            "name": "Cataplexy",
+            "drugbank_id": "DBCOND0003367"
+          }
+        },
+        {
+          "kind": "used_as_adjunct_in_combination_for_symptomatic_treatment_of",
+          "off_label": false,
+          "otc_use": false,
+          "adjunct_use": true,
+          "route": [
+            "Oral"
+          ],
+          "dose_form": [
+            "Capsule",
+            "Tablet"
+          ],
+          "dose_strength": [],
+          "combination_type": "regimen",
+          "drug": {
+            "name": "Tryptophan",
+            "drugbank_id": "DB00150"
+          },
+          "regions": "Canada",
+          "condition": {
+            "name": "Depression",
+            "drugbank_id": "DBCOND0018735"
+          },
+          "combination_drug_categories": [
+            {
+              "name": "Antidepressive Agents Indicated for Depression",
+              "drugbank_id": "DBCAT005156"
+            }
+          ]
+        },
+        {
+          "kind": "adjunct_therapy_in_treatment_of",
+          "off_label": true,
+          "otc_use": false,
+          "adjunct_use": true,
+          "route": [],
+          "dose_form": [],
+          "dose_strength": [],
+          "drug": {
+            "name": "Mirtazapine",
+            "drugbank_id": "DB00370"
+          },
+          "condition": {
+            "name": "Low body weight",
+            "drugbank_id": "DBCOND0102603"
+          },
+          "therapy": {
+            "name": "Weight restoration",
+            "drugbank_id": "DBCOND0119339"
+          },
+          "condition_associated_with": [
+            {
+              "name": "Depression",
+              "drugbank_id": "DBCOND0018735"
+            },
+            {
+              "name": "Anorexia Nervosa (AN)",
+              "drugbank_id": "DBCOND0052289"
+            }
+          ],
+          "with_therapies": [
+            {
+              "name": "Psychotherapy",
+              "drugbank_id": "DBCOND0042330"
+            }
+          ],
+          "adjunct_drug_categories": [
+            {
+              "name": "Antidepressive Agents Indicated for Depression",
+              "drugbank_id": "DBCAT005156"
+            }
+          ]
+        },
+        {
+          "kind": "treatment_of",
+          "off_label": false,
+          "otc_use": false,
+          "adjunct_use": false,
+          "route": [],
+          "dose_form": [],
+          "dose_strength": [],
+          "drug": {
+            "name": "Fluoxetine",
+            "drugbank_id": "DB00472"
+          },
+          "regions": "US",
+          "condition": {
+            "name": "Major Depressive Disorder",
+            "drugbank_id": "DBCOND0025426"
+          }
+        },
+        {
+          "kind": "adjunct_therapy_in_treatment_of",
+          "off_label": false,
+          "otc_use": false,
+          "adjunct_use": true,
+          "route": [
+            "Oral"
+          ],
+          "dose_form": [
+            "Tablet, extended release",
+            "Tablet, film coated, extended release",
+            "Tablet, multilayer, extended release"
+          ],
+          "dose_strength": [],
+          "drug": {
+            "name": "Quetiapine",
+            "drugbank_id": "DB01224"
+          },
+          "regions": "US",
+          "condition": {
+            "name": "Major Depressive Disorders",
+            "drugbank_id": "DBCOND0042308"
+          },
+          "adjunct_drug_categories": [
+            {
+              "name": "Antidepressive Agents Indicated for Depression",
+              "drugbank_id": "DBCAT005156"
+            }
+          ]
+        },
+        {
+          "kind": "treatment_of",
+          "off_label": true,
+          "otc_use": false,
+          "adjunct_use": false,
+          "drug": {
+            "name": "Fluoxetine",
+            "drugbank_id": "DB00472"
+          },
+          "condition": {
+            "name": "Myoclonus",
+            "drugbank_id": "DBCOND0017788"
+          }
+        },
+        {
+          "kind": "treatment_of",
+          "off_label": true,
+          "otc_use": false,
+          "adjunct_use": false,
+          "drug": {
+            "name": "Fluoxetine",
+            "drugbank_id": "DB00472"
+          },
+          "condition": {
+            "name": "Obesity",
+            "drugbank_id": "DBCOND0015947"
+          }
+        },
+        {
+          "kind": "treatment_of",
+          "off_label": false,
+          "otc_use": false,
+          "adjunct_use": false,
+          "drug": {
+            "name": "Fluoxetine",
+            "drugbank_id": "DB00472"
+          },
+          "regions": "US",
+          "condition": {
+            "name": "Obsessive-Compulsive Disorder",
+            "drugbank_id": "DBCOND0027903"
+          }
+        },
+        {
+          "kind": "treatment_of",
+          "off_label": false,
+          "otc_use": false,
+          "adjunct_use": false,
+          "route": [],
+          "dose_form": [],
+          "dose_strength": [],
+          "drug": {
+            "name": "Fluoxetine",
+            "drugbank_id": "DB00472"
+          },
+          "regions": "US",
+          "condition": {
+            "name": "Panic Disorder (With or Without Agoraphobia)",
+            "drugbank_id": "DBCOND0058353"
+          }
+        },
+        {
+          "kind": "treatment_of",
+          "off_label": true,
+          "otc_use": false,
+          "adjunct_use": false,
+          "drug": {
+            "name": "Fluoxetine",
+            "drugbank_id": "DB00472"
+          },
+          "condition": {
+            "name": "Premature Ejaculation",
+            "drugbank_id": "DBCOND0001304"
+          }
+        },
+        {
+          "kind": "management_of",
+          "off_label": false,
+          "otc_use": false,
+          "adjunct_use": false,
+          "route": [],
+          "dose_form": [],
+          "dose_strength": [],
+          "drug": {
+            "name": "Fluoxetine",
+            "drugbank_id": "DB00472"
+          },
+          "regions": "US",
+          "condition": {
+            "name": "Premenstrual Dysphoric Disorder",
+            "drugbank_id": "DBCOND0005024"
+          }
+        },
+        {
+          "kind": "used_in_combination_to_treat",
+          "off_label": false,
+          "otc_use": false,
+          "adjunct_use": true,
+          "route": [
+            "Nasal"
+          ],
+          "dose_form": [
+            "Spray"
+          ],
+          "dose_strength": [],
+          "combination_type": "regimen",
+          "age_groups": [
+            "adult"
+          ],
+          "drug": {
+            "name": "Esketamine",
+            "drugbank_id": "DB11823"
+          },
+          "regions": "US",
+          "condition": {
+            "name": "Treatment Resistant Depression (TRD)",
+            "drugbank_id": "DBCOND0041916"
+          },
+          "combination_drug_categories": [
+            {
+              "name": "Antidepressive Agents Indicated for Depression",
+              "drugbank_id": "DBCAT005156"
+            }
+          ]
+        }
+      ],
+      "patient_input": {
+        "dose": "1",
+        "unit": "1",
+        "frequency": "1",
+        "mode": "Pill"
+      }
+    }
+  ]
+}

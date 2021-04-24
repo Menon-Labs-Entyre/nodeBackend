@@ -22,6 +22,7 @@ const createPatientPackage = async(patientData) => {
 	const products = {};
 	console.log("Creating Package");
 	for(const pair of patientData.diagnoses){
+		console.log(pair)
 		products[pair.medication] = await createProductPackage(drugBank.productNameToProduct[pair.medication]) //create dictonary of products mapped from name to object
 	}
 	const productIds = Object.values(products).map((product) => product.details.drugbank_pcid); //create list of pcid for all products
@@ -63,4 +64,6 @@ module.exports = {
 	createPatientPackage,
 	formatData
 }
+
+
 
