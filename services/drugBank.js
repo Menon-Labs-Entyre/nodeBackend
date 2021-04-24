@@ -6,7 +6,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 const host = 'https://api.drugbank.com/v1'
 const apiKey = process.env.DRUGBANKAPI;
-axios.defaults.headers.common['Authorization'] = "310bffd2cf2be1608045231355596b19"//apiKey
+axios.defaults.headers.common['Authorization'] = apiKey//apiKey
 
 const productNameToProduct = {};
 const conditonToId = {};
@@ -75,6 +75,25 @@ const getConditions = async(conditionName) => {
   const response = await axios.get(host+callEndpoint,callParamters);
   const conditionNames = response.data.map(condition => condition.name) //from condition list to condition name list
   response.data.forEach(condition => conditonToId[condition.name] = condition.drugbank_id); //map condition name to id
+  return conditionNames;
+}
+
+/**
+  * @desc returns a list of side effect names and sets sideEffectToId
+  * @param string sideEffectName - a string or partial string for thr side effect name
+  * @return {string[]} - array of side effect names
+*/
+const getSideEffects = async(sideEffectName) => {
+  const callEndpoint = "/adverse_effects" //using the simple return
+  const callParamters = {
+    params: {
+      q: sideEffectName,
+    }
+  }
+  const response = await axios.get(host+callEndpoint,callParamters);
+  console.log(response.data)
+  //const sideEffectNames = response.data.map(sideEffect => sideEffect.name) //from condition list to condition name list
+  //response.data.forEach(condition => conditonToId[condition.name] = condition.drugbank_id); //map condition name to id
   return conditionNames;
 }
 
@@ -161,3 +180,5 @@ module.exports = {
   getIndicationsbyProduct: getIndicationsbyProduct
 
 }
+
+getSideEffects("headache")
