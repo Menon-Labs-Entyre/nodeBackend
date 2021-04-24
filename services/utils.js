@@ -41,6 +41,13 @@ const formatData = async(userInput) => {
 	const finalData = {}
 	await userInput.diagnoses.forEach((diagnosis) => {
 		const medication = drugBankData.products[diagnosis.medication];
+		medication['patient_input'] = {
+			dose:diagnosis.amount,
+			unit:diagnosis.units,
+			frequency:diagnosis.frequency,
+			mode:diagnosis.mode
+
+		}
 		if(diagnosis.diagnosis in finalData){
 			finalData[diagnosis.diagnosis].push(medication)
 		} else {
