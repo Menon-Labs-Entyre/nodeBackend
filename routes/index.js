@@ -36,7 +36,6 @@ router.post('/patient-information', async function(req, res) {
 	};
 	console.log(`user # ${sess.user}:`);
 	console.log(patientData[sess.user]);
-	utils.generateReport(JSON.stringify(req.body));
 	res.sendStatus(200);
 });
 
@@ -77,7 +76,6 @@ router.post('/diagnosis-details', async function (req, res) {
 		pyProcess.stdout.on('data', function(data) {
 			console.log(data.toString());
 		});
-
 	}
 });
 
