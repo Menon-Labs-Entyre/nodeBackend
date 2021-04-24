@@ -1,0 +1,337 @@
+index,patient_no,active_ingredient,product_name,dose,drug_name,amount,unit,low_amount,low_unit,high_amount,high_unit
+455,43,A+E Cantavit,,,A+E Cantavit,,,,,,
+65,9,,ACC Long,,ACC Long,,,,,,
+51,7,,ASPIRIN PROTECT 100MG TMR 98 ST N3,,ASPIRIN PROTECT 100MG TMR 98 ST N3,,,100.0,mg,100.0,mg
+488,46,ASS,,100mg,ASS,100.0,mg,100.0,mg,100.0,mg
+367,36,ASS 100,,100mg,ASS 100,100.0,mg,100.0,mg,100.0,mg
+348,34,ASS 100mg,,100mg,ASS 100mg,100.0,mg,100.0,mg,100.0,mg
+471,45,ASS AL 100,,100mg,ASS AL 100,100.0,mg,100.0,mg,100.0,mg
+232,23,,ASS Protect 100mg,100mg,ASS Protect 100mg,100.0,mg,100.0,mg,100.0,mg
+248,24,,ATORVASTATIN 20,,ATORVASTATIN 20,,,,,,
+474,45,AZA - Q 50mg,,50mg,AZA - Q 50mg,50.0,mg,50.0,mg,50.0,mg
+338,33,Abasaglar,,300E/3ml,Abasaglar,,,300.0,E,300.0,E
+260,25,Acetylsalicylsäure,,100 mg,Acetylsalicylsäure,100.0,mg,100.0,mg,100.0,mg
+123,15,Acetylsalicysäure,,100mg,Acetylsalicysäure,100.0,mg,,,,
+79,10,Acetylsäure,,100mg,Acetylsäure,100.0,mg,100.0,mg,100.0,mg
+543,51,Actrapid Penfil,,100E/ml,Actrapid Penfil,100.0,E,100.0,E,100.0,E
+540,51,Aldactone,,25,Aldactone,,,,,,
+537,51,Alfacalcidol,,"0,25 Mikrogramm",Alfacalcidol,0.25,Mikrogramm,0.25,µg,0.25,µg
+552,52,Allopurinol,,300mg,Allopurinol,300.0,mg,100.0,mg,300.0,mg
+173,19,,Allopurinol 300mg Tbl.,300mg,Allopurinol 300mg Tbl.,300.0,mg,100.0,mg,300.0,mg
+451,43,Allorpurinol,,100mg,Allorpurinol,100.0,mg,,,,
+271,26,,Alprazolam,"1,0mg",Alprazolam,1.0,mg,1.0,mg,1.0,mg
+163,18,Altorvastatin,,40mg,Altorvastatin,40.0,mg,40.0,mg,40.0,mg
+517,49,Aminosäuren/Magnesium,,"24,3g",Aminosäuren/Magnesium,24.3,g,24.3,g,24.3,g
+545,51,Amiogamma,,200,Amiogamma,,,200.0,,200.0,
+316,32,Amlodipin,,10mg,Amlodipin,10.0,mg,5.0,mg,10.0,mg
+59,8,Amlodipin 5 ,,,Amlodipin 5 ,,,5.0,mg,10.0,mg
+233,23,,Amlodipin 5mg,5mg,Amlodipin 5mg,5.0,mg,5.0,mg,10.0,mg
+261,25,Amlodipin besilat,,"6,93 mg",Amlodipin besilat,6.93,mg,5.0,mg,10.0,mg
+86,11,Amlodipin/Valsartan,,,Amlodipin/Valsartan,,,5.0,mg,10.0,mg
+66,9,,Ampho Moronal 100mg,100mg,Ampho Moronal 100mg,100.0,mg,100.0,mg,100.0,mg
+151,17,Amplodipin,,5mg,Amplodipin,5.0,mg,5.0,mg,6.93,mg
+129,16,Amplodipin + Valsartan + Hydrochlorothiazid ,,10/320/25mg,Amplodipin + Valsartan + Hydrochlorothiazid ,25.0,mg,,,,
+41,5,Apixaban,,5mg,Apixaban,5.0,mg,5.0,mg,5.0,mg
+174,19,,Apixaban 5mg Filmtbl.,5mg,Apixaban 5mg Filmtbl.,5.0,mg,5.0,mg,5.0,mg
+498,47,Atenolol,,50mg,Atenolol,50.0,mg,50.0,mg,50.0,mg
+274,26,,Atmadisc Salmeterol/Fluticasonpropionat,50µg / 250 µg,Atmadisc Salmeterol/Fluticasonpropionat,,,,,,
+205,22,Atorvastatin,,20mg,Atorvastatin,20.0,mg,20.0,mg,80.0,mg
+131,16,Atorvastatin ,,80mg,Atorvastatin ,80.0,mg,,,,
+175,19,,Atorvastatin 20mg Filmtbl.,20mg,Atorvastatin 20mg Filmtbl.,20.0,mg,20.0,mg,80.0,mg
+62,8,Atorvastatin 40,,,Atorvastatin 40,,,20.0,mg,80.0,mg
+416,40,Atosil 100 ml ,,,Atosil 100 ml ,,,100.0,ml,100.0,ml
+237,23,,Azopt 10mg/ml Augentropfen,10mg/ml,Azopt 10mg/ml Augentropfen,10.0,mg,10.0,mg,10.0,mg
+240,23,,B 12 Ankermann ,,B 12 Ankermann ,,,,,,
+168,18,Baldrianwurzel Trocke.. Hopfenzapfen Trocke.. Passionsblumen Troc..,,"150mg, 30mg. 80mg",Baldrianwurzel Trocke.. Hopfenzapfen Trocke.. Passionsblumen Troc..,,,,,,
+229,23,,Beloc-Zok 95 mg Metroprolosuccinat,95mg,Beloc-Zok 95 mg Metroprolosuccinat,95.0,mg,95.0,mg,95.0,mg
+176,19,,Benazepril 20mg Filmtbl.,20mg,Benazepril 20mg Filmtbl.,20.0,mg,20.0,mg,20.0,mg
+341,33,Berodual,,"0,02/0,05",Berodual,,,0.02,,0.05,
+417,40,Bertotec,,,Bertotec,,,,,,
+37,4,Betatristin,,12mg,Betatristin,12.0,mg,12.0,mg,12.0,mg
+452,43,Biolectra Magnesium,,400mg,Biolectra Magnesium,400.0,mg,400.0,mg,400.0,mg
+88,11,Biosprolol 5,,,Biosprolol 5,,,2.5,mg,10.0,mg
+53,7,Biscoprolol hemifumarat Hydrochlorothiazid,,"5mg 12,5mg",Biscoprolol hemifumarat Hydrochlorothiazid,,,2.5,mg,10.0,mg
+457,44,Bisobeta,,5mg,Bisobeta,5.0,mg,5.0,mg,5.0,mg
+523,50,Bisohexal,,2.5,Bisohexal,,,2.5,,2.5,
+382,37,Bisoprolo,,"2,5mg",Bisoprolo,2.5,mg,2.5,mg,10.0,mg
+289,28,Bisoprolol,,5mg,Bisoprolol,5.0,mg,,,,
+177,19,,Bisoprolol  5mg Filmtbl.,5mg,Bisoprolol  5mg Filmtbl.,5.0,mg,2.5,mg,10.0,mg
+408,39,Brimica Genuair,,"343,39/12",Brimica Genuair,,,343.39,,343.39,
+301,29,Brimozept,,2mg,Brimozept,2.0,mg,2.0,mg,2.0,mg
+418,40,BromHexin 12,,,BromHexin 12,,,12.0,,12.0,
+469,45,Cadesartan,,32mg,Cadesartan,32.0,mg,32.0,mg,32.0,mg
+487,46,Calcium Dura,,500mg,Calcium Dura,500.0,mg,500.0,mg,500.0,mg
+352,34,Calcium Forte,,100mg,Calcium Forte,100.0,mg,100.0,mg,100.0,mg
+90,11,Calciumcarbonat/Colecalciferol,,,Calciumcarbonat/Colecalciferol,,,,,,
+520,49,CalcivitD,,500mg/40…,CalcivitD,500.0,mg,500.0,mg,500.0,mg
+267,26,,Candecor comp.,"16mg/12,5mg",Candecor comp.,,,12.5,mg,16.0,mg
+115,14,Candesarta cilexetil Hydrochlorothiazid,,"16mg 12,5mg",Candesarta cilexetil Hydrochlorothiazid,,,16.0,mg,58.0,mg
+112,13,Candesartam,,16mg,Candesartam,16.0,mg,8.0,mg,58.0,mg
+447,43,Candesartan,,16mg,Candesartan,16.0,mg,8.0,mg,58.0,mg
+109,13,Candesartan Amplodipin,,58mg/5mg,Candesartan Amplodipin,,,8.0,mg,58.0,mg
+231,23,,Candesartan Hexal 16mh,"16mg/12,5mg",Candesartan Hexal 16mh,,,8.0,mg,58.0,mg
+230,23,,"Candesartan Hexal comp. 16mg/12,5 mg","16mg/12,5mg","Candesartan Hexal comp. 16mg/12,5 mg",,,8.0,mg,58.0,mg
+156,18,Candesartan Hydrochlorothiazid,,"32mg/12,5mg",Candesartan Hydrochlorothiazid,,,8.0,mg,58.0,mg
+539,51,Candesartan Zentiva,,16mg,Candesartan Zentiva,16.0,mg,8.0,mg,58.0,mg
+11,2,Candesartan cilexetil,,16mg,Candesartan cilexetil,16.0,mg,8.0,mg,58.0,mg
+440,42,Candesartan/Hydrochlorothiazid,,"32mg/12,5mg",Candesartan/Hydrochlorothiazid,,,8.0,mg,58.0,mg
+21,3,Carvedilol,,"12,5mg",Carvedilol,12.5,mg,12.5,mg,12.5,mg
+339,33,Celecoxib,,100mg,Celecoxib,100.0,mg,100.0,mg,100.0,mg
+26,3,Citalopram,,20mg,Citalopram,20.0,mg,20.0,mg,20.0,mg
+82,10,Clominpramin,,25mg,Clominpramin,25.0,mg,25.0,mg,25.0,mg
+550,52,Clopidogrel,,75mg,Clopidogrel,75.0,mg,75.0,mg,75.0,mg
+31,3,Colecalciferol,,20000IE,Colecalciferol,20000.0,IE,1000.0,IE,20000.0,IE
+449,43,Cvesikur,,10mg,Cvesikur,10.0,mg,10.0,mg,10.0,mg
+116,14,Cyanocobalamin,,1 mg/ml,Cyanocobalamin,1.0,mg,1.0,mg/ml,1.0,mg/ml
+255,24,,DEKRISTOL 20 000,,DEKRISTOL 20 000,,,20000.0,,20000.0,
+67,9,,Daxas 500µg,500µg,Daxas 500µg,,,500.0,µg,500.0,µg
+407,39,Dekristal,,20000,Dekristal,,,20000.0,IE,20000.0,IE
+353,34,Dekristol,,20000 IE,Dekristol,20000.0,IE,20000.0,IE,20000.0,IE
+241,23,,Dekristol 20 000 IE (1. und 15. des Monats),20000 IE,Dekristol 20 000 IE (1. und 15. des Monats),20000.0,IE,,,,
+384,37,Dekristol 20.000  I.E,,20000IE,Dekristol 20.000  I.E,20000.0,IE,,,,
+43,5,Delix,,"2,5mg",Delix,2.5,mg,2.5,mg,2.5,mg
+169,18,Diazepam,,,Diazepam,,,,,,
+466,44,Diclo KD 75,,,Diclo KD 75,,,75.0,,75.0,
+162,18,Digitoxin,,"0,07mg",Digitoxin,0.07,mg,0.07,mg,0.07,mg
+547,52,Doxepin,,25mg,Doxepin,25.0,mg,25.0,mg,25.0,mg
+331,33,Duloxetin,,60mg,Duloxetin,60.0,mg,60.0,mg,60.0,mg
+94,11,Dyspnoe,,,Dyspnoe,,,,,,
+253,24,,ERELZI 50,,ERELZI 50,,,50.0,,50.0,
+8,2,Edoxaban,,30mg,Edoxaban,30.0,mg,30.0,mg,150.0,mg
+381,37,Eferox 150,,150mg,Eferox 150,150.0,mg,30.0,mg,150.0,mg
+5,2,Eisen(II)-Ion,,100mg,Eisen(II)-Ion,100.0,mg,100.0,mg,100.0,mg
+522,50,Eliquis,,2.5,Eliquis,,,2.5,mg,5.0,mg
+412,39,Entresto,,"24,3mg/25,7mg",Entresto,,,24.0,mg,51.4,mg
+484,46,Eplerenon,,25mg,Eplerenon,25.0,mg,25.0,mg,25.0,mg
+17,2,Epoetin zeta,,"4000 IE/0,4 ml",Epoetin zeta,,,,,,
+0,1,Escitalopram,,15mg,Escitalopram,15.0,mg,15.0,mg,15.0,mg
+458,44,Esmoprazol,,40mg,Esmoprazol,40.0,mg,40.0,mg,40.0,mg
+121,15,Euetimib Simvastin,,10mg 10mg,Euetimib Simvastin,,,10.0,mg,10.0,mg
+514,49,Euthyrox,,112,Euthyrox,,,112.0,,112.0,
+89,11,Ezetimib/Simvastatin,,,Ezetimib/Simvastatin,,,,,,
+252,24,,FOLSÄURE 5,,FOLSÄURE 5,,,5.0,,5.0,
+78,10,Felodipin,,5mg,Felodipin,5.0,mg,5.0,mg,5.0,mg
+293,28,Fentanyl,,25,Fentanyl,,,25.0,µg,100.0,µg
+533,51,Ferinjext,,50mg,Ferinjext,50.0,mg,50.0,mg,50.0,mg
+337,33,Ferro Sanol Duoden,,100mg,Ferro Sanol Duoden,100.0,mg,100.0,mg,100.0,mg
+178,19,,Finasterid 5mg Filmtbl.,5mg,Finasterid 5mg Filmtbl.,5.0,mg,5.0,mg,5.0,mg
+448,43,Finestil,,5mg,Finestil,5.0,mg,5.0,mg,5.0,mg
+148,17,Folsäure,,5mg,Folsäure,5.0,mg,5.0,mg,5.0,mg
+179,19,,Folsäure 5mg Tbl.,5mg,Folsäure 5mg Tbl.,5.0,mg,5.0,mg,5.0,mg
+236,23,,Folverlan,"0,4mg",Folverlan,0.4,mg,,,,
+333,33,Forair,,12 Mikrog..,Forair,12.0,Mikrog,12.0,µg,12.0,µg
+519,49,Formoterol,,12 Mikrog..,Formoterol,12.0,Mikrog,12.0,µg,12.0,µg
+165,18,Formoterol Beclometason,,100/6 ug,Formoterol Beclometason,6.0,ug,,,,
+91,11,Formoterol/Glycopyrronium/Beclometason,,,Formoterol/Glycopyrronium/Beclometason,,,,,,
+235,23,,Formotop 6 µg Novolizer,6µg,Formotop 6 µg Novolizer,,,6.0,µg,6.0,µg
+394,38,Forxiga,,10mg,Forxiga,10.0,mg,10.0,mg,10.0,mg
+538,51,Furorese,,40mg,Furorese,40.0,mg,40.0,mg,40.0,mg
+511,49,Furosemid,,40mg,Furosemid,40.0,mg,40.0,mg,40.0,mg
+146,17,Gabapentin,,300mg,Gabapentin,300.0,mg,100.0,mg,300.0,mg
+307,30,Gingium,,120mg,Gingium,120.0,mg,120.0,mg,120.0,mg
+363,35,Gingo,,180mg,Gingo,180.0,mg,180.0,mg,180.0,mg
+117,14,"Ginkgoblätter-Trockenextrakt, extrahiert mi…",,240mg,"Ginkgoblätter-Trockenextrakt, extrahiert mi…",240.0,mg,240.0,mg,240.0,mg
+402,39,Glimepririd AL,,2mg,Glimepririd AL,2.0,mg,2.0,mg,2.0,mg
+220,22,Glyceroltrinitrat,,"0,4mg",Glyceroltrinitrat,0.4,mg,0.4,mg,0.4,mg
+350,34,HCT,,25mg,HCT,25.0,mg,25.0,mg,25.0,mg
+329,33,HCT - beta,,25mg,HCT - beta,25.0,mg,25.0,mg,25.0,mg
+56,7,,HUMALOG MIX 25 PATRONE AMP AM…,,HUMALOG MIX 25 PATRONE AMP AM…,,,,,,
+312,31,Herz-Ass,,100mg,Herz-Ass,100.0,mg,100.0,mg,100.0,mg
+397,38,Humalog,,,Humalog,,,,,,
+22,3,Hydrochlorothiazid,,"12,5mg",Hydrochlorothiazid,12.5,mg,12.5,mg,25.0,mg
+81,10,Hydromorphon,,8mg,Hydromorphon,8.0,mg,8.0,mg,8.0,mg
+127,15,Hydroxycarbamid,,500mg,Hydroxycarbamid,500.0,mg,500.0,mg,500.0,mg
+318,32,IS 5 mono - ratio,,60mg,IS 5 mono - ratio,60.0,mg,60.0,mg,60.0,mg
+525,50,Ibuflam,,600mg,Ibuflam,600.0,mg,600.0,mg,600.0,mg
+138,17,Ibuprofen,,600mg,Ibuprofen,600.0,mg,600.0,mg,800.0,mg
+150,17,Indapamid,,"2,5mg",Indapamid,2.5,mg,2.5,mg,2.5,mg
+29,3,Insulin aspart,,100Einheiten/ml,Insulin aspart,100.0,Einheiten,100.0,E,300.0,E
+57,7,Insulin glargin,,300 E/3ml,Insulin glargin,,,300.0,E,3.0,ml
+201,21,Insulin human-Normal,,100IE/ml,Insulin human-Normal,100.0,IE,100.0,IE/ml,100.0,IE/ml
+106,12,Insulin lispro,,100E/ml,Insulin lispro,100.0,E,100.0,IE/ml,100.0,IE/ml
+13,2,"Insulin, normal (human)",,300 IE/3ml,"Insulin, normal (human)",,,100.0,IE/ml,100.0,IE/ml
+432,41,Insulinpflichtig,,,Insulinpflichtig,,,,,,
+434,41,Insuman Rapid,,,Insuman Rapid,,,,,,
+69,9,,"Ipramol TEVA 0,5+2,5mg/2,5","0,5+2,5mg/2,5","Ipramol TEVA 0,5+2,5mg/2,5",2.5,mg,2.5,mg,2.5,mg
+244,24,,JARDIANCE 25,,JARDIANCE 25,,,25.0,,25.0,
+396,38,Januvia,,100mg,Januvia,100.0,mg,50.0,mg,100.0,mg
+330,33,Jardiance,,10mg,Jardiance,10.0,mg,10.0,mg,10.0,mg
+508,48,Kochsaltz,,225mg/25..,Kochsaltz,225.0,mg,225.0,mg,225.0,mg
+209,22,Kombipräparat,,,Kombipräparat,,,,,,
+249,24,,L THYROYIN 125,,L THYROYIN 125,,,125.0,,125.0,
+334,33,L Thyrox,,"0,15mg",L Thyrox,0.15,mg,0.15,mg,0.15,mg
+459,44,L Thyroxin,,100mg,L Thyroxin,100.0,mg,50.0,mg,125.0,mg
+392,38,L-Thyrox,,75mg,L-Thyrox,75.0,mg,50.0,mg,125.0,mg
+507,48,L-Thyroxin,,50,L-Thyroxin,,,,,,
+431,41,L-Thyroxin 125,,125mg,L-Thyroxin 125,125.0,mg,50.0,mg,125.0,mg
+215,22,Lactulose,,"3,335g/5ml",Lactulose,,,3.335,g,3.335,g
+492,46,Lantus,,100E/ml,Lantus,100.0,E,100.0,E,100.0,E
+355,34,Laxoberal,,,Laxoberal,,,,,,
+554,52,Lercandipin,,10mg,Lercandipin,10.0,mg,5.0,mg,10.0,mg
+346,34,Lercanidipin,,10mg/5mg,Lercanidipin,,,,,,
+268,26,,Lercanidipin Omniapharm,20mg,Lercanidipin Omniapharm,20.0,mg,20.0,mg,20.0,mg
+398,38,Levemir,,,Levemir,,,,,,
+461,44,Levetiraceptam,,,Levetiraceptam,,,500.0,mg,500.0,mg
+132,16,Levetiracetam ,,500mg,Levetiracetam ,500.0,mg,500.0,mg,500.0,mg
+25,3,Levodopa Carbidopa,,100/25mg,Levodopa Carbidopa,25.0,mg,25.0,mg,100.0,mg
+145,17,Levothyroxin,,,Levothyroxin,,,,,,
+24,3,Levothyroxin Iodid Ion,,"0,073mg 0,15mg",Levothyroxin Iodid Ion,,,0.073,mg,0.15,mg
+6,2,Levothyroxin natrum,,"0,05mg",Levothyroxin natrum,0.05,mg,0.05,mg,0.05,mg
+518,49,Limptar N,,200mg,Limptar N,200.0,mg,200.0,mg,200.0,mg
+20,3,Lisinopril,,10mg,Lisinopril,10.0,mg,10.0,mg,12.5,mg
+142,17,Lisinopril Hydrochlorothiazid,,"20mg/12,5mg",Lisinopril Hydrochlorothiazid,,,12.5,mg,20.0,mg
+362,35,Lixiana,,30mg,Lixiana,30.0,mg,30.0,mg,60.0,mg
+218,22,Lorazepam,,1mg,Lorazepam,1.0,mg,1.0,mg,1.0,mg
+35,4,Losartan,,"50mg/12,5 mg",Losartan,,,12.5,mg,50.0,mg
+419,40,MCP AL,,10mg,MCP AL,10.0,mg,10.0,mg,10.0,mg
+251,24,,METEX 10,,METEX 10,,,10.0,,10.0,
+243,24,,METFORMIN 1000,,METFORMIN 1000,,,1000.0,,1000.0,
+246,24,,METHYLPREDNISOLON 5,,METHYLPREDNISOLON 5,,,5.0,,5.0,
+453,43,Macrogol,,,Macrogol,,,,,,
+210,22,Magaldrat,,1600mg/10ml,Magaldrat,,,1600.0,mg,1600.0,mg
+505,48,Magnesiocard,,"2,5mmol",Magnesiocard,2.5,mmol,2.5,mmol,2.5,mmol
+486,46,Magnesium,,400mg,Magnesium,400.0,mg,250.0,mg,400.0,mg
+308,30,Magnesium Verla,,300,Magnesium Verla,,,121.5,mg,600.0,mg
+296,29,Melperon,,25mg/5m,Melperon,,,5.0,mg,25.0,m
+297,29,Memantine,,20mg,Memantine,20.0,mg,20.0,mg,20.0,mg
+49,6,Mesalazin,,500mg,Mesalazin,500.0,mg,500.0,mg,500.0,mg
+472,45,Mestinon 60 Dragees,,60mg,Mestinon 60 Dragees,60.0,mg,60.0,mg,60.0,mg
+111,13,Metamizol,,,Metamizol,,,,,,
+208,22,Metamizol natrium,,500mg/ml,Metamizol natrium,500.0,mg,500.0,mg,500.0,mg
+16,2,Metamizol natrium500mg,,,Metamizol natrium500mg,,,,,,
+534,51,Metex,,50mg/ml,Metex,50.0,mg,50.0,mg,50.0,mg
+182,20,Metformin,,1000mg,Metformin,1000.0,mg,500.0,mg,2000.0,mg
+133,16,Metformin ,,2000mg,Metformin ,2000.0,mg,,,,
+63,8,Metformin 850,,,Metformin 850,,,500.0,mg,2000.0,mg
+270,26,,Metformin Atid,1000mg,Metformin Atid,1000.0,mg,500.0,mg,1000.0,mg
+262,25,Metformin hydrochlorid,,500 mg,Metformin hydrochlorid,500.0,mg,500.0,mg,1000.0,mg
+147,17,Methotrexat,,10mg,Methotrexat,10.0,mg,10.0,mg,142.5,mg
+489,46,Meto - Hexal,,"47,5mg",Meto - Hexal,47.5,mg,,,,
+38,4,Metohexal,,"142,5 mg",Metohexal,142.5,mg,,,,
+185,20,Metoprolol,,"47,5mg",Metoprolol,47.5,mg,47.5,mg,47.5,mg
+280,27,,"Metoprolol 47,5",,"Metoprolol 47,5",,,47.5,mg,47.5,mg
+122,15,Metoprolol tartrat,,200mg,Metoprolol tartrat,200.0,mg,100.0,mg,200.0,mg
+358,35,Metoprololsuccinat,,95mg,Metoprololsuccinat,95.0,mg,47.5,mg,95.0,mg
+47,6,Metoptolol succinat,,"47,5mg",Metoptolol succinat,47.5,mg,,,,
+470,45,Metropolo tartrat,,100mg,Metropolo tartrat,100.0,mg,100.0,mg,200.0,mg
+443,42,Metroprolol,,200mg,Metroprolol,200.0,mg,,,,
+102,12,Metroprolol succinat,,95mg,Metroprolol succinat,95.0,mg,47.5,mg,95.0,mg
+553,52,Mirtazapin,,15mg,Mirtazapin,15.0,mg,15.0,mg,30.0,mg
+93,11,Morphin,,,Morphin,,,10.0,mg,10.0,mg
+377,37,Morphin Aristo,,10mg,Morphin Aristo,10.0,mg,10.0,mg,10.0,mg
+376,37,Movicol,,,Movicol,,,,,,
+159,18,Moxonidin,,0.2,Moxonidin,,,0.2,mg,0.4,mg
+475,45,Moxonidinn AAA,,"0,3mg",Moxonidinn AAA,0.3,mg,0.3,mg,0.3,mg
+84,11,Muss noch einfügen,,,Muss noch einfügen,,,,,,
+256,24,,NOCOPULMON 200,,NOCOPULMON 200,,,200.0,,200.0,
+224,22,Natrium picosulfat,,"7,5mg/ml",Natrium picosulfat,7.5,mg,7.5,mg,7.5,mg
+200,21,Natriumhydrogencarbonat,,1g,Natriumhydrogencarbonat,1.0,g,1.0,g,1.0,g
+409,39,Nebivolol,,5mg,Nebivolol,5.0,mg,5.0,mg,5.0,mg
+15,2,Nitrazepam,,5mg,Nitrazepam,5.0,mg,5.0,mg,5.0,mg
+170,18,Nitrendipin,,5mg,Nitrendipin,5.0,mg,5.0,mg,5.0,mg
+281,27,,Novamin 500,,Novamin 500,,,,,,
+454,43,Novaminsulfon,,500mg,Novaminsulfon,500.0,mg,500.0,mg,500.0,mg
+478,45,Novaminsulfon 500 mg,,500mg,Novaminsulfon 500 mg,500.0,mg,500.0,mg,500.0,mg
+70,9,,Novaminsulfon Lichten500mg,500mg,Novaminsulfon Lichten500mg,500.0,mg,,,,
+425,40,Novo Mix 30,,,Novo Mix 30,,,30.0,,30.0,
+1,1,Olanazapin,,5mg,Olanazapin,5.0,mg,5.0,mg,10.0,mg
+2,1,Olanzapin,,10mg,Olanzapin,10.0,mg,5.0,mg,10.0,mg
+239,23,,Omacor,,Omacor,,,,,,
+420,40,Omeprazol,,20mg,Omeprazol,20.0,mg,20.0,mg,40.0,mg
+30,3,Oxycodon,,20mg,Oxycodon,20.0,mg,5.0,mg,30.0,mg
+349,34,Oxycondon,,10mg/5mg,Oxycondon,,,5.0,mg,30.0,mg
+250,24,,PANTOPRAZOL 40,,PANTOPRAZOL 40,,,40.0,,40.0,
+39,4,Palexia retard,,50mg,Palexia retard,50.0,mg,50.0,mg,50.0,mg
+27,3,Pankreas Pulver (vom Schwein),,,Pankreas Pulver (vom Schwein),,,,,,
+304,30,Pankreatin,,40000Ein..,Pankreatin,40000.0,Ein,40000.0,E,40000.0,E
+99,12,Pantoprazol,,20mg,Pantoprazol,20.0,mg,20.0,mg,40.0,mg
+234,23,,Pantoprazol 20mg (Bei Bedarf),20mg,Pantoprazol 20mg (Bei Bedarf),20.0,mg,,,,
+71,9,,Pantoprazol Basics 20mg,20mg,Pantoprazol Basics 20mg,20.0,mg,,,,
+282,27,,Pantozol 40,,Pantozol 40,,,,,,
+496,47,Paroxetin,,20mg,Paroxetin,20.0,mg,20.0,mg,20.0,mg
+60,8,"Perindopril/ Indapamid 5/1,25",,,"Perindopril/ Indapamid 5/1,25",,,,,,
+401,39,Pravastatin,,40mg,Pravastatin,40.0,mg,40.0,mg,40.0,mg
+72,9,,Predinisolon Acis 5mg,5mg,Predinisolon Acis 5mg,5.0,mg,5.0,mg,20.0,mg
+423,40,Prednisolon,,5mg,Prednisolon,5.0,mg,5.0,mg,20.0,mg
+464,44,Prednisolon AL,,20mg,Prednisolon AL,20.0,mg,5.0,mg,20.0,mg
+473,45,Prednisolon acis,,20mg,Prednisolon acis,20.0,mg,5.0,mg,20.0,mg
+410,39,Pregabador,,75mg,Pregabador,75.0,mg,75.0,mg,75.0,mg
+506,48,Pregabalin,,75mg,Pregabalin,75.0,mg,75.0,mg,200.0,mg
+298,29,Primidon,,250mg,Primidon,250.0,mg,250.0,mg,250.0,mg
+499,47,Prometazin,,25mg,Prometazin,25.0,mg,25.0,mg,25.0,mg
+134,16,Propranalol ,,40mg,Propranalol ,40.0,mg,40.0,mg,40.0,mg
+92,11,Propylthiouracil,,,Propylthiouracil,,,,,,
+513,49,Prostafit forte,,49g,Prostafit forte,49.0,g,49.0,g,49.0,g
+68,9,,Prothazin 25mg,25mg,Prothazin 25mg,25.0,mg,25.0,mg,25.0,mg
+265,25,Pyridoxin hydrochlorid,,100 mg 100 mg,Pyridoxin hydrochlorid,,,100.0,mg,100.0,mg
+503,48,Quetiapin,,400mg,Quetiapin,400.0,mg,400.0,mg,400.0,mg
+324,32,Rabaxx,,,Rabaxx,,,,,,
+332,33,Ramiclair,,5mg,Ramiclair,5.0,mg,5.0,mg,5.0,mg
+528,50,Ramipril,,"2,5mg",Ramipril,2.5,mg,2.5,mg,25.0,mg
+125,15,Ramipril Hydrochlorothiazid,,5mg 25mg,Ramipril Hydrochlorothiazid,,,2.5,mg,25.0,mg
+321,32,Ramipril ISIS,,5mg,Ramipril ISIS,5.0,mg,2.5,mg,25.0,mg
+188,20,Ramipril/HCT,,5mg/25mg,Ramipril/HCT,,,2.5,mg,25.0,mg
+299,29,Ramopril,,"2,5mg",Ramopril,2.5,mg,2.5,mg,25.0,mg
+406,39,Risedronat Aurobindo,,35mg,Risedronat Aurobindo,35.0,mg,35.0,mg,35.0,mg
+96,12,Rivaroxaban,,20mg,Rivaroxaban,20.0,mg,20.0,mg,20.0,mg
+476,45,Rosuvastatin,,10mg,Rosuvastatin,10.0,mg,10.0,mg,10.0,mg
+226,22,Rotigotin,,8mg/d,Rotigotin,8.0,mg,8.0,mg,8.0,mg
+275,26,,Salbuhexal N,100µg,Salbuhexal N,,,100.0,µg,100.0,µg
+222,22,Salbutamol,,"0,1mg",Salbutamol,0.1,mg,0.1,mg,0.1,mg
+73,9,,Salbutamol ratio N Dos,,Salbutamol ratio N Dos,,,,,,
+291,28,Salmeterol Fluticason,,25/125,Salmeterol Fluticason,,,,,,
+135,16,Saxagliptin,,"2,5mg",Saxagliptin,2.5,mg,2.5,mg,2.5,mg
+336,33,Seenro Breezhaler,,50 Mikrog..,Seenro Breezhaler,50.0,Mikrog,50.0,µg,50.0,µg
+501,48,Sertralin,,50mg,Sertralin,50.0,mg,50.0,mg,50.0,mg
+387,37,Simcastatin,,20mg,Simcastatin,20.0,mg,20.0,mg,20.0,mg
+214,22,Simeticon,,"69,19mg/ml",Simeticon,69.19,mg,69.19,mg,69.19,mg
+541,51,Simva Basics,,20mg,Simva Basics,20.0,mg,20.0,mg,40.0,mg
+311,31,Simva-Aristo,,20mg,Simva-Aristo,20.0,mg,20.0,mg,40.0,mg
+438,42,Simvastatin,,20mg,Simvastatin,20.0,mg,20.0,mg,40.0,mg
+283,27,,Simvastatin 20,,Simvastatin 20,,,20.0,mg,40.0,mg
+80,10,Simvastin,,20mg,Simvastin,20.0,mg,20.0,mg,40.0,mg
+9,2,Sitagliptin,,25mg,Sitagliptin,25.0,mg,25.0,mg,100.0,mg
+180,19,,Sitagliptin + Metformin 50/850mg Tbl.,50/850mg,Sitagliptin + Metformin 50/850mg Tbl.,850.0,mg,25.0,mg,100.0,mg
+74,9,,"Spiolto Resp. 2,5µg/2,5µg","2,5µg/2,5µg","Spiolto Resp. 2,5µg/2,5µg",,,2.5,µg,2.5,µg
+313,31,Spiolto-Respimat,,"2,5 Mikro…",Spiolto-Respimat,2.5,Mikro,2.5,µg,2.5,µg
+216,22,Spironolacton,,50mg,Spironolacton,50.0,mg,50.0,mg,50.0,mg
+482,46,Spriva Respimat,,"2,5 Mikrogr",Spriva Respimat,2.5,Mikrogr,2.5,µg,2.5,µg
+272,26,,Sulpirid-Ratiopharm,50mg,Sulpirid-Ratiopharm,50.0,mg,,,,
+325,32,Symbicort,,"160/4,5 M..",Symbicort,4.5,M,4.5,µg,4.5,µg
+483,46,Symbiocort Turbohaler,,"160/4,5 Mikrogr..",Symbiocort Turbohaler,4.5,Mikrogr,4.5,µg,4.5,µg
+254,24,,TILIDIN 50/4 RET,,TILIDIN 50/4 RET,,,,,,
+245,24,,TRESIBA,,TRESIBA,,,,,,
+414,39,Tadalafil,,5mg,Tadalafil,5.0,mg,5.0,mg,5.0,mg
+371,36,Tamsulosin,,"0,4mg",Tamsulosin,0.4,mg,0.4,mg,0.4,mg
+75,9,,"Tamsulosin Zen 0,4mg Hvw","0,4mg ","Tamsulosin Zen 0,4mg Hvw",0.4,mg,0.4,mg,0.4,mg
+227,22,Tamsulosin hydrochlorid,,"0,4mg",Tamsulosin hydrochlorid,0.4,mg,0.4,mg,0.4,mg
+502,48,Tavor,,"0,5mg",Tavor,0.5,mg,0.5,mg,0.5,mg
+284,27,,"Tensoflux 2,5/3,8",,"Tensoflux 2,5/3,8",,,,,,
+98,12,Thiamazol,,5mg,Thiamazol,5.0,mg,5.0,mg,20.0,mg
+33,3,Timolol,,"2,5mg",Timolol,2.5,mg,2.5,mg,2.5,mg
+221,22,Toiotropium-Kation Olodaterol,,"2,5 µg, 2,5 µg",Toiotropium-Kation Olodaterol,,,2.5,µg,2.5,µg
+12,2,Torasemid,,50,Torasemid,,,5.0,mg,50.0,mg
+36,4,Torasemid  AL,,10mg,Torasemid  AL,10.0,mg,5.0,mg,50.0,mg
+424,40,Trimbow 87/5/9,,,Trimbow 87/5/9,,,,,,
+273,26,,Trimipramin-Neuraxpharm,50mg,Trimipramin-Neuraxpharm,50.0,mg,50.0,mg,50.0,mg
+399,38,Trulicity ,,"0,75mg",Trulicity ,0.75,mg,0.75,mg,0.75,mg
+54,7,Urapidil,,30mg,Urapidil,30.0,mg,30.0,mg,30.0,mg
+247,24,,VALSARTAN 160,,VALSARTAN 160,,,,,,
+386,37,Valproinsäure,,150mg,Valproinsäure,150.0,mg,150.0,mg,150.0,mg
+288,28,Valsartan,,80mg,Valsartan,80.0,mg,80.0,mg,320.0,mg
+278,27,,Valsartan 80,,Valsartan 80,,,80.0,mg,320.0,mg
+77,10,Valsartan Hydrochlorothiazid,,320mg 25mg,Valsartan Hydrochlorothiazid,,,80.0,mg,320.0,mg
+279,27,,"Valsartan/HCT 160/12,5",,"Valsartan/HCT 160/12,5",,,80.0,mg,320.0,mg
+442,42,Venlafaxin,,75mg,Venlafaxin,75.0,mg,75.0,mg,75.0,mg
+465,44,Vertigoheel,,,Vertigoheel,,,,,,
+292,28,Vianiforte,,50/500,Vianiforte,,,,,,
+359,35,Vigantoletten D,,,Vigantoletten D,,,,,,
+238,23,,Vitalux Plus (gegen AMD),,Vitalux Plus (gegen AMD),,,,,,
+479,45,Vitamin B - Komplex,,27gr,Vitamin B - Komplex,27.0,gr,0.5,mg,2.5,mg
+364,35,Vitamin B komplex,,"2,5mg",Vitamin B komplex,2.5,mg,0.5,mg,2.5,mg
+305,30,Vitamin B12,,500mcg,Vitamin B12,500.0,mcg,0.5,mg,2.5,mg
+172,19,,Vitamin B12 1000 µg 1ml Amp.,1000 µg 1ml,Vitamin B12 1000 µg 1ml Amp.,1.0,ml,0.5,mg,2.5,mg
+302,29,Xalatan,,"0,05mg",Xalatan,0.05,mg,0.05,mg,0.05,mg
+4,2,Xipamid,,40mg,Xipamid,40.0,mg,10.0,mg,40.0,mg
+477,45,Xipamid AL,,10mg,Xipamid AL,10.0,mg,10.0,mg,40.0,mg
+32,3,Zolpidem,,,Zolpidem,,,,,,
