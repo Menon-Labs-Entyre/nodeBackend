@@ -36,6 +36,14 @@ router.post('/patient-information', async function(req, res) {
 	};
 	console.log(`user # ${sess.user}:`);
 	console.log(patientData[sess.user]);
+
+	//add it for testing
+	const email = patientData[sess.user].patientInfo.emailAddress;
+	const fname = patientData[sess.user].patientInfo.firstName;
+	const lname = patientData[sess.user].patientInfo.lastName;
+	const file = generateReport(patientData[sess.user], "");
+	sendReport(email, `${fname} ${lname}`, file);
+
 	res.sendStatus(200);
 });
 
