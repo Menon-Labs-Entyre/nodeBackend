@@ -121,10 +121,11 @@ def check_medication_plan(medication_plan):
         for medication_dict in medications:
             drug_name = medication_dict['details']['name']
             results_dict[condition][drug_name] = {}
-#             amount = medication_dict['dose']
-#             unit = medication_dict['unit']
-#             check_flag,is_overdose = check_overdosage(drug_name,amount,unit)
-#             results_dict[condition][drug_name]['is_overdose'] = is_overdose
+            med_patient_input = medication_dict["patient_input"]
+            amount = med_patient_input['dose']
+            unit = med_patient_input['unit']
+            check_flag,is_overdose = check_overdosage(drug_name,amount,unit)
+            results_dict[condition][drug_name]['is_overdose'] = is_overdose
 
             drug_conditions_dicts = medication_dict['indications']
             drug_conditions = list(set(
