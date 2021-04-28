@@ -32,36 +32,18 @@ router.post('/patient-information', async function(req, res) {
 	patientData[sess.user] = {
 		patientInfo: info, 
 		numDiag: null, 
-		diagnoses: null,
-		sideEffects: null
+		diagnoses: [],
+		numSideEffects: null, 
+		sideEffects: []
 	};
 
 	console.log(`user # ${sess.user}:`);
 	console.log(patientData[sess.user]);
 
-	//add it for testing
-	const file = generateReport(patientData[sess.user], "");
-	sendReport(info.email, info.name, file);
-
 	res.sendStatus(200);
 });
 
-/** POST request after the user enters diagnosis details 
- * 	[
-		{
-			diagnosis: 'Diag1',
-			medication: 'Med1',
-			amount: '1',
-			units: '1',
-			frequency: '1',
-			mode: 'Pill',
-			note: 'N/A'
-		},
-		{
-			...
-		}
-	]
- */
+/** POST request after the user enters diagnosis details */
 router.post('/diagnosis-details', async function (req, res) {
 	console.log(req.session);
 	var currUser = req.session.user;
@@ -74,15 +56,6 @@ router.post('/diagnosis-details', async function (req, res) {
 		console.log(`user # ${currUser}`);
 		//console.log(patientData[currUser]);
 		res.sendStatus(200);
-		let finalData = await utils.createPatientPackage(patientData[currUser]);
-		console.log(finalData)
-		/**
-		 * Simply for testing, will remove from this function later
-		 */
-    	var pyProcess = spawn('python', ['./services/test.py', finalData]);
-		pyProcess.stdout.on('data', function(data) {
-			console.log(data.toString());
-		});
 	}
 });
 
@@ -93,7 +66,17 @@ router.post('/side-effects', async function(req, res) {
 		res.status(401).send("Invalid session id");
 	}
 	else {
-		patientData[currUser].sideEffects = req.body.sideEffects;
+		const data = req.body.sideEffects.map(
+			e => {
+				return {
+					symptom: e.sideEffect.label,
+					freq: e.frequency.label, 
+					pattern: e.patterns.label
+				};
+			}
+		);
+		patientData[currUser].numSideEffects = data.length;
+		patientData[currUser].sideEffects = data;
 		console.log(`user # ${currUser}`);
 		console.log(patientData[currUser]);
 		res.sendStatus(200);
@@ -116,19 +99,30 @@ router.post('/generate-report', async function(req, res) {
 		res.status(400).send("Side effects details missing");
 	}
 	else {
-		res.send(200);
-		let finalData = utils.createPatientPackage(patientData[currUser]);
+		res.sendStatus(200);
+		let userData = patientData[currUser];
+		const email = userData.patientInfo.email;
+		const name = userData.patientInfo.name;
+
+		const report = generateReport(userData, {});
+		sendReport(email, name, report);
+
+		/*
+		let finalData = await utils.createPatientPackage(userData);
+		console.log(finalData);
+		console.log("===============================");
 		const pyProcess = spawn('python', ['./services/test.py', finalData]);
-		pyProcess.stdout.on('data', (data) => {
+		
+		pyProcess.stdout.on('data', res => {
 			// Do something with the data returned from python script
-			console.log(data);
-			//...
-			const report = generateReport(JSON.stringify(data));
-			const email = patientData[currUser].patientInfo.email;
-			const name = patientData[currUser].patientInfo.name;
+			console.log(res);
+			const report = generateReport(userData, JSON.stringify(res));
 			sendReport(email, name, report);
 		});
+		*/
+
 	}
+	res.send(200);
 });
 
 module.exports = router;
