@@ -1,0 +1,37 @@
+
+result = {
+	"validation": [
+		{
+			"medicationA": "med_name",  //frontend input: one condition - one medicatoin mapping
+			"over_dose": true, 
+			"wrongly_prescribed": false
+		}, 
+		{
+			"medicationB": "med_name",
+			"over_dose": false, 
+			"wrongly_prescribed": true
+		}
+	],
+
+	"ddi": {
+		"total_number": 2, //total # of interactions found
+		"details": [
+			{
+				"medA": "Mi", 
+				"medB": "Mj",
+				"cause": "IngredientA in Mi & IngredientB in Mj",
+				"level": "high", 
+				"description": "", // is this doable?
+			}, 
+			{
+				"medA": "Mi",
+				"medB": "Mk", 
+				"cause": "IngredientC in Mi & IngredientD in Mk", 
+				"level": "low",
+				"description": "", 
+			}
+		]
+	}, 
+
+	"percentile": 40
+}
