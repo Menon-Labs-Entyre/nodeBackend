@@ -17,6 +17,7 @@
     "express": "~4.16.1",
     "express-session": "^1.17.1",
     "fs": "0.0.1-security",
+    "html-pdf-node": "^1.0.7",
     "http-errors": "^1.6.3",
     "jade": "~1.11.0",
     "morgan": "~1.9.1",
