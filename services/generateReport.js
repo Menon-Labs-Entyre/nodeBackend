@@ -2,17 +2,16 @@ const ejs = require('ejs');
 const fs = require('fs');
 const converter = require('html-pdf-node');
 
-const FAKEDATA = {
+const FAKEUSER = {
     patientInfo: {
-        firstName: 'John',
-        lastName: 'Doe',
+        name: 'John Doe',
         age: 70,
         weight: 65,
         gender: 'Male',
-        companyName: 'Prudential',
-        subscriberName: 'John Doe',
-        memberId: '12345678',
-        subscriberRelationship: 'Self',
+        insr: 'Prudential',
+        subscriber: 'John Doe',
+        membId: '12345678',
+        rel: 'Self',
     },
     numDiag: 2,
     diagnoses: [
@@ -35,18 +34,56 @@ const FAKEDATA = {
             note: 'N/A'
         }
     ],
+    numSideEffects: 2, 
     sideEffects: [
         {
-            sideEffect: 'Headache',
-            frequency: 'daily',
+            symptom: 'Headache',
+            freq: 'daily',
             pattern: 'when tired'
         },
         {
-            sideEffect: 'Nausea',
-            frequency: 'weekly',
+            symptom: 'Nausea',
+            freq: 'weekly',
             pattern: 'when hungry'
         }
     ],
+}
+
+const FAKERES = {
+    "validation": [
+        {
+            "medication": "MedA",  //frontend input: one condition - one medicatoin mapping
+            "over_dose": true, 
+            "wrongly_prescribed": false
+        }, 
+        {
+            "medication": "MedB",
+            "over_dose": false, 
+            "wrongly_prescribed": true
+        }
+    ],
+
+    "ddi": {
+        "total_number": 2, //total # of interactions found
+        "details": [
+            {
+                "medA": "Mi", 
+                "medB": "Mj",
+                "cause": "IngredientA in Mi & IngredientB in Mj",
+                "level": "high", 
+                "description": "", // is this doable?
+            }, 
+            {
+                "medA": "Mi",
+                "medB": "Mk", 
+                "cause": "IngredientC in Mi & IngredientD in Mk", 
+                "level": "low",
+                "description": "", 
+            }
+        ]
+    }, 
+
+    "percentile": 40
 }
 
 async function generateReport(userInput, results) {
@@ -65,6 +102,9 @@ async function generateReport(userInput, results) {
         insuranceCompany: userInput.patientInfo.insr,
         diagnoses: userInput.diagnoses,
         sideEffects: userInput.sideEffects,
+        numInteractions: results.ddi.total_number,
+        percentile: results.percentile,
+        interactions: results.ddi.details,
     })
     let file = { content };
     converter.generatePdf(file, options).then(buffer => {
@@ -75,5 +115,5 @@ async function generateReport(userInput, results) {
 module.exports = {
     generateReport
 }
-//generateReport(FAKEDATA, {});
+generateReport(FAKEUSER, FAKERES);
 

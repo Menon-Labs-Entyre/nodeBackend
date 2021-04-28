@@ -69,7 +69,7 @@ router.post('/side-effects', async function(req, res) {
 		const data = req.body.sideEffects.map(
 			e => {
 				return {
-					symptoms: e.sideEffect.label,
+					symptom: e.sideEffect.label,
 					freq: e.frequency.label, 
 					pattern: e.patterns.label
 				};
@@ -104,6 +104,10 @@ router.post('/generate-report', async function(req, res) {
 		const email = userData.patientInfo.email;
 		const name = userData.patientInfo.name;
 
+		const report = generateReport(userData, {});
+		sendReport(email, name, report);
+
+		/*
 		let finalData = await utils.createPatientPackage(userData);
 		console.log(finalData);
 		console.log("===============================");
@@ -115,6 +119,7 @@ router.post('/generate-report', async function(req, res) {
 			const report = generateReport(userData, JSON.stringify(res));
 			sendReport(email, name, report);
 		});
+		*/
 
 	}
 	res.send(200);
