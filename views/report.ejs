@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Entyre Analysis Report</title>
+  </head>
+  <style type="text/css">
+    @media print {
+      body{
+        width: 21cm;
+        height: 29.7cm;
+        margin: 0mm 0mm 0mm 0mm; 
+        /* change the margins as you want them to be. */
+      } 
+    }
+
+    body {
+      font-size: 14px;
+    }
+
+    .logo {
+      width: 8cm;
+      margin-left: 1cm;
+      margin-top: 1cm;
+    }
+
+    .results-table {
+      width: 19cm;
+      margin-left: 1cm;
+      margin-right: 1cm;
+      border: 1px solid black;
+      border-collapse: collapse;
+      table-layout: fixed;
+      margin-top: 0.5cm;
+    }
+
+    .results-table td {
+      padding-left: 2mm;
+      padding-right: 2mm;
+      padding-top: 1mm;
+      padding-bottom: 1mm;
+    }
+
+    .table-heading {
+      background-color: lightgray;
+      text-align: left;
+      padding: 2mm;
+    }
+
+    .table-subheading {
+      font-weight: normal;
+      font-style: italic;
+    }
+
+    .result-fields td {
+      border-left: 1px solid black;
+      border-right: 1px solid black;
+      border-collapse: collapse;
+    }
+
+    .result-data td {
+      border-left: 1px solid black;
+      border-right: 1px solid black;
+      border-bottom: 1px solid black;
+      border-collapse: collapse;
+    }
+
+    .bold-bottom-border {
+      border-bottom: 2px solid black;
+    }
+  </style>
+  <body>
+    <img src="data:image/png;base64,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" class="logo" />
+    <table class="results-table">
+      <tr>
+        <th class="table-heading" colspan="4">Section 1 <span class="table-subheading">- Patient Information</span></th>
+      </tr>
+      <tr class="result-fields">
+        <td>Name of Patient:</td>
+        <td>Date of Birth:</td>
+        <td>Gender:</td>
+        <td>Email:</td>
+      </tr>
+      <tr class="result-data">
+        <td><%= patientName %></td>
+        <td><%= dateOfBirth %></td>
+        <td><%= gender %></td>
+        <td><%= email %></td>
+      </tr>
+      <tr class="result-fields">
+        <td>Relationship to Subscriber:</td>
+        <td>Age:</td>
+        <td>Weight:</td>
+        <td/>
+      </tr>
+      <tr class="result-data">
+        <td><%= relationship %></td>
+        <td><%= age %></td>
+        <td><%= weight %></td>
+        <td/>
+      </tr>
+      <tr class="result-fields">
+        <td>Member ID:</td>
+        <td>Subscriber Name:</td>
+        <td colspan="2">Insurance Company Name:</td>
+      </tr>
+      <tr class="result-data">
+        <td><%= memberId %></td>
+        <td><%= subscriberName %></td>
+        <td colspan="2"><%= insuranceCompany %></td>
+      </tr>
+      <tr>
+        <th class="table-heading" colspan="4">Section 2 <span class="table-subheading">- Medical Summary</span></th>
+      </tr>
+      <% for (let diagnosis of diagnoses) { %>
+      <tr class="result-data">
+        <td colspan="2">Diagnosis: <%= diagnosis.diagnosis %></td>
+        <td colspan="2">Medication: <%= diagnosis.medication %></td>
+      </tr>
+      <tr class="result-data">
+        <td colspan="4">Prescription: <%= diagnosis.amount %> <%= diagnosis.units %> <%= diagnosis.frequency %></td>
+      </tr>
+      <tr class="result-data bold-bottom-border">
+        <td colspan="4">Notes: <%= diagnosis.note %></td>
+      </tr>
+      <% } %>
+      <tr>
+        <th class="table-heading" colspan="4">Section 3 <span class="table-subheading">- Side Effects</span></th>
+      </tr>
+      <% for (let sideEffect of sideEffects) { %>
+      <tr class="result-data">
+        <td colspan="2">Symptom: <%= sideEffect.sideEffect %></td>
+        <td>Frequency: <%= sideEffect.frequency %></td>
+        <td>Pattern: <%= sideEffect.pattern %></td>
+      </tr>
+      <% } %>
+      <tr>
+        <th class="table-heading" colspan="4">Section 4 <span class="table-subheading">- Analysis (Drug-Drug Interactions)</span></th>
+      </tr>
+    </table>
+  </body>
+</html>

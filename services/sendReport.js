@@ -34,7 +34,4 @@ module.exports = {
     sendReport,
 };
 
-//testing
-//sendReport('yiwzhu@seas.upenn.edu', 'Yiwen Zhu', 'services/test.py');
-
 
