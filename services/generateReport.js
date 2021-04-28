@@ -1,12 +1,13 @@
+const ejs = require('ejs');
 const fs = require('fs');
-const PDFDocument = require('pdfkit');
+const converter = require('html-pdf-node');
 
 const FAKEDATA = {
     patientInfo: {
         firstName: 'John',
         lastName: 'Doe',
         age: 70,
-        weight: 70,
+        weight: 65,
         gender: 'Male',
         companyName: 'Prudential',
         subscriberName: 'John Doe',
@@ -34,85 +35,45 @@ const FAKEDATA = {
             note: 'N/A'
         }
     ],
-    sideEffects: null,
-}
-
-function writePatientInfo(doc, info) {
-    doc
-        .fontSize(18)
-        .text('Patient Details', { align: 'center' })
-        .moveDown()
-        .fontSize(12);
-    doc
-        .text(`Name: ${info.name}`)
-        .text(`Date of Birth: `)
-        .text(`Age: ${info.age}`)
-        .text(`Gender: ${info.gender}`)
-        .text(`Weight: ${info.weight} kg`);
-    doc
-        .moveUp(5)
-        .text(`Doctor/Consultant: ${info.subscriber}`, { align: 'right' })
-        .text(`Insurer: ${info.insr}`, {align: 'right'})
-        .text(`Insurance ID: ${info.memId}`, {align: 'right'})
-        .moveDown(3);
-}
-
-function writeMedicalSummary(doc, diagnoses) {
-    doc
-        .fontSize(18)
-        .text('Medical Summary', { align: 'center' })
-
-    if (diagnoses !== null) {
-        for (const diag of diagnoses) {
-            doc
-                .moveDown()
-                .fontSize(12)
-                .text(`Diagnosis: ${diag.diagnosis}`);
-            doc
-                .fontSize(12)
-                .font('Helvetica')
-                .text(`Medication: ${diag.medication} (${diag.amount} ${diag.units} ${diag.frequency}) (${diag.mode})`)
-                .text(`Notes: ${diag.note}`);
+    sideEffects: [
+        {
+            sideEffect: 'Headache',
+            frequency: 'daily',
+            pattern: 'when tired'
+        },
+        {
+            sideEffect: 'Nausea',
+            frequency: 'weekly',
+            pattern: 'when hungry'
         }
-    }
-    
-    doc.moveDown();
+    ],
 }
 
-function writeSideEffects(doc, effects) {
-    doc
-        .fontSize(18)
-        .text('Side Effects', { align: 'center' })
-        .moveDown();
-}
-
-function writeAnalysisResults(doc, results) {
-    doc
-        .fontSize(18)
-        .text('Analysis Results', { align: 'center' })
-        .moveDown();
-}
-
-/**
- * Generates the final report given data analysis results
- * @param userInput
- * @param data: stringified json data containing the results of analysis
- */
-function generateReport(userInput, results) {
-    let doc = new PDFDocument();
-    const file = `analysis-result-${userInput.patientInfo.name}.pdf`;
-    doc.pipe(fs.createWriteStream(file));
-    writePatientInfo(doc, userInput.patientInfo);
-    writeMedicalSummary(doc, userInput.diagnoses);
-    writeSideEffects(doc, null);
-    writeAnalysisResults(doc, null);
-    doc.end();
-    return file;
+async function generateReport(userInput, results) {
+    const options = { format: 'A4', path: 'test.pdf', printBackground: true };
+    let content = await ejs.renderFile('./views/report.ejs', {
+        logo: fs.readFileSync('./views/images/logo.png'),
+        patientName: userInput.patientInfo.name,
+        dateOfBirth: 'N/A',
+        gender: userInput.patientInfo.gender,
+        email: 'N/A',
+        relationship: userInput.patientInfo.rel,
+        age: userInput.patientInfo.age,
+        weight: userInput.patientInfo.weight,
+        memberId: userInput.patientInfo.membId,
+        subscriberName: userInput.patientInfo.subscriber,
+        insuranceCompany: userInput.patientInfo.insr,
+        diagnoses: userInput.diagnoses,
+        sideEffects: userInput.sideEffects,
+    })
+    let file = { content };
+    converter.generatePdf(file, options).then(buffer => {
+        console.log("PDF Buffer:-", buffer);
+    });
 }
 
 module.exports = {
     generateReport
 }
-
-
+//generateReport(FAKEDATA, {});
 
