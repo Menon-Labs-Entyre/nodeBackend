@@ -1,5 +1,4 @@
 const drugBank = require('./drugBank');
-const pdf = require('pdfkit');
 const fs = require('fs');
 
 /**

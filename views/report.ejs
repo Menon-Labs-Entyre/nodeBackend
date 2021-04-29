@@ -94,6 +94,11 @@
       margin: 0;
       text-align: center;
     }
+
+    .description {
+      text-align: left;
+    }
+    
   </style>
   <body>
     <div class="container">
@@ -193,11 +198,18 @@
       </tr>
       <% for (let ddi of interactions) { %>
       <tr class="result-data ddi-data">
-        <td><%= ddi.medA %> & <%= ddi.medB %></td>
-        <td><%= ddi.cause %></td>
-        <td><%= ddi.level %></td>
-        <td><%= ddi.description %></td>
+        <td rowspan="<%= ddi.ingredient_details.length %>"><%= ddi.medA %> & <%= ddi.medB %></td>
+        <td><%= ddi.ingredient_details[0].ingredient1 %> & <%= ddi.ingredient_details[0].ingredient2 %></td>
+        <td><%= ddi.ingredient_details[0].severity %></td>
+        <td class="description"><%= ddi.ingredient_details[0].description %></td>
       </tr>
+        <% for (let i of ddi.ingredient_details.slice(1)) { %>
+          <tr class="result-data ddi-data">
+            <td><%= i.ingredient1 %> & <%= i.ingredient2 %></td>
+            <td><%= i.severity %></td>
+            <td class="description"><%= i.description %></td>
+          </tr>
+        <% } %>
       <% } %>
     </table>
   </body>

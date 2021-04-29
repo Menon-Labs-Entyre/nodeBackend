@@ -51,40 +51,81 @@ const FAKEUSER = {
 }
 
 const FAKERES = {
-    "validation": [
-        {
-            "medication": "MedA",  //frontend input: one condition - one medicatoin mapping
-            "over_dose": true, 
-            "wrongly_prescribed": false
-        }, 
-        {
-            "medication": "MedB",
-            "over_dose": false, 
-            "wrongly_prescribed": true
+    "validation": {
+        'ADHD, ADD': {
+            'Amphetamine / Dextroamphetamine [Adderall]': {
+                'overdose': false,
+                'wrongly_prescribed': true,
+                'recommended_conditions_for_prescription': [
+                    'Attention Deficit Hyperactivity Disorder'
+                ]
+            }
+        },
+        'Depression': {
+            'Fluoxetine': {
+                'overdose': false,
+                'wrongly_prescribed': false,
+                'recommended_conditions_for_prescription': [
+                    'Panic Disorder (With or Without Agoraphobia)',
+                     'Treatment Resistant Depression (TRD)',
+                     'Depression',
+                     'Myoclonus',
+                     'Bulimia Nervosa',
+                     'Major Depressive Disorder',
+                     'Major Depressive Disorders',
+                     'Anorexia Nervosa',
+                     'Alcohol Dependence',
+                     'Cataplexy',
+                     'Obesity',
+                     'Premature Ejaculation',
+                     'Premenstrual Dysphoric Disorder',
+                     'Low body weight',
+                     'Obsessive-Compulsive Disorder'
+                ]
+            }
         }
-    ],
+    }, 
 
     "ddi": {
-        "total_number": 2, //total # of interactions found
         "details": [
             {
-                "medA": "Mi", 
-                "medB": "Mj",
-                "cause": "IngredientA in Mi & IngredientB in Mj",
-                "level": "high", 
-                "description": "", // is this doable?
+                "medA": "Amphetamine / Dextroamphetamine [Adderall]", 
+                "medB": "Fluoxetine",
+                "ingredient_details": [
+                    {
+                        "ingredient1": 'Fluoxetine', 
+                        "ingredient2": "Amphetamine", 
+                        "severity": "moderate", 
+                        "description": "The serum concentration of Amphetamine can be increased when it is combined with Fluoxetine."
+                    }, 
+                    {
+                        "ingredient1": 'Fluoxetine', 
+                        "ingredient2": 'Dextroamphetamine', 
+                        "severity": "high", 
+                        "description": "The serum concentration of Dextroamphetamine can be increased when it is combined with Fluoxetine."
+                    }
+                ], 
+                "total_number_in_pair": 2
             }, 
             {
                 "medA": "Mi",
                 "medB": "Mk", 
-                "cause": "IngredientC in Mi & IngredientD in Mk", 
-                "level": "low",
-                "description": "", 
+                "ingredient_details": [
+                    {
+                        "ingredient1": "I1", 
+                        "ingredient2": "I2", 
+                        "severity": "low", 
+                        "description": "N/A"
+                    }
+                ], 
+                "total_number_in_pair": 1
             }
-        ]
-    }, 
+        ], 
 
-    "percentile": 40
+        "total_number": 3, //total # of interactions found
+
+        "percentile": 40
+    }
 }
 
 async function generateReport(doctorName, userInput, results) {
@@ -114,16 +155,16 @@ async function generateReport(doctorName, userInput, results) {
         diagnoses: userInput.diagnoses,
         sideEffects: userInput.sideEffects,
         numInteractions: results.ddi.total_number,
-        percentile: results.percentile,
+        percentile: results.ddi.percentile,
         interactions: results.ddi.details,
-    })
-    let file = { content };
-    converter.generatePdf(file, options).then(buffer => {
-        console.log("PDF Buffer:-", buffer);
     });
+    let file = { content };
+    converter.generatePdf(file, options);
 }
 
 module.exports = {
     generateReport
 }
+
+generateReport("Yiwen Zhu", FAKEUSER, FAKERES);
 
