@@ -22,7 +22,6 @@ const createPatientPackage = async(patientData) => {
 	const products = {};
 	console.log("Creating Package");
 	for(const pair of patientData.diagnoses){
-		console.log(pair)
 		products[pair.medication] = await createProductPackage(drugBank.productNameToProduct[pair.medication]) //create dictonary of products mapped from name to object
 	}
 	const productIds = Object.values(products).map((product) => product.details.drugbank_pcid); //create list of pcid for all products
@@ -41,7 +40,8 @@ const createPatientPackage = async(patientData) => {
 */
 const formatData = async(userInput) => {
 	const drugBankData = await createPatientPackage(userInput);
-	const finalData = {}
+	const finalData = drugBankData;
+  finalData['medication_plan'] = {};
 	await userInput.diagnoses.forEach((diagnosis) => {
 		const medication = drugBankData.products[diagnosis.medication];
 		medication['patient_input'] = {
@@ -52,11 +52,12 @@ const formatData = async(userInput) => {
 
 		}
 		if(diagnosis.diagnosis in finalData){
-			finalData[diagnosis.diagnosis].push(medication)
+			finalData['medication_plan'][diagnosis.diagnosis].push(medication)
 		} else {
-			finalData[diagnosis.diagnosis] = [medication]
+			finalData['medication_plan'][diagnosis.diagnosis] = [medication]
 		}
 	})
+  delete finalData['products'];
 	return finalData;
 }
 
@@ -64,6 +65,3 @@ module.exports = {
 	createPatientPackage,
 	formatData
 }
-
-
-
