@@ -7,14 +7,28 @@ const {generateReport} = require("../services/generateReport");
 const {sendReport} = require("../services/sendReport");
 
 var numUsers = -1;
-var patientData = {}; //key is the user id
+var doctorContact = {};
+var patientData = {}; //keyed by numUsers
 
-/** POST request after the user enters personal information */
-router.post('/patient-information', async function(req, res) {
+/** POST request after the doctor logs in */
+router.post('/doctor-info', async function(req, res) {
 	var sess = req.session;
 	if (sess.user === undefined) {
 		sess.user = ++numUsers; //set unique user # for each session
 		req.session.save();
+	}
+	doctorContact[sess.user].name = req.body.name,
+	doctorContact[sess.user].email = req.body.emailAddress
+})
+
+/** POST request after the user enters personal information */
+router.post('/patient-information', async function(req, res) {
+
+	var currUser = req.session.user;
+
+	if (currUser === undefined || 
+		doctorContact[currUser] === undefined) {
+		res.status(401).send("Invalid session id");
 	}
 
 	info = {
@@ -29,71 +43,61 @@ router.post('/patient-information', async function(req, res) {
 		rel: req.body.subscriberRelationship
 	}
 
-	patientData[sess.user] = {
+	patientData[currUser] = {
 		patientInfo: info, 
 		numDiag: null, 
-		diagnoses: null,
-		sideEffects: null
+		diagnoses: [],
+		numSideEffects: null, 
+		sideEffects: []
 	};
 
-	console.log(`user # ${sess.user}:`);
-	console.log(patientData[sess.user]);
-
-	//add it for testing
-	const file = generateReport(patientData[sess.user], "");
-	sendReport(info.email, info.name, file);
+	console.log(`user # ${currUser}:`);
+	console.log(patientData[currUser]);
 
 	res.sendStatus(200);
 });
 
-/** POST request after the user enters diagnosis details 
- * 	[
-		{
-			diagnosis: 'Diag1',
-			medication: 'Med1',
-			amount: '1',
-			units: '1',
-			frequency: '1',
-			mode: 'Pill',
-			note: 'N/A'
-		},
-		{
-			...
-		}
-	]
- */
+/** POST request after the user enters diagnosis details */
 router.post('/diagnosis-details', async function (req, res) {
-	console.log(req.session);
+
 	var currUser = req.session.user;
-	if (currUser === undefined || patientData[currUser] === undefined) {
+
+	if (currUser === undefined || 
+		doctorContact[currUser] === undefined || 
+		patientData[currUser] === undefined) {
 		res.status(401).send("Invalid session id");
-	}
-	else {
+
+	} else {
 		patientData[currUser].numDiag = req.body.numberOfDiagnosis;
 		patientData[currUser].diagnoses = req.body.symptoms;
 		console.log(`user # ${currUser}`);
-		//console.log(patientData[currUser]);
+		console.log(patientData[currUser]);
 		res.sendStatus(200);
-		let finalData = await utils.createPatientPackage(patientData[currUser]);
-		console.log(finalData)
-		/**
-		 * Simply for testing, will remove from this function later
-		 */
-    	var pyProcess = spawn('python', ['./services/test.py', finalData]);
-		pyProcess.stdout.on('data', function(data) {
-			console.log(data.toString());
-		});
 	}
 });
 
 /** POST request after the user enters side effects */
 router.post('/side-effects', async function(req, res) {
+
 	var currUser = req.session.user;
-	if (currUser === undefined || patientData[currUser] === undefined) {
+
+	if (currUser === undefined || 
+		doctorContact[currUser] === undefined || 
+		patientData[currUser] === undefined) {
 		res.status(401).send("Invalid session id");
-	}
-	else {
-		patientData[currUser].sideEffects = req.body.sideEffects;
+
+	} else {
+		const data = req.body.sideEffects.map(
+			e => {
+				return {
+					symptom: e.sideEffect,
+					freq: e.frequency.label, 
+					pattern: e.patterns.label
+				};
+			}
+		);
+		patientData[currUser].numSideEffects = data.length;
+		patientData[currUser].sideEffects = data;
 		console.log(`user # ${currUser}`);
 		console.log(patientData[currUser]);
 		res.sendStatus(200);
@@ -102,32 +106,46 @@ router.post('/side-effects', async function(req, res) {
 
 /** POST request when the user presses the submit button */
 router.post('/generate-report', async function(req, res) {
+	
 	var currUser = req.session.user;
-	if (currUser === undefined || patientData[currUser] === undefined) {
+
+	if (currUser === undefined || 
+		doctorContact[currUser] === undefined || 
+		patientData[currUser] === undefined) {
 		res.status(401).send("Invalid session id");
-	}
-	else if (patientData[currUser].patientInfo === undefined) {
+
+	} else if (patientData[currUser].patientInfo === undefined) {
 		res.status(400).send("Patient information missing");
-	}
-	else if (patientData[currUser].diagnoses === undefined) {
+
+	} else if (patientData[currUser].diagnoses === undefined) {
 		res.status(400).send("Diagnoses details missing");
-	}
-	else if (patientData[currUser].sideEffects === undefined) {
+
+	} else if (patientData[currUser].sideEffects === undefined) {
 		res.status(400).send("Side effects details missing");
-	}
-	else {
-		res.send(200);
-		let finalData = utils.createPatientPackage(patientData[currUser]);
+
+	} else {
+		res.sendStatus(200);
+
+		const recipient = doctorContact[currUser].email;
+		const doctor = doctorContact[currUser].name;
+		const patient = patientData[currUser].patientInfo.name;
+		
+		const report = await generateReport(doctor, patientData[currUser], {});
+		await sendReport(recipient, doctor, patient, report);
+
+		/*
+		let finalData = await utils.createPatientPackage(userData);
+		console.log(finalData);
+		console.log("===============================");
 		const pyProcess = spawn('python', ['./services/test.py', finalData]);
-		pyProcess.stdout.on('data', (data) => {
+		
+		pyProcess.stdout.on('data', res => {
 			// Do something with the data returned from python script
-			console.log(data);
-			//...
-			const report = generateReport(JSON.stringify(data));
-			const email = patientData[currUser].patientInfo.email;
-			const name = patientData[currUser].patientInfo.name;
-			sendReport(email, name, report);
+			console.log(res);
+			const report = await generateReport(doctor, patientData[currUser], res);
+			await sendReport(recipient, doctor, patient, report);
 		});
+		*/
 	}
 });
 

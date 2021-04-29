@@ -1,17 +1,18 @@
+const ejs = require('ejs');
 const fs = require('fs');
-const PDFDocument = require('pdfkit');
+const converter = require('html-pdf-node');
 
-const FAKEDATA = {
+const FAKEUSER = {
     patientInfo: {
-        firstName: 'John',
-        lastName: 'Doe',
+        name: 'John Doe',
         age: 70,
-        weight: 70,
+        weight: 65,
         gender: 'Male',
-        companyName: 'Prudential',
-        subscriberName: 'John Doe',
-        memberId: '12345678',
-        subscriberRelationship: 'Self',
+        email: 'yiwzhu@seas.upenn.edu', 
+        insr: 'Prudential',
+        subscriber: 'John Doe',
+        membId: '12345678',
+        rel: 'Self',
     },
     numDiag: 2,
     diagnoses: [
@@ -34,85 +35,136 @@ const FAKEDATA = {
             note: 'N/A'
         }
     ],
-    sideEffects: null,
-}
-
-function writePatientInfo(doc, info) {
-    doc
-        .fontSize(18)
-        .text('Patient Details', { align: 'center' })
-        .moveDown()
-        .fontSize(12);
-    doc
-        .text(`Name: ${info.name}`)
-        .text(`Date of Birth: `)
-        .text(`Age: ${info.age}`)
-        .text(`Gender: ${info.gender}`)
-        .text(`Weight: ${info.weight} kg`);
-    doc
-        .moveUp(5)
-        .text(`Doctor/Consultant: ${info.subscriber}`, { align: 'right' })
-        .text(`Insurer: ${info.insr}`, {align: 'right'})
-        .text(`Insurance ID: ${info.memId}`, {align: 'right'})
-        .moveDown(3);
-}
-
-function writeMedicalSummary(doc, diagnoses) {
-    doc
-        .fontSize(18)
-        .text('Medical Summary', { align: 'center' })
-
-    if (diagnoses !== null) {
-        for (const diag of diagnoses) {
-            doc
-                .moveDown()
-                .fontSize(12)
-                .text(`Diagnosis: ${diag.diagnosis}`);
-            doc
-                .fontSize(12)
-                .font('Helvetica')
-                .text(`Medication: ${diag.medication} (${diag.amount} ${diag.units} ${diag.frequency}) (${diag.mode})`)
-                .text(`Notes: ${diag.note}`);
+    numSideEffects: 2, 
+    sideEffects: [
+        {
+            symptom: 'Headache',
+            freq: 'daily',
+            pattern: 'when tired'
+        },
+        {
+            symptom: 'Nausea',
+            freq: 'weekly',
+            pattern: 'when hungry'
         }
+    ],
+}
+
+const FAKERES = {
+    "validation": {
+        'ADHD, ADD': {
+            'Amphetamine / Dextroamphetamine [Adderall]': {
+                'overdose': false,
+                'wrongly_prescribed': true,
+                'recommended_conditions_for_prescription': [
+                    'Attention Deficit Hyperactivity Disorder'
+                ]
+            }
+        },
+        'Depression': {
+            'Fluoxetine': {
+                'overdose': false,
+                'wrongly_prescribed': false,
+                'recommended_conditions_for_prescription': [
+                    'Panic Disorder (With or Without Agoraphobia)',
+                     'Treatment Resistant Depression (TRD)',
+                     'Depression',
+                     'Myoclonus',
+                     'Bulimia Nervosa',
+                     'Major Depressive Disorder',
+                     'Major Depressive Disorders',
+                     'Anorexia Nervosa',
+                     'Alcohol Dependence',
+                     'Cataplexy',
+                     'Obesity',
+                     'Premature Ejaculation',
+                     'Premenstrual Dysphoric Disorder',
+                     'Low body weight',
+                     'Obsessive-Compulsive Disorder'
+                ]
+            }
+        }
+    }, 
+
+    "ddi": {
+        "details": [
+            {
+                "medA": "Amphetamine / Dextroamphetamine [Adderall]", 
+                "medB": "Fluoxetine",
+                "ingredient_details": [
+                    {
+                        "ingredient1": 'Fluoxetine', 
+                        "ingredient2": "Amphetamine", 
+                        "severity": "moderate", 
+                        "description": "The serum concentration of Amphetamine can be increased when it is combined with Fluoxetine."
+                    }, 
+                    {
+                        "ingredient1": 'Fluoxetine', 
+                        "ingredient2": 'Dextroamphetamine', 
+                        "severity": "high", 
+                        "description": "The serum concentration of Dextroamphetamine can be increased when it is combined with Fluoxetine."
+                    }
+                ], 
+                "total_number_in_pair": 2
+            }, 
+            {
+                "medA": "Mi",
+                "medB": "Mk", 
+                "ingredient_details": [
+                    {
+                        "ingredient1": "I1", 
+                        "ingredient2": "I2", 
+                        "severity": "low", 
+                        "description": "N/A"
+                    }
+                ], 
+                "total_number_in_pair": 1
+            }
+        ], 
+
+        "total_number": 3, //total # of interactions found
+
+        "percentile": 40
     }
-    
-    doc.moveDown();
 }
 
-function writeSideEffects(doc, effects) {
-    doc
-        .fontSize(18)
-        .text('Side Effects', { align: 'center' })
-        .moveDown();
-}
+async function generateReport(doctorName, userInput, results) {
 
-function writeAnalysisResults(doc, results) {
-    doc
-        .fontSize(18)
-        .text('Analysis Results', { align: 'center' })
-        .moveDown();
-}
+    if (Object.keys(userInput).length === 0) {
+        userInput = FAKEUSER;
+    }
 
-/**
- * Generates the final report given data analysis results
- * @param userInput
- * @param data: stringified json data containing the results of analysis
- */
-function generateReport(userInput, results) {
-    let doc = new PDFDocument();
-    const file = `analysis-result-${userInput.patientInfo.name}.pdf`;
-    doc.pipe(fs.createWriteStream(file));
-    writePatientInfo(doc, userInput.patientInfo);
-    writeMedicalSummary(doc, userInput.diagnoses);
-    writeSideEffects(doc, null);
-    writeAnalysisResults(doc, null);
-    doc.end();
-    return file;
+    if (Object.keys(results).length === 0) {
+        results = FAKERES;
+    }
+
+    const options = { format: 'A4', path: 'test.pdf', printBackground: true };
+    let content = await ejs.renderFile('./views/report.ejs', {
+        logo: fs.readFileSync('./views/images/logo.png'),
+        doctor: doctorName, 
+        patientName: userInput.patientInfo.name,
+        dateOfBirth: 'N/A',
+        gender: userInput.patientInfo.gender,
+        email: userInput.patientInfo.email,
+        relationship: userInput.patientInfo.rel,
+        age: userInput.patientInfo.age,
+        weight: userInput.patientInfo.weight,
+        memberId: userInput.patientInfo.membId,
+        subscriberName: userInput.patientInfo.subscriber,
+        insuranceCompany: userInput.patientInfo.insr,
+        diagnoses: userInput.diagnoses,
+        sideEffects: userInput.sideEffects,
+        numInteractions: results.ddi.total_number,
+        percentile: results.ddi.percentile,
+        interactions: results.ddi.details,
+    });
+    let file = { content };
+    converter.generatePdf(file, options);
 }
 
 module.exports = {
     generateReport
 }
 
-
+generateReport("Yiwen Zhu", FAKEUSER, FAKERES);
 

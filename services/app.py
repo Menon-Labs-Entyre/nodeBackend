@@ -86,8 +86,49 @@ def check_wrong_prescription(drug_conditions,patient_conditions):
             wrongly_prescribed_dict[patient_condition] = False
     return wrongly_prescribed_dict
 
+def calculate_percentile(total_n):
+        return 65
 
-def check_medication_plan(medication_plan):
+def check_interaction(drug_data):
+    DRUG_PAIR_DELIMITER = '--&--'
+    def generate_key(drugA_name,drugB_name):
+        return DRUG_PAIR_DELIMITER.join(sorted([drugA_name,drugB_name]))
+    def deconstruct_drug_pair_key(drug_pair_key):
+        return tuple(drug_pair_key.split(DRUG_PAIR_DELIMITER))
+
+    interactions = drug_data['interactions']
+
+    # capture out only relevant interaction information that we want
+    results_d = defaultdict(lambda: [])
+    for interaction_pair in interactions:
+        drugA_name = interaction_pair['product_concept_name']
+        drugB_name = interaction_pair['affected_product_concept_name']
+        drugA_ingredient = interaction_pair['product_ingredient']['name']
+        drugB_ingredient = interaction_pair['affected_product_ingredient']['name']
+
+        drug_pair_key = generate_key(drugA_name,drugB_name)
+        results_d[drug_pair_key].append(
+            {"ingredient1":drugA_ingredient,
+             "ingredient2":drugB_ingredient,
+              "severity":interaction_pair['severity'],
+             "description":interaction_pair['description'],
+            }
+            )
+
+    results_l = []
+    for drug_pair_key, details in results_d.items():
+        drugA_name,drugB_name = deconstruct_drug_pair_key(drug_pair_key)
+        one_pair_d = {}
+        one_pair_d["medA"] = drugA_name
+        one_pair_d["medB"] = drugB_name
+        one_pair_d["ingredient_details"] = details
+        total_n = len(details) # total number of interactions
+        one_pair_d["total_number_in_pair"] = total_n
+        results_l.append(one_pair_d)
+
+    return results_l
+
+def check_medication_plan(medication_plan,drugdata):
     '''medication_plan: a JSON-like dict of format
         {"condition A":
             {"medications": # list of dictionary
@@ -114,6 +155,8 @@ def check_medication_plan(medication_plan):
         "condition B": {...}
         }
     '''
+
+    #basic check
     results_dict = {}
     patient_conditions = list(medication_plan.keys())
     for condition,medications in medication_plan.items():
@@ -121,10 +164,11 @@ def check_medication_plan(medication_plan):
         for medication_dict in medications:
             drug_name = medication_dict['details']['name']
             results_dict[condition][drug_name] = {}
-#             amount = medication_dict['dose']
-#             unit = medication_dict['unit']
-#             check_flag,is_overdose = check_overdosage(drug_name,amount,unit)
-#             results_dict[condition][drug_name]['is_overdose'] = is_overdose
+            med_patient_input = medication_dict["patient_input"]
+            amount = med_patient_input['dose']
+            unit = med_patient_input['unit']
+            check_flag,is_overdose = check_overdosage(drug_name,amount,unit)
+            results_dict[condition][drug_name]['overdose'] = is_overdose
 
             drug_conditions_dicts = medication_dict['indications']
             drug_conditions = list(set(
@@ -133,10 +177,26 @@ def check_medication_plan(medication_plan):
             # need all True to returns True, it is because the drug only needs to be prescribed
             # for a single patient condition from all patient conditions
             is_drug_wrongly_prescribed = sum(list(wrongly_prescribed_dict.values())) == len(wrongly_prescribed_dict)
-            results_dict[condition][drug_name]['is_wrongly_prescribed'] = is_drug_wrongly_prescribed
+            results_dict[condition][drug_name]['wrongly_prescribed'] = is_drug_wrongly_prescribed
             results_dict[condition][drug_name]['recommended_conditions_for_prescription'] = drug_conditions
 
-    return results_dict
+
+
+    interaction_result_l = check_interaction(drugdata)
+    ddi = {}
+    total_n_of_plan = 0
+    for one_pair_dict in interaction_result_l:
+        total_n_of_plan += one_pair_dict['total_number_in_pair']
+
+    ddi["details"] = interaction_result_l
+    ddi["total_number"] = total_n_of_plan
+    ddi["percentile"] = calculate_percentile(total_n_of_plan)
+
+    output_results_dict = {}
+    output_results_dict["validation"] = results_dict
+    output_results_dict["ddi"] = ddi
+    return output_results_dict
+
 
 def test_hello():
     print('Hello from the python file\n')
@@ -149,11 +209,13 @@ def test_parse_diagnosis(diagnosis):
     for entry in data:
         print(entry['diagnosis'])
 
-def test(diagnosis):
+def test(diagnosis,drugdata):
     test_hello()
     test_receive_diagnosis(diagnosis)
+    test_receive_diagnosis(drugdata)
     test_parse_diagnosis(diagnosis)
-    check_medication_plan(json.loads(diagnosis))
+    test_parse_diagnosis(drugdata)
+    check_medication_plan(json.loads(diagnosis),json.loads(drugdata))
 
 if __name__ =='__main__' :
-    test(sys.argv[1])
+    test(sys.argv[1],sys.argv[2])
