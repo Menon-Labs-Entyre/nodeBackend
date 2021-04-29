@@ -130,14 +130,10 @@ router.post('/generate-report', async function(req, res) {
 		const doctor = doctorContact[currUser].name;
 		const patient = patientData[currUser].patientInfo.name;
 		
-		const report = await generateReport(doctor, patientData[currUser], {});
-		await sendReport(recipient, doctor, patient, report);
-
-		/*
-		let finalData = await utils.createPatientPackage(userData);
+		let finalData = await utils.formatData(patientData[currUser]);
 		console.log(finalData);
 		console.log("===============================");
-		const pyProcess = spawn('python', ['./services/test.py', finalData]);
+		const pyProcess = spawn('python', ['./services/app.py', finalData]);
 		
 		pyProcess.stdout.on('data', res => {
 			// Do something with the data returned from python script
@@ -145,7 +141,7 @@ router.post('/generate-report', async function(req, res) {
 			const report = await generateReport(doctor, patientData[currUser], res);
 			await sendReport(recipient, doctor, patient, report);
 		});
-		*/
+		
 	}
 });
 
