@@ -89,14 +89,13 @@ def check_wrong_prescription(drug_conditions,patient_conditions):
 def calculate_percentile(total_n):
         return 65
 
-def check_interaction(drug_data):
+def check_interaction(interactions):
     DRUG_PAIR_DELIMITER = '--&--'
     def generate_key(drugA_name,drugB_name):
         return DRUG_PAIR_DELIMITER.join(sorted([drugA_name,drugB_name]))
     def deconstruct_drug_pair_key(drug_pair_key):
         return tuple(drug_pair_key.split(DRUG_PAIR_DELIMITER))
 
-    interactions = drug_data['interactions']
 
     # capture out only relevant interaction information that we want
     results_d = defaultdict(lambda: [])
@@ -128,7 +127,7 @@ def check_interaction(drug_data):
 
     return results_l
 
-def check_medication_plan(medication_plan,drugdata):
+def check_medication_plan(data):
     '''medication_plan: a JSON-like dict of format
         {"condition A":
             {"medications": # list of dictionary
@@ -155,6 +154,8 @@ def check_medication_plan(medication_plan,drugdata):
         "condition B": {...}
         }
     '''
+    medication_plan = data["medication_plan"]
+    interactions = data["interactions"]
 
     #basic check
     results_dict = {}
@@ -182,7 +183,7 @@ def check_medication_plan(medication_plan,drugdata):
 
 
 
-    interaction_result_l = check_interaction(drugdata)
+    interaction_result_l = check_interaction(interactions)
     ddi = {}
     total_n_of_plan = 0
     for one_pair_dict in interaction_result_l:
@@ -195,6 +196,7 @@ def check_medication_plan(medication_plan,drugdata):
     output_results_dict = {}
     output_results_dict["validation"] = results_dict
     output_results_dict["ddi"] = ddi
+
     return output_results_dict
 
 
@@ -209,13 +211,11 @@ def test_parse_diagnosis(diagnosis):
     for entry in data:
         print(entry['diagnosis'])
 
-def test(diagnosis,drugdata):
+def test(data):
     test_hello()
-    test_receive_diagnosis(diagnosis)
-    test_receive_diagnosis(drugdata)
-    test_parse_diagnosis(diagnosis)
-    test_parse_diagnosis(drugdata)
-    check_medication_plan(json.loads(diagnosis),json.loads(drugdata))
+    test_receive_diagnosis(data)
+    test_parse_diagnosis(data)
+    check_medication_plan(json.loads(data))
 
 if __name__ =='__main__' :
-    test(sys.argv[1],sys.argv[2])
+    test(sys.argv[1])
