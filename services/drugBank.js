@@ -70,6 +70,7 @@ const getConditions = async(conditionName) => {
   const callParamters = {
     params: {
       q: conditionName,
+      more:"general"
     }
   }
   const response = await axios.get(host+callEndpoint,callParamters);
@@ -140,12 +141,33 @@ const getIndicationsbyProduct = async(drugBankPcid) => {
   const callEndpoint = "/product_concepts/" + drugBankPcid + "/indications" 
   const callParamters = {
     params: {
-      kind: null //type of indication
     }
   }
   const response = await axios.get(host+callEndpoint,callParamters);
   const indiciationData = response.data;
   return indiciationData;
+}
+
+/**
+  * @desc returns an array of indications for passed in product concept
+  * @param string drugBankPcid - a string equal to the drugBankPcid related to a product concept
+  * @return {Object} - object containing API data for indications for specific product concept
+*/
+const getIndicationsbyCondition = async(drugBankPcid) => {
+  const callEndpoint = "/product_concepts/" + drugBankPcid + "/indications" 
+  const callParamters = {
+    params: {
+    }
+  }
+  const response = await axios.get(host+callEndpoint,callParamters);
+  const indiciationData = response.data;
+  return indiciationData;
+}
+
+const getFileteredConditions = async(conditionName) => {
+  const conditions = await getConditions(conditionName);
+  const conditionData = await Promise.all(conditions.map(condition => getIndicationsbyProduct(conditonToId[condition])));
+  const validConditions = conditionData.filter(condition => condition.length > 0)
 }
 
 //export methods for use
@@ -158,7 +180,8 @@ module.exports = {
   getDrug: getDrug,
   getCondition: getCondition,
   getProducts: getProducts,
-  getIndicationsbyProduct: getIndicationsbyProduct
+  getIndicationsbyProduct: getIndicationsbyProduct,
+  getFileteredConditions:getFileteredConditions
 
 }
 
