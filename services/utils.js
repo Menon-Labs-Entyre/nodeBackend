@@ -40,7 +40,7 @@ const createPatientPackage = async(patientData) => {
 const formatData = async(userInput) => {
 	const drugBankData = await createPatientPackage(userInput);
 	const finalData = drugBankData;
-  finalData['medication_plan'] = {};
+  	finalData['medication_plan'] = {};
 	await userInput.diagnoses.forEach((diagnosis) => {
 		const medication = drugBankData.products[diagnosis.medication];
 		medication['patient_input'] = {
