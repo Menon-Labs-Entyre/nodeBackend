@@ -7,14 +7,28 @@ const {generateReport} = require("../services/generateReport");
 const {sendReport} = require("../services/sendReport");
 
 var numUsers = -1;
-var patientData = {}; //key is the user id
+var doctorContact = {};
+var patientData = {}; //keyed by numUsers
 
-/** POST request after the user enters personal information */
-router.post('/patient-information', async function(req, res) {
+/** POST request after the doctor logs in */
+router.post('/doctor-info', async function(req, res) {
 	var sess = req.session;
 	if (sess.user === undefined) {
 		sess.user = ++numUsers; //set unique user # for each session
 		req.session.save();
+	}
+	doctorContact[sess.user].name = req.body.name,
+	doctorContact[sess.user].email = req.body.emailAddress
+})
+
+/** POST request after the user enters personal information */
+router.post('/patient-information', async function(req, res) {
+
+	var currUser = req.session.user;
+
+	if (currUser === undefined || 
+		doctorContact[currUser] === undefined) {
+		res.status(401).send("Invalid session id");
 	}
 
 	info = {
@@ -29,7 +43,7 @@ router.post('/patient-information', async function(req, res) {
 		rel: req.body.subscriberRelationship
 	}
 
-	patientData[sess.user] = {
+	patientData[currUser] = {
 		patientInfo: info, 
 		numDiag: null, 
 		diagnoses: [],
@@ -37,39 +51,46 @@ router.post('/patient-information', async function(req, res) {
 		sideEffects: []
 	};
 
-	console.log(`user # ${sess.user}:`);
-	console.log(patientData[sess.user]);
+	console.log(`user # ${currUser}:`);
+	console.log(patientData[currUser]);
 
 	res.sendStatus(200);
 });
 
 /** POST request after the user enters diagnosis details */
 router.post('/diagnosis-details', async function (req, res) {
-	console.log(req.session);
+
 	var currUser = req.session.user;
-	if (currUser === undefined || patientData[currUser] === undefined) {
+
+	if (currUser === undefined || 
+		doctorContact[currUser] === undefined || 
+		patientData[currUser] === undefined) {
 		res.status(401).send("Invalid session id");
-	}
-	else {
+
+	} else {
 		patientData[currUser].numDiag = req.body.numberOfDiagnosis;
 		patientData[currUser].diagnoses = req.body.symptoms;
 		console.log(`user # ${currUser}`);
-		//console.log(patientData[currUser]);
+		console.log(patientData[currUser]);
 		res.sendStatus(200);
 	}
 });
 
 /** POST request after the user enters side effects */
 router.post('/side-effects', async function(req, res) {
+
 	var currUser = req.session.user;
-	if (currUser === undefined || patientData[currUser] === undefined) {
+
+	if (currUser === undefined || 
+		doctorContact[currUser] === undefined || 
+		patientData[currUser] === undefined) {
 		res.status(401).send("Invalid session id");
-	}
-	else {
+
+	} else {
 		const data = req.body.sideEffects.map(
 			e => {
 				return {
-					symptom: e.sideEffect.label,
+					symptom: e.sideEffect,
 					freq: e.frequency.label, 
 					pattern: e.patterns.label
 				};
@@ -85,27 +106,32 @@ router.post('/side-effects', async function(req, res) {
 
 /** POST request when the user presses the submit button */
 router.post('/generate-report', async function(req, res) {
+	
 	var currUser = req.session.user;
-	if (currUser === undefined || patientData[currUser] === undefined) {
-		res.status(401).send("Invalid session id");
-	}
-	else if (patientData[currUser].patientInfo === undefined) {
-		res.status(400).send("Patient information missing");
-	}
-	else if (patientData[currUser].diagnoses === undefined) {
-		res.status(400).send("Diagnoses details missing");
-	}
-	else if (patientData[currUser].sideEffects === undefined) {
-		res.status(400).send("Side effects details missing");
-	}
-	else {
-		res.sendStatus(200);
-		let userData = patientData[currUser];
-		const email = userData.patientInfo.email;
-		const name = userData.patientInfo.name;
 
-		const report = generateReport(userData, {});
-		sendReport(email, name, report);
+	if (currUser === undefined || 
+		doctorContact[currUser] === undefined || 
+		patientData[currUser] === undefined) {
+		res.status(401).send("Invalid session id");
+
+	} else if (patientData[currUser].patientInfo === undefined) {
+		res.status(400).send("Patient information missing");
+
+	} else if (patientData[currUser].diagnoses === undefined) {
+		res.status(400).send("Diagnoses details missing");
+
+	} else if (patientData[currUser].sideEffects === undefined) {
+		res.status(400).send("Side effects details missing");
+
+	} else {
+		res.sendStatus(200);
+
+		const recipient = doctorContact[currUser].email;
+		const doctor = doctorContact[currUser].name;
+		const patient = patientData[currUser].patientInfo.name;
+		
+		const report = await generateReport(doctor, patientData[currUser], {});
+		await sendReport(recipient, doctor, patient, report);
 
 		/*
 		let finalData = await utils.createPatientPackage(userData);
@@ -116,13 +142,11 @@ router.post('/generate-report', async function(req, res) {
 		pyProcess.stdout.on('data', res => {
 			// Do something with the data returned from python script
 			console.log(res);
-			const report = generateReport(userData, JSON.stringify(res));
-			sendReport(email, name, report);
+			const report = await generateReport(doctor, patientData[currUser], res);
+			await sendReport(recipient, doctor, patient, report);
 		});
 		*/
-
 	}
-	res.send(200);
 });
 
 module.exports = router;

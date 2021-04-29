@@ -8,6 +8,7 @@ const FAKEUSER = {
         age: 70,
         weight: 65,
         gender: 'Male',
+        email: 'yiwzhu@seas.upenn.edu', 
         insr: 'Prudential',
         subscriber: 'John Doe',
         membId: '12345678',
@@ -86,14 +87,24 @@ const FAKERES = {
     "percentile": 40
 }
 
-async function generateReport(userInput, results) {
+async function generateReport(doctorName, userInput, results) {
+
+    if (Object.keys(userInput).length === 0) {
+        userInput = FAKEUSER;
+    }
+
+    if (Object.keys(results).length === 0) {
+        results = FAKERES;
+    }
+
     const options = { format: 'A4', path: 'test.pdf', printBackground: true };
     let content = await ejs.renderFile('./views/report.ejs', {
         logo: fs.readFileSync('./views/images/logo.png'),
+        doctor: doctorName, 
         patientName: userInput.patientInfo.name,
         dateOfBirth: 'N/A',
         gender: userInput.patientInfo.gender,
-        email: 'N/A',
+        email: userInput.patientInfo.email,
         relationship: userInput.patientInfo.rel,
         age: userInput.patientInfo.age,
         weight: userInput.patientInfo.weight,
@@ -115,5 +126,4 @@ async function generateReport(userInput, results) {
 module.exports = {
     generateReport
 }
-generateReport(FAKEUSER, FAKERES);
 

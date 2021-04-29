@@ -2,10 +2,11 @@ const ejs = require('ejs');
 const nodemailer = require('nodemailer');
 
 const mailContent = `
-Dear Sir/Madam,<br/><br/>
-Please find attached the analysis report you requested for your patient, <%= name %>.<br/><br/>
-Best wishes,<br/><br/>
-The Entyre Team
+    Dear Dr. <%= doctor %>, <br/><br/>
+    Please find attached the analysis report you requested 
+    for your patient, <%= patient %>.<br/><br/>
+    Best wishes,<br/><br/>
+    The Entyre Team
 `;
 
 const transporter = nodemailer.createTransport({
@@ -16,11 +17,11 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-async function sendReport(email, patientName, reportFile) {
+async function sendReport(email, doctorName, patientName, reportFile) {
     const options = {
         to: email,
         subject: `Your Entyre Analysis Report: ${patientName}`,
-        html: ejs.render(mailContent, { name: patientName }),
+        html: ejs.render(mailContent, { doctor: doctorName, patient: patientName }),
         attachments: [
             {
                 path: reportFile
