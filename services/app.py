@@ -173,7 +173,7 @@ def check_medication_plan(data):
 
             drug_conditions_dicts = medication_dict['indications']
             drug_conditions = list(set(
-                [condition['condition']['name'] for condition in drug_conditions_dicts]))
+                [condition_['condition']['name'] for condition_ in drug_conditions_dicts]))
             wrongly_prescribed_dict = check_wrong_prescription(drug_conditions,patient_conditions)
             # need all True to returns True, it is because the drug only needs to be prescribed
             # for a single patient condition from all patient conditions
@@ -212,10 +212,10 @@ def test_parse_diagnosis(diagnosis):
         print(entry['diagnosis'])
 
 def test(data):
-    test_hello()
-    test_receive_diagnosis(data)
-    test_parse_diagnosis(data)
-    check_medication_plan(json.loads(data))
+    final_data = check_medication_plan(json.loads(data))
+    print(final_data)
+    sys.stdout.flush()
+
 
 if __name__ =='__main__' :
     test(sys.argv[1])

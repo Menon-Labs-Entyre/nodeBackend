@@ -1,5 +1,7 @@
 const drugBank = require('./drugBank');
 const fs = require('fs');
+const spawn = require('child_process').spawn;
+
 
 /**
   * @desc creates an object of all related data to a product
@@ -18,6 +20,10 @@ const createProductPackage = async(productDetails) => {
   * @return {Object} - returns an object containing a list of products, conditions, and interactions
 */
 const createPatientPackage = async(patientData) => {
+	await drugBank.getConditions("ADHD");
+	await drugBank.getConditions("Depression");
+	await drugBank.getProducts("Adderall");
+	await drugBank.getProducts("Fluoxetine");
 	const products = {};
 	console.log("Creating Package");
 	for(const pair of patientData.diagnoses){
@@ -28,6 +34,26 @@ const createPatientPackage = async(patientData) => {
 	const interactions = await drugBank.getInteractions(productIds); // pull interactions based on productIds
 	console.log("Pulled Interactions")
 	const conditionData = await Promise.all(patientData.diagnoses.map((pair)=> drugBank.getCondition(drugBank.conditonToId[pair.diagnosis]))); // pull data for each condition and create an array
+	const conditionVarients = {}
+	//This code attempts to add new indicatiosn to eahc product based on similarities in conditions
+	conditionData.forEach(condition => {
+		const moreGeneral = condition.more_general.map(condition => condition.drugbank_id)
+		const moreSpecific = condition.more_specific.map(condition => condition.drugbank_id)
+		const allConditions = [...moreGeneral,...moreSpecific]
+		allConditions.forEach(subCond => {
+			conditionVarients[subCond] = condition.name;
+		})
+	})
+	for(const product in products){
+		products[product]["indications"].forEach(indication => {
+			if(conditionVarients[indication['condition']['drugbank_id']]){
+				const similarConidition = conditionVarients[indication['condition']['drugbank_id']];
+				const newIndication = indication;
+				newIndication.condition = {"name":similarConidition,"drugbank_id":drugBank.conditonToId[similarConidition]}
+				products[product]["indications"].push(newIndication)
+			}
+		})
+	}
 	console.log("Package created");
 	return {products:products, conditions:conditionData, interactions:interactions};
 }
@@ -60,7 +86,57 @@ const formatData = async(userInput) => {
 	return finalData;
 }
 
+const callServer = async(userData) => {
+	let finalData = await formatData(userData);
+	console.log("===============================");
+	const pyProcess = spawn('python', ['./app.py', JSON.stringify(finalData)]);
+	pyProcess.stdout.on('data', res => {
+		// Do something with the data returned from python script
+		console.log(res.toString());
+	});	
+	pyProcess.stderr.on('data', (data) => {
+
+        console.log(data.toString());
+    });
+}
+
 module.exports = {
 	createPatientPackage,
 	formatData
 }
+
+callServer({
+    "patientInfo": {
+        "firstName": "Mike",
+        "lastName": "G",
+        "age": "10",
+        "weight": "100",
+        "gender": "male",
+        "companyName": "stuff",
+        "subscriberName": "stuff",
+        "memberId": "stuff",
+        "subscriberRelationship": "stuff"
+    },
+    "numDiag": 2,
+    "diagnoses": [
+        {
+            "diagnosis": "ADHD, ADD",
+            "medication": "Adderall",
+            "amount": "1",
+            "units": "1",
+            "frequency": "1",
+            "mode": "Pill",
+            "note": "N/A"
+        },
+        {
+            "diagnosis": "Depression",
+            "medication": "Fluoxetine",
+            "amount": "1",
+            "units": "1",
+            "frequency": "1",
+            "mode": "Pill",
+            "note": "N/A"
+
+        }
+    ]
+})
