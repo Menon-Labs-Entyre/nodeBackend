@@ -5,6 +5,7 @@ const converter = require('html-pdf-node');
 const FAKEUSER = {
     patientInfo: {
         name: 'John Doe',
+        dob: "1952-12-16", 
         age: 70,
         weight: 65,
         gender: 'Male',
@@ -151,13 +152,13 @@ async function generateReport(doctorName, userInput, results) {
         logo: fs.readFileSync('./views/images/logo.png'),
         doctor: doctorName, 
         patientName: userInput.patientInfo.name,
-        dateOfBirth: 'N/A',
+        dateOfBirth: userInput.patientInfo.dob,
         gender: userInput.patientInfo.gender,
         email: userInput.patientInfo.email,
         relationship: userInput.patientInfo.rel,
         age: userInput.patientInfo.age,
         weight: userInput.patientInfo.weight,
-        memberId: userInput.patientInfo.membId,
+        memberId: userInput.patientInfo.memId,
         subscriberName: userInput.patientInfo.subscriber,
         insuranceCompany: userInput.patientInfo.insr,
         diagnoses: userInput.diagnoses,
@@ -174,4 +175,3 @@ async function generateReport(doctorName, userInput, results) {
 module.exports = {
     generateReport
 }
-
