@@ -212,10 +212,10 @@ def test_parse_diagnosis(diagnosis):
         print(entry['diagnosis'])
 
 def test(data):
-    test_hello()
-    test_receive_diagnosis(data)
-    test_parse_diagnosis(data)
-    check_medication_plan(json.loads(data))
+    final_data = check_medication_plan(json.loads(data))
+    print(final_data)
+    sys.stdout.flush()
+
 
 if __name__ =='__main__' :
     test(sys.argv[1])
