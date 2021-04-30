@@ -97,20 +97,20 @@ const formatData = async(userInput) => {
 const callServer = async(doctorContact, userData) => {
 	const doctor = doctorContact.name;
 	const recipient = doctorContact.email;
-	const patient = serData.patientInfo.name;
+	const patient = userData.patientInfo.name;
 
 	let finalData = await formatData(userData);
 	console.log("===============================");
-	const pyProcess = spawn('python3', ['.app.py', JSON.stringify(finalData)]);
-	pyProcess.stdout.on('data', res => {
-		//This is where u should call to create report with res.toString()
-		console.log(res.toString());
-		const reportPath = await generateReport(doctor, userData, res);
+	const pyProcess = spawn('python3', ['./services/app.py', JSON.stringify(finalData)]);
+	pyProcess.stdout.on('data', async(res) => {
+		const result = res.toString().split("'").join('"').split("False").join("false").split("True").join("true")
+		const reportPath = await generateReport(doctor, userData, JSON.parse(result));
 		await sendReport(recipient, doctor, patient, reportPath);
-	});	
+	});		
 }
 
 module.exports = {
 	createPatientPackage,
-	formatData
+	formatData,
+	callServer
 }

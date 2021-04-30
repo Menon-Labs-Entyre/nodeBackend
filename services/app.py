@@ -7,7 +7,7 @@ from collections import defaultdict
 import sys
 import json
 
-DB_PATH='parsed_drug_name_agg.csv'
+DB_PATH='./services/parsed_drug_name_agg.csv'
 def read_drug_db(db_path=DB_PATH):
     df_in = OrderedDict()
     with open(db_path) as csvfile:
