@@ -1,3 +1,4 @@
+const fs = require('fs');
 const ejs = require('ejs');
 const nodemailer = require('nodemailer');
 
@@ -17,6 +18,13 @@ const transporter = nodemailer.createTransport({
     }
 });
 
+/**
+ * Send the report to the designated email address
+ * @param {*} email 
+ * @param {*} doctorName 
+ * @param {*} patientName 
+ * @param {*} reportFile 
+ */
 async function sendReport(email, doctorName, patientName, reportFile) {
     const options = {
         to: email,
@@ -34,5 +42,3 @@ async function sendReport(email, doctorName, patientName, reportFile) {
 module.exports = {
     sendReport,
 };
-
-

@@ -11,50 +11,56 @@ var doctorContact = {};
 var patientData = {}; //keyed by numUsers
 
 /** POST request after the doctor logs in */
-router.post('/doctor-info', async function(req, res) {
+router.post('/doctor-contact', async function(req, res) {
 	var sess = req.session;
 	if (sess.user === undefined) {
 		sess.user = ++numUsers; //set unique user # for each session
 		req.session.save();
 	}
-	doctorContact[sess.user].name = req.body.name,
-	doctorContact[sess.user].email = req.body.emailAddress
+	doctorContact[sess.user] = {
+		"name": req.body.doctorName,
+		"email": req.body.doctorEmail
+	}
+	res.sendStatus(200);
 })
 
 /** POST request after the user enters personal information */
 router.post('/patient-information', async function(req, res) {
 
 	var currUser = req.session.user;
+	console.log(req.session);
 
 	if (currUser === undefined || 
 		doctorContact[currUser] === undefined) {
 		res.status(401).send("Invalid session id");
+
+	} else {
+		info = {
+			name: `${req.body.firstName} ${req.body.lastName}`,
+			age: req.body.age,
+			weight: req.body.weight,
+			gender: req.body.gender, 
+			email: req.body.emailAddress, 
+			insr: req.body.companyName, 
+			subscriber: req.body.subscriberName, 
+			memId: req.body.memberId, 
+			rel: req.body.subscriberRelationship
+		}
+
+		patientData[currUser] = {
+			patientInfo: info, 
+			numDiag: null, 
+			diagnoses: [],
+			numSideEffects: null, 
+			sideEffects: []
+		};
+
+		console.log(`user # ${currUser}:`);
+		console.log(patientData[currUser]);
+
+		res.sendStatus(200);
 	}
-
-	info = {
-		name: `${req.body.firstName} ${req.body.lastName}`,
-		age: req.body.age,
-		weight: req.body.weight,
-		gender: req.body.gender, 
-		email: req.body.emailAddress, 
-		insr: req.body.companyName, 
-		subscriber: req.body.subscriberName, 
-		memId: req.body.memberId, 
-		rel: req.body.subscriberRelationship
-	}
-
-	patientData[currUser] = {
-		patientInfo: info, 
-		numDiag: null, 
-		diagnoses: [],
-		numSideEffects: null, 
-		sideEffects: []
-	};
-
-	console.log(`user # ${currUser}:`);
-	console.log(patientData[currUser]);
-
-	res.sendStatus(200);
+	
 });
 
 /** POST request after the user enters diagnosis details */
@@ -131,17 +137,20 @@ router.post('/generate-report', async function(req, res) {
 		const patient = patientData[currUser].patientInfo.name;
 		
 		const report = await generateReport(doctor, patientData[currUser], {});
+		console.log("report generated");
 		await sendReport(recipient, doctor, patient, report);
+		console.log("report sent");
 
 		/*
-		let finalData = await utils.createPatientPackage(userData);
+		let finalData = await utils.formatData(patientData[currUser]);
 		console.log(finalData);
-		console.log("===============================");
-		const pyProcess = spawn('python', ['./services/test.py', finalData]);
-		
-		pyProcess.stdout.on('data', res => {
+		console.log("================== End of finalData ===================");
+
+		const pyProcess = spawn('python', ['./services/app.py', finalData]);
+		pyProcess.stdout.on('data', async (res) => {
 			// Do something with the data returned from python script
 			console.log(res);
+			console.log("=============== End of res ====================");
 			const report = await generateReport(doctor, patientData[currUser], res);
 			await sendReport(recipient, doctor, patient, report);
 		});

@@ -17,6 +17,7 @@
       font-size: 14px;
       font-family: Arial, Helvetica, sans-serif;
       font-weight: Regular;
+      height: 90vh;
     }
 
     .logo {
@@ -41,14 +42,23 @@
     }
 
     .table-heading {
-      background-color: #e4f6e8;
+      background-color: #2B6A3D;
+      color: #D9D9D9;
       text-align: left;
+      font-weight: bold;
       padding: 2mm;
     }
 
     .table-subheading {
-      font-weight: normal;
       font-style: italic;
+    }
+
+    .table-col-heading {
+      background-color: #2B6A3D;
+      color: #D9D9D9;
+      text-align: center;
+      font-weight: bold;
+      padding: 2mm;
     }
 
     .result-fields td {
@@ -62,6 +72,7 @@
       border-right: 1px solid black;
       border-bottom: 1px solid black;
       border-collapse: collapse;
+      padding: 2mm;
     }
 
     .bold-bottom-border {
@@ -92,13 +103,13 @@
     .doctor {
       padding: 0;
       margin: 0;
-      text-align: center;
+      text-align: left;
     }
 
     .description {
       text-align: left;
     }
-    
+
   </style>
   <body>
     <div class="container">
@@ -114,53 +125,34 @@
       <tr>
         <th class="table-heading" colspan="4">Section 1 <span class="table-subheading">- Patient Information</span></th>
       </tr>
-      <tr class="result-fields">
-        <td>Name of Patient:</td>
-        <td>Date of Birth:</td>
-        <td>Age:</td>
-        <td>Weight:</td>
+      <tr class="result-data">
+        <td colspan="2">Name:  <%= patientName %></td>
+        <td colspan="2">Insurance Company:  <%= insuranceCompany %></td>
       </tr>
       <tr class="result-data">
-        <td><%= patientName %></td>
-        <td><%= dateOfBirth %></td>
-        <td><%= age %></td>
-        <td><%= weight %></td>
-      </tr>
-      <tr class="result-fields">
-        <td>Gender:</td>
-        <td colspan="2">Insurance Company Name:</td>
-        <td>Email:</td>
+        <td colspan="2">Date of Birth:  <%= dateOfBirth %> (<%= age%>)</td>
+        <td colspan="2">Member ID:  <%= memberId %></td>
       </tr>
       <tr class="result-data">
-        <td><%= gender %></td>
-        <td colspan="2"><%= insuranceCompany %></td>
-        <td><%= email %></td>
-      </tr>
-      <tr class="result-fields">
-        <td>Subscriber Name:</td>
-        <td>Member ID:</td>
-        <td colspan="2">Relationship to Subscriber:</td>
+        <td colspan="2">Gender:  <%= gender %></td>
+        <td colspan="2">Subscriber:  <%= subscriberName %></td>
       </tr>
       <tr class="result-data">
-        <td><%= subscriberName %></td>
-        <td><%= memberId %></td>
-        <td colspan="2"><%= relationship %></td>
+        <td colspan="2">Weight:  <%= weight %> KG</td>
+        <td colspan="2">Subscriber Relationship:  <%= relationship %></td>
+      </tr>
+      <tr class="result-data">
+        <td colspan="4">Email:  <%= email %></td>
       </tr>
       <tr>
         <th class="table-heading" colspan="4">Section 2 <span class="table-subheading">- Medical Summary</span></th>
       </tr>
       <% for (let diagnosis of diagnoses) { %>
       <tr class="result-data">
-        <td colspan="2">Diagnosis: <%= diagnosis.diagnosis %></td>
-        <td colspan="2">Medication: <%= diagnosis.medication %></td>
+        <td colspan="4">Diagnosis: <%= diagnosis.diagnosis %></td>
       </tr>
       <tr class="result-data">
-        <td colspan="2">Mode: <%= diagnosis.mode %></td>
-        <td colspan="2">Units: <%= diagnosis.units %></td>
-      </tr>
-      <tr class="result-data">
-        <td colspan="2">Prescription Amount: <%= diagnosis.amount %></td>
-        <td colspan="2">Frequency: <%= diagnosis.frequency %></td>
+        <td colspan="4">Medication: <%= diagnosis.medication %> (<%= diagnosis.amount%> <%= diagnosis.units%> <%= diagnosis.frequency%>)</td>
       </tr>
       <tr class="result-data bold-bottom-border">
         <td colspan="4">Special Notes: <%= diagnosis.note %></td>
@@ -171,11 +163,7 @@
       </tr>
       <% for (let sideEffect of sideEffects) { %>
       <tr class="result-data">
-        <td colspan="4">Symptoms & Side Effects: <%= sideEffect.symptom %></td>
-      </tr>
-      <tr class="result-data">
-        <td colspan="2">Frequency: <%= sideEffect.freq %></td>
-        <td colspan="2">Notable Patterns: <%= sideEffect.pattern %></td>
+        <td colspan="4"> - <%= sideEffect.symptom %> (<%= sideEffect.freq%>, <%= sideEffect.pattern%>)</td>
       </tr>
       <% } %>
       <tr>
@@ -190,7 +178,7 @@
       <tr class="result-data">
         <td colspan="4">This plan has more interactions than <%= percentile %>% of medication plans in our database.</td>
       </tr>
-      <tr class="result-fields table-heading">
+      <tr class="result-fields table-col-heading">
         <td>Medication</td>
         <td>Interactions</td>
         <td>Level of Interaction</td>
