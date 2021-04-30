@@ -1,5 +1,5 @@
-const ejs = require('ejs');
 const fs = require('fs');
+const ejs = require('ejs');
 const converter = require('html-pdf-node');
 
 const FAKEUSER = {
@@ -108,14 +108,14 @@ const FAKERES = {
                 "total_number_in_pair": 2
             }, 
             {
-                "medA": "Mi",
-                "medB": "Mk", 
+                "medA": "Medicine1",
+                "medB": "Medicine2", 
                 "ingredient_details": [
                     {
-                        "ingredient1": "I1", 
-                        "ingredient2": "I2", 
+                        "ingredient1": "Ingredient1", 
+                        "ingredient2": "Ingredient2", 
                         "severity": "low", 
-                        "description": "N/A"
+                        "description": "X of Ingredient1 can be increased when it is combined with Y of Ingredient2"
                     }
                 ], 
                 "total_number_in_pair": 1
@@ -128,6 +128,13 @@ const FAKERES = {
     }
 }
 
+/**
+ * Generate the medical report given user information and analysis results
+ * @param {*} doctorName 
+ * @param {*} userInput 
+ * @param {*} results 
+ * @returns the path of the report
+ */
 async function generateReport(doctorName, userInput, results) {
 
     if (Object.keys(userInput).length === 0) {
@@ -138,7 +145,8 @@ async function generateReport(doctorName, userInput, results) {
         results = FAKERES;
     }
 
-    const options = { format: 'A4', path: 'test.pdf', printBackground: true };
+    const path = `Summary-Report-${userInput.patientInfo.name}.pdf`;
+    const options = { format: 'A4', path, printBackground: true };
     let content = await ejs.renderFile('./views/report.ejs', {
         logo: fs.readFileSync('./views/images/logo.png'),
         doctor: doctorName, 
@@ -159,12 +167,11 @@ async function generateReport(doctorName, userInput, results) {
         interactions: results.ddi.details,
     });
     let file = { content };
-    converter.generatePdf(file, options);
+    await converter.generatePdf(file, options);
+    return path;
 }
 
 module.exports = {
     generateReport
 }
-
-generateReport("Yiwen Zhu", FAKEUSER, FAKERES);
 

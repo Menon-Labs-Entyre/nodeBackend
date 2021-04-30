@@ -136,6 +136,12 @@ router.post('/generate-report', async function(req, res) {
 		const doctor = doctorContact[currUser].name;
 		const patient = patientData[currUser].patientInfo.name;
 		
+		const report = await generateReport(doctor, patientData[currUser], {});
+		console.log("report generated");
+		await sendReport(recipient, doctor, patient, report);
+		console.log("report sent");
+
+		/*
 		let finalData = await utils.formatData(patientData[currUser]);
 		console.log(finalData);
 		console.log("================== End of finalData ===================");
@@ -148,7 +154,7 @@ router.post('/generate-report', async function(req, res) {
 			const report = await generateReport(doctor, patientData[currUser], res);
 			await sendReport(recipient, doctor, patient, report);
 		});
-		
+		*/
 	}
 });
 
