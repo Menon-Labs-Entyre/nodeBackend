@@ -35,8 +35,14 @@ router.post('/patient-information', async function(req, res) {
 		res.status(401).send("Invalid session id");
 
 	} else {
+		var dob = new Date(req.body.dateOfBirth);
+		console.log(dob);
+		var year = dob.getUTCFullYear();
+		var month = dob.getUTCMonth();
+		var day = dob.getUTCDate();
 		info = {
 			name: `${req.body.firstName} ${req.body.lastName}`,
+			dob: `${year}-${month}-${day}`,
 			age: req.body.age,
 			weight: req.body.weight,
 			gender: req.body.gender, 
@@ -112,7 +118,7 @@ router.post('/side-effects', async function(req, res) {
 
 /** POST request when the user presses the submit button */
 router.post('/generate-report', async function(req, res) {
-	
+
 	var currUser = req.session.user;
 
 	if (currUser === undefined || 
