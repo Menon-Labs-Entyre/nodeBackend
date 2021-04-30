@@ -3,6 +3,7 @@ import difflib
 import csv
 from enum import Enum
 from collections import OrderedDict
+from collections import defaultdict
 import sys
 import json
 
@@ -218,4 +219,5 @@ def test(data):
 
 
 if __name__ =='__main__' :
-    test(sys.argv[1])
+    fstr = open(sys.argv[1]).read()
+    test(fstr)
