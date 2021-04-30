@@ -110,6 +110,12 @@
       text-align: left;
     }
 
+    .footer {
+      margin-left:1cm;
+      font-size: 10px;
+      padding: 0;
+    }
+
   </style>
   <body>
     <div class="container">
@@ -138,7 +144,7 @@
         <td colspan="2">Subscriber:  <%= subscriberName %></td>
       </tr>
       <tr class="result-data">
-        <td colspan="2">Weight:  <%= weight %> KG</td>
+        <td colspan="2">Weight:  <%= weight %> kg</td>
         <td colspan="2">Subscriber Relationship:  <%= relationship %></td>
       </tr>
       <tr class="result-data">
@@ -152,7 +158,15 @@
         <td colspan="4">Diagnosis: <%= diagnosis.diagnosis %></td>
       </tr>
       <tr class="result-data">
-        <td colspan="4">Medication: <%= diagnosis.medication %> (<%= diagnosis.amount%> <%= diagnosis.units%> <%= diagnosis.frequency%>)</td>
+        <td colspan="4">Medication: <%= diagnosis.medication %>
+          (<%= diagnosis.amount%> <%= diagnosis.units%> <%= diagnosis.frequency%>)
+          <% if (diagnosis.wrong == true) { %>
+            <sup>#</sup>
+          <% } %>
+          <% if (diagnosis.overdose == true) { %>
+            <sup>&#43;</sup>
+          <% } %>
+        </td>
       </tr>
       <tr class="result-data bold-bottom-border">
         <td colspan="4">Special Notes: <%= diagnosis.note %></td>
@@ -170,13 +184,15 @@
         <th class="table-heading" colspan="4">Section 4 <span class="table-subheading">- Analysis (Drug-Drug Interactions)</span></th>
       </tr>
       <tr>
-        <td class="large-field" colspan="4"><%= percentile %>th Percentile</td>
+        <td class="large-field" colspan="4"><%= percentile %>th - <%= wpercentile %>th Percentile</td>
       </tr>
       <tr>
         <td colspan="4">Total Interactions Found: <%= numInteractions %></td>
       </tr>
       <tr class="result-data">
-        <td colspan="4">This plan has more interactions than <%= percentile %>% of medication plans in our database.</td>
+        <td colspan="4">This plan has more interactions than <%= percentile %>% of medication plans in our database, 
+          or <%= wpercentile %>% after adjusting for severity levels of the drug-drug interactions.
+        </td>
       </tr>
       <tr class="result-fields table-col-heading">
         <td>Medication</td>
@@ -200,5 +216,10 @@
         <% } %>
       <% } %>
     </table>
+    <div class="footer">
+      <br/>
+      <sup>#</sup> medication prescribed may be inappropriate; 
+      <sup>&#43;</sup> prescribed dosage may be too high
+    </div>
   </body>
 </html>

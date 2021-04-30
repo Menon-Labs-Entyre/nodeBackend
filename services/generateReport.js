@@ -12,14 +12,14 @@ const FAKEUSER = {
         email: 'yiwzhu@seas.upenn.edu', 
         insr: 'Prudential',
         subscriber: 'John Doe',
-        membId: '12345678',
+        memId: '12345678',
         rel: 'Self',
     },
     numDiag: 2,
     diagnoses: [
         {
-            diagnosis: 'High Blood Pressure',
-            medication: 'Diuretic',
+            diagnosis: 'ADHD, ADD',
+            medication: 'Amphetamine / Dextroamphetamine [Adderall]',
             amount: '1',
             units: 'tablet',
             frequency: 'daily',
@@ -27,8 +27,8 @@ const FAKEUSER = {
             note: 'N/A'
         },
         {
-            diagnosis: 'Diabetes',
-            medication: 'Insulin',
+            diagnosis: 'Depression',
+            medication: 'Fluoxetine',
             amount: '1',
             units: 'injection',
             frequency: 'as required',
@@ -64,8 +64,8 @@ const FAKERES = {
         },
         'Depression': {
             'Fluoxetine': {
-                'overdose': false,
-                'wrongly_prescribed': false,
+                'overdose': true,
+                'wrongly_prescribed': true,
                 'recommended_conditions_for_prescription': [
                     'Panic Disorder (With or Without Agoraphobia)',
                      'Treatment Resistant Depression (TRD)',
@@ -125,7 +125,11 @@ const FAKERES = {
 
         "total_number": 3, //total # of interactions found
 
-        "percentile": 40
+        "percentile": 40, 
+        
+        "weighted_number": 2, 
+
+        "weighted_percentile": 55
     }
 }
 
@@ -144,6 +148,11 @@ async function generateReport(doctorName, userInput, results) {
 
     if (Object.keys(results).length === 0) {
         results = FAKERES;
+    }
+
+    for (var e of userInput.diagnoses) {
+        e.overdose = results["validation"][e.diagnosis][e.medication].overdose;
+        e.wrong = results["validation"][e.diagnosis][e.medication].wrongly_prescribed;
     }
 
     const path = `Summary-Report-${userInput.patientInfo.name}.pdf`;
@@ -165,6 +174,7 @@ async function generateReport(doctorName, userInput, results) {
         sideEffects: userInput.sideEffects,
         numInteractions: results.ddi.total_number,
         percentile: results.ddi.percentile,
+        wpercentile: results.ddi.weighted_percentile,
         interactions: results.ddi.details,
     });
     let file = { content };
@@ -175,3 +185,5 @@ async function generateReport(doctorName, userInput, results) {
 module.exports = {
     generateReport
 }
+
+generateReport("Yiwen Zhu", FAKEUSER, FAKERES);
