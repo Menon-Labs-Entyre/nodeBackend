@@ -51,10 +51,6 @@ const populateIndications = (conditionData,products) => {
   * @return {Object} - returns an object containing a list of products, conditions, and interactions
 */
 const createPatientPackage = async(patientData) => {
-	await drugBank.getConditions("ADHD");
-	await drugBank.getConditions("Depression");
-	await drugBank.getProducts("Adderall");
-	await drugBank.getProducts("Fluoxetine");
 	let products = {};
 	console.log("Creating Package");
 	for(const pair of patientData.diagnoses){
