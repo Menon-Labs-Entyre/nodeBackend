@@ -1,7 +1,8 @@
 const drugBank = require('./drugBank');
 const fs = require('fs');
 const spawn = require('child_process').spawn;
-
+const { generateReport } = require("./generateReport");
+const { sendReport } = require("./sendReport");
 
 /**
   * @desc creates an object of all related data to a product
@@ -97,13 +98,19 @@ const formatData = async(userInput) => {
 	return finalData;
 }
 
-const callServer = async(userData) => {
+const callServer = async(doctorContact, userData) => {
+	const doctor = doctorContact.name;
+	const recipient = doctorContact.email;
+	const patient = serData.patientInfo.name;
+
 	let finalData = await formatData(userData);
 	console.log("===============================");
-	const pyProcess = spawn('python3', ['./app.py', JSON.stringify(finalData)]);
+	const pyProcess = spawn('python3', ['.app.py', JSON.stringify(finalData)]);
 	pyProcess.stdout.on('data', res => {
 		//This is where u should call to create report with res.toString()
 		console.log(res.toString());
+		const reportPath = await generateReport(doctor, userData, res);
+		await sendReport(recipient, doctor, patient, reportPath);
 	});	
 }
 
