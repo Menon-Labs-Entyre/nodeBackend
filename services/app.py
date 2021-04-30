@@ -7,7 +7,7 @@ from collections import defaultdict
 import sys
 import json
 
-DB_PATH='./services/parsed_drug_name_agg.csv'
+DB_PATH='parsed_drug_name_agg.csv'
 def read_drug_db(db_path=DB_PATH):
     df_in = OrderedDict()
     with open(db_path) as csvfile:
@@ -23,10 +23,44 @@ def read_drug_db(db_path=DB_PATH):
     return df_in
 
 df_in = read_drug_db(DB_PATH)
+
+IACT_PATH='trimmed_interaction_dataset_entyre.csv'
+def read_interact_db(db_path=IACT_PATH):
+    def parse_number(x,nfunc=float):
+        '''nfunc is either float or int'''
+        x = x.strip()
+        if x =="":
+            x = None
+        else:
+            x = nfunc(x)
+        return x
+
+    df_in = OrderedDict()
+    with open(db_path) as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            pid = parse_number(row['pid'],int)
+            total_n = parse_number(row['total_number'])
+            w_n = parse_number(row['weighted_number'])
+
+            df_in[pid] = {"total_number":total_n,
+                               "weighted_number": w_n}
+    return df_in
+
+interact_db = read_interact_db(IACT_PATH)
+db_total_number_interactions = [v["total_number"] for v in interact_db.values()]
+db_weighted_number_interactions = [v["weighted_number"] for v in interact_db.values()]
+MAP_SEVERITY_SCORE_DICT= {
+    "minor":0.25,
+    "moderate":1,
+    "major":4
+}
+
 DRUG_NAMES = [k.lower() for k in df_in.keys()]
 DF_IN_KEYS = list(df_in.keys())
 OD_MULTIPLIER = 1.2 # percent over the high amount that we'll considered as OVERDOSE
 MATCH_THRESHOLD_FOR_CONDITIONS = 0.5
+
 
 class CheckResults(Enum):
     NO_DRUG_MATCH = -1
@@ -87,9 +121,6 @@ def check_wrong_prescription(drug_conditions,patient_conditions):
             wrongly_prescribed_dict[patient_condition] = False
     return wrongly_prescribed_dict
 
-def calculate_percentile(total_n):
-        return 65
-
 def check_interaction(interactions):
     DRUG_PAIR_DELIMITER = '--&--'
     def generate_key(drugA_name,drugB_name):
@@ -127,6 +158,22 @@ def check_interaction(interactions):
         results_l.append(one_pair_d)
 
     return results_l
+
+
+def map_severity_to_score(severity_str):
+    return MAP_SEVERITY_SCORE_DICT[severity_str]
+
+def calculate_weighted_interaction(ingredient_details):
+    return sum(
+                [map_severity_to_score(ingredient_pair['severity'])
+                 for ingredient_pair in ingredient_details
+                ]
+                 )
+
+
+def calculate_interaction_percentile(compare_point,db_list):
+    bool_arr = list(map(lambda x: x < compare_point,db_list))
+    return sum(bool_arr)/len(bool_arr)*100
 
 def check_medication_plan(data):
     '''medication_plan: a JSON-like dict of format
@@ -187,12 +234,21 @@ def check_medication_plan(data):
     interaction_result_l = check_interaction(interactions)
     ddi = {}
     total_n_of_plan = 0
+    weighted_n_total = 0
     for one_pair_dict in interaction_result_l:
         total_n_of_plan += one_pair_dict['total_number_in_pair']
+        weighted_n_of_pair = calculate_weighted_interaction(
+            one_pair_dict['ingredient_details'])
+        weighted_n_total += weighted_n_of_pair
 
     ddi["details"] = interaction_result_l
     ddi["total_number"] = total_n_of_plan
-    ddi["percentile"] = calculate_percentile(total_n_of_plan)
+    ddi["weighted_number"] = weighted_n_total
+    ddi["percentile"] = calculate_interaction_percentile(total_n_of_plan,
+                                                         db_total_number_interactions)
+    ddi["weighted_percentile"] = calculate_interaction_percentile(weighted_n_total,
+                                                         db_weighted_number_interactions)
+
 
     output_results_dict = {}
     output_results_dict["validation"] = results_dict
@@ -220,3 +276,5 @@ def test(data):
 
 if __name__ =='__main__' :
     test(sys.argv[1])
+    #fstr = open(sys.argv[1]).read()
+    #test(fstr)
