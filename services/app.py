@@ -219,5 +219,4 @@ def test(data):
 
 
 if __name__ =='__main__' :
-    fstr = open(sys.argv[1]).read()
-    test(fstr)
+    test(sys.argv[1])

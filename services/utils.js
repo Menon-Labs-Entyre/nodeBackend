@@ -14,26 +14,13 @@ const createProductPackage = async(productDetails) => {
 	return {details:productDetails,ingredients:drugDetails,indications:indications};
   }
 
-/**
-  * @desc returns all data relevant to patient diagnosises that need to be returned from the api
-  * @param Object patientData - an object of all user input
-  * @return {Object} - returns an object containing a list of products, conditions, and interactions
+  /**
+  * @desc populate indications wiht more indications based on relations between conditons
+  * @param Array conditionData - an array of conditon obects returned from our api
+  * @param Object products - an object of mappings between product names and their data
+  * @return {Object} - return an updared products object with new indications added
 */
-const createPatientPackage = async(patientData) => {
-	await drugBank.getConditions("ADHD");
-	await drugBank.getConditions("Depression");
-	await drugBank.getProducts("Adderall");
-	await drugBank.getProducts("Fluoxetine");
-	const products = {};
-	console.log("Creating Package");
-	for(const pair of patientData.diagnoses){
-		products[pair.medication] = await createProductPackage(drugBank.productNameToProduct[pair.medication]) //create dictonary of products mapped from name to object
-	}
-	const productIds = Object.values(products).map((product) => product.details.drugbank_pcid); //create list of pcid for all products
-	console.log("Pulling interactions...")
-	const interactions = await drugBank.getInteractions(productIds); // pull interactions based on productIds
-	console.log("Pulled Interactions")
-	const conditionData = await Promise.all(patientData.diagnoses.map((pair)=> drugBank.getCondition(drugBank.conditonToId[pair.diagnosis]))); // pull data for each condition and create an array
+const populateIndications = (conditionData,products) => {
 	const conditionVarients = {}
 	//This code attempts to add new indicatiosn to eahc product based on similarities in conditions
 	conditionData.forEach(condition => {
@@ -54,6 +41,30 @@ const createPatientPackage = async(patientData) => {
 			}
 		})
 	}
+	return products
+}
+
+/**
+  * @desc returns all data relevant to patient diagnosises that need to be returned from the api
+  * @param Object patientData - an object of all user input
+  * @return {Object} - returns an object containing a list of products, conditions, and interactions
+*/
+const createPatientPackage = async(patientData) => {
+	await drugBank.getConditions("ADHD");
+	await drugBank.getConditions("Depression");
+	await drugBank.getProducts("Adderall");
+	await drugBank.getProducts("Fluoxetine");
+	let products = {};
+	console.log("Creating Package");
+	for(const pair of patientData.diagnoses){
+		products[pair.medication] = await createProductPackage(drugBank.productNameToProduct[pair.medication]) //create dictonary of products mapped from name to object
+	}
+	const productIds = Object.values(products).map((product) => product.details.drugbank_pcid); //create list of pcid for all products
+	console.log("Pulling interactions...")
+	const interactions = await drugBank.getInteractions(productIds); // pull interactions based on productIds
+	console.log("Pulled Interactions")
+	const conditionData = await Promise.all(patientData.diagnoses.map((pair)=> drugBank.getCondition(drugBank.conditonToId[pair.diagnosis]))); // pull data for each condition and create an array
+	products = populateIndications(conditionData,products)
 	console.log("Package created");
 	return {products:products, conditions:conditionData, interactions:interactions};
 }
@@ -89,54 +100,14 @@ const formatData = async(userInput) => {
 const callServer = async(userData) => {
 	let finalData = await formatData(userData);
 	console.log("===============================");
-	const pyProcess = spawn('python', ['./app.py', JSON.stringify(finalData)]);
+	const pyProcess = spawn('python3', ['./app.py', JSON.stringify(finalData)]);
 	pyProcess.stdout.on('data', res => {
-		// Do something with the data returned from python script
+		//This is where u should call to create report with res.toString()
 		console.log(res.toString());
 	});	
-	pyProcess.stderr.on('data', (data) => {
-
-        console.log(data.toString());
-    });
 }
 
 module.exports = {
 	createPatientPackage,
 	formatData
 }
-
-callServer({
-    "patientInfo": {
-        "firstName": "Mike",
-        "lastName": "G",
-        "age": "10",
-        "weight": "100",
-        "gender": "male",
-        "companyName": "stuff",
-        "subscriberName": "stuff",
-        "memberId": "stuff",
-        "subscriberRelationship": "stuff"
-    },
-    "numDiag": 2,
-    "diagnoses": [
-        {
-            "diagnosis": "ADHD, ADD",
-            "medication": "Adderall",
-            "amount": "1",
-            "units": "1",
-            "frequency": "1",
-            "mode": "Pill",
-            "note": "N/A"
-        },
-        {
-            "diagnosis": "Depression",
-            "medication": "Fluoxetine",
-            "amount": "1",
-            "units": "1",
-            "frequency": "1",
-            "mode": "Pill",
-            "note": "N/A"
-
-        }
-    ]
-})
