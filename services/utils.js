@@ -99,7 +99,7 @@ const formatData = async(userInput) => {
 	return finalData;
 }
 
-const callServer = async(doctorContact, userData) => {
+const callServer = async(doctorContact, userData, response) => {
 	const doctor = doctorContact.name;
 	const recipient = doctorContact.email;
 	const patient = userData.patientInfo.name;
@@ -108,13 +108,15 @@ const callServer = async(doctorContact, userData) => {
 	const pyProcess = spawn('python3', ['./services/app.py', JSON.stringify(finalData)]);
 	
 	pyProcess.stdout.on('data', async (res) => {
-		const result = JSON.parse(res.toString().split("'").join('"').split("False").join("false").split("True").join("true"));
+		const result = JSON.parse(res.toString());
 		userData.result = result; //update patientData to be passed to frontend
 		const reportPath = await generateReport(doctor, userData, result);
 		await sendReport(recipient, doctor, patient, reportPath);
-		console.log(" ================== Patient Package ====================")
+
+		console.log(" ================== Patient Package ====================");
 		console.log(userData);
-		console.log(" ===================== End ====================")
+		console.log(" ===================== End ====================");
+		response.json(userData);
 	});
 
 	pyProcess.stderr.on('data', (res) => {

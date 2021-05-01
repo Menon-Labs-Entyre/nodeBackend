@@ -137,15 +137,8 @@ router.post('/generate-report', async function(req, res) {
 
 	} else {
 		console.log("Calling server...");
-		await utils.callServer(doctorContact[currUser], patientData[currUser]);
-		res.sendStatus(200);
+		await utils.callServer(doctorContact[currUser], patientData[currUser], res);
 	}
 });
-
-router.get('/analysis-results', async function(req, res) {
-	var currUser = req.session.user;
-	console.log(patientData[currUser]);
-	res.json(patientData[currUser]);
-})
 
 module.exports = router;

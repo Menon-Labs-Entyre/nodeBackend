@@ -256,21 +256,9 @@ def check_medication_plan(data):
 
     return output_results_dict
 
-
-def test_hello():
-    print('Hello from the python file\n')
-
-def test_receive_diagnosis(diagnosis):
-    print('Stringified input received: %s\n' % diagnosis)
-
-def test_parse_diagnosis(diagnosis):
-    data = json.loads(diagnosis)
-    for entry in data:
-        print(entry['diagnosis'])
-
 def test(data):
     final_data = check_medication_plan(json.loads(data))
-    print(final_data)
+    print(json.dumps(final_data))
     sys.stdout.flush()
 
 
