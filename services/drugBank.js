@@ -142,7 +142,7 @@ const getIndicationsbyProduct = async(drugBankPcid) => {
     params: {
     }
   }
-  const response = await axios.get(host+callEndpoint,callParamters);
+  const response = await axios.get(host+callEndpoint);
   const indiciationData = response.data;
   return indiciationData;
 }

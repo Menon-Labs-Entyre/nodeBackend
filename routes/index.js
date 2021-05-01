@@ -3,8 +3,6 @@ const express = require('express');
 const router = express.Router();
 const spawn = require('child_process').spawn;
 const utils = require('../services/utils');
-const {generateReport} = require("../services/generateReport");
-const {sendReport} = require("../services/sendReport");
 
 var numUsers = -1;
 var doctorContact = {};
@@ -38,8 +36,9 @@ router.post('/patient-information', async function(req, res) {
 		var dob = new Date(req.body.dateOfBirth);
 		console.log(dob);
 		var year = dob.getUTCFullYear();
-		var month = dob.getUTCMonth();
+		var month = dob.getUTCMonth() + 1;
 		var day = dob.getUTCDate();
+		console.log(year + "-" + month + "-" + day);
 		info = {
 			name: `${req.body.firstName} ${req.body.lastName}`,
 			dob: `${year}-${month}-${day}`,
@@ -58,7 +57,8 @@ router.post('/patient-information', async function(req, res) {
 			numDiag: null, 
 			diagnoses: [],
 			numSideEffects: null, 
-			sideEffects: []
+			sideEffects: [],
+			result: null
 		};
 
 		console.log(`user # ${currUser}:`);
@@ -136,23 +136,16 @@ router.post('/generate-report', async function(req, res) {
 		res.status(400).send("Side effects details missing");
 
 	} else {
+		console.log("Calling server...");
+		await utils.callServer(doctorContact[currUser], patientData[currUser]);
 		res.sendStatus(200);
-
-		const recipient = doctorContact[currUser].email;
-		const doctor = doctorContact[currUser].name;
-		const patient = patientData[currUser].patientInfo.name;
-		/*
-		const report = await generateReport(doctor, patientData[currUser], {});
-		console.log("report generated");
-		await sendReport(recipient, doctor, patient, report);
-		console.log("report sent");
-		*/
-		
-		utils.callServer(doctorContact[currUser], patientData[currUser]);
 	}
 });
 
+router.get('/analysis-results', async function(req, res) {
+	var currUser = req.session.user;
+	console.log(patientData[currUser]);
+	res.json(patientData[currUser]);
+})
+
 module.exports = router;
-
-
-

@@ -125,12 +125,41 @@ const FAKERES = {
 
         "total_number": 3, //total # of interactions found
 
-        "percentile": 40, 
+        "percentile": 13.323333, 
         
         "weighted_number": 2, 
 
-        "weighted_percentile": 55
+        "weighted_percentile": 22.43333
     }
+}
+
+/** 
+ * Helper method to convert percentile to the appropriate string representation 
+ * e.g., 14.3254 -> 14th
+ *       11.3223 -> 11th
+ *       23.1    -> 23rd
+ */
+function strPercentile(percentile) {
+    var per = Number(percentile.toFixed(0));
+    var suffix;
+    switch(per % 10) {
+        case 1:
+            suffix = 'st';
+            break;
+        case 2:
+            suffix = 'nd';
+            break;
+        case 3:
+            suffix = 'rd';
+            break;
+        default:
+            suffix = 'th';
+            break;
+    }
+    if (per > 10 && per < 20) {
+        suffix = 'th';
+    }
+    return per + suffix;
 }
 
 /**
@@ -173,8 +202,8 @@ async function generateReport(doctorName, userInput, results) {
         diagnoses: userInput.diagnoses,
         sideEffects: userInput.sideEffects,
         numInteractions: results.ddi.total_number,
-        percentile: results.ddi.percentile,
-        wpercentile: results.ddi.weighted_percentile,
+        percentile: strPercentile(results.ddi.percentile),
+        wpercentile: strPercentile(results.ddi.weighted_percentile),
         interactions: results.ddi.details,
     });
     let file = { content };
@@ -185,5 +214,3 @@ async function generateReport(doctorName, userInput, results) {
 module.exports = {
     generateReport
 }
-
-generateReport("Yiwen Zhu", FAKEUSER, FAKERES);

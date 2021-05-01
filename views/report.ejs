@@ -184,14 +184,14 @@
         <th class="table-heading" colspan="4">Section 4 <span class="table-subheading">- Analysis (Drug-Drug Interactions)</span></th>
       </tr>
       <tr>
-        <td class="large-field" colspan="4"><%= percentile %>th - <%= wpercentile %>th Percentile</td>
+        <td class="large-field" colspan="4"><%= percentile %> - <%= wpercentile %> Percentile</td>
       </tr>
       <tr>
         <td colspan="4">Total Interactions Found: <%= numInteractions %></td>
       </tr>
       <tr class="result-data">
-        <td colspan="4">This plan has more interactions than <%= percentile %>% of medication plans in our database, 
-          or <%= wpercentile %>% after adjusting for severity levels of the drug-drug interactions.
+        <td colspan="4">This plan has more interactions than <%= percentile.slice(0, percentile.length - 2) %>% of medication plans in our database, 
+          or <%= wpercentile.slice(0, wpercentile.length - 2) %>% after adjusting for severity levels of the drug-drug interactions.
         </td>
       </tr>
       <tr class="result-fields table-col-heading">

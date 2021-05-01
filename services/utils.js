@@ -1,5 +1,4 @@
 const drugBank = require('./drugBank');
-const fs = require('fs');
 const spawn = require('child_process').spawn;
 const { generateReport } = require("./generateReport");
 const { sendReport } = require("./sendReport");
@@ -52,8 +51,15 @@ const populateIndications = (conditionData,products) => {
 */
 const createPatientPackage = async(patientData) => {
 	let products = {};
-	console.log("Creating Package");
+	console.log("Creating Package...");
 	for(const pair of patientData.diagnoses){
+		console.log(pair);
+		if (!(pair.medication in drugBank.productNameToProduct)) {
+			await drugBank.getProducts(pair.medication);
+		}
+		if (!(pair.diagnosis in drugBank.conditonToId)) {
+			await drugBank.getConditions(pair.diagnosis);
+		}
 		products[pair.medication] = await createProductPackage(drugBank.productNameToProduct[pair.medication]) //create dictonary of products mapped from name to object
 	}
 	const productIds = Object.values(products).map((product) => product.details.drugbank_pcid); //create list of pcid for all products
@@ -75,14 +81,13 @@ const formatData = async(userInput) => {
 	const drugBankData = await createPatientPackage(userInput);
 	const finalData = drugBankData;
   	finalData['medication_plan'] = {};
-	await userInput.diagnoses.forEach((diagnosis) => {
+	userInput.diagnoses.forEach((diagnosis) => {
 		const medication = drugBankData.products[diagnosis.medication];
 		medication['patient_input'] = {
 			dose:diagnosis.amount,
 			unit:diagnosis.units,
 			frequency:diagnosis.frequency,
 			mode:diagnosis.mode
-
 		}
 		if(diagnosis.diagnosis in finalData){
 			finalData['medication_plan'][diagnosis.diagnosis].push(medication)
@@ -90,7 +95,7 @@ const formatData = async(userInput) => {
 			finalData['medication_plan'][diagnosis.diagnosis] = [medication]
 		}
 	})
-  delete finalData['products'];
+  	delete finalData['products'];
 	return finalData;
 }
 
@@ -100,17 +105,23 @@ const callServer = async(doctorContact, userData) => {
 	const patient = userData.patientInfo.name;
 
 	let finalData = await formatData(userData);
-	console.log("===============================");
 	const pyProcess = spawn('python3', ['./services/app.py', JSON.stringify(finalData)]);
-	pyProcess.stdout.on('data', async(res) => {
-		const result = res.toString().split("'").join('"').split("False").join("false").split("True").join("true")
-		const reportPath = await generateReport(doctor, userData, JSON.parse(result));
+	
+	pyProcess.stdout.on('data', async (res) => {
+		const result = JSON.parse(res.toString().split("'").join('"').split("False").join("false").split("True").join("true"));
+		userData.result = result; //update patientData to be passed to frontend
+		const reportPath = await generateReport(doctor, userData, result);
 		await sendReport(recipient, doctor, patient, reportPath);
-	});		
+		console.log(" ================== Patient Package ====================")
+		console.log(userData);
+		console.log(" ===================== End ====================")
+	});
+
+	pyProcess.stderr.on('data', (res) => {
+		console.log(res.toString());
+	});
 }
 
 module.exports = {
-	createPatientPackage,
-	formatData,
 	callServer
 }
