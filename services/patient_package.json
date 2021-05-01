@@ -1,0 +1,119 @@
+{
+  "patientInfo": { 
+        "name": "Jane Doe",
+        "dob": "1980-2-29",
+        "age": "41",
+        "weight": "55",
+        "gender": "female",
+        "email": "yiwenzhu.1812@gsmail.com",
+        "insr": "AIA",
+        "subscriber": "John",
+        "memId": "RAND632lD",
+        "rel": "spouse"
+    },
+
+    "numDiag": "2",
+
+    "diagnoses": [ 
+        {
+            "diagnosis": "ADHD, ADD",
+            "medication": "Ketorolac tromethamine",
+            "amount": "1",
+            "units": "tablet",
+            "frequency": "2",
+            "mode": "Pill",
+            "note": "",
+            "overdose": false,
+            "wrong": true
+        },
+        {
+            "diagnosis": "Depression",
+            "medication": "Fluoxetine",
+            "amount": "5",
+            "units": "injections",
+            "frequency": "weekly",
+            "mode": "Syrup",
+            "note": "",
+            "overdose": false,
+            "wrong": false
+        }
+    ],
+
+    "numSideEffects": 2,
+
+    "sideEffects": [  
+        {
+            "symptom": "Headache",
+            "freq": "Every Other Day",
+            "pattern": "When Tired"
+        },
+        { 
+            "symptom": "Nausea", 
+            "freq": "Sometimes", 
+            "pattern": "After Meals" 
+        }
+    ],
+
+    "result": { 
+        "validation": {
+            "ADHD, ADD": {
+                "Amphetamine / Dextroamphetamine [Adderall]": {
+                    "overdose": false,
+                    "wrongly_prescribed": true,
+                    "recommended_conditions_for_prescription": [
+                        "Attention Deficit Hyperactivity Disorder"
+                    ]
+                }
+            }, 
+            "Depression": {
+                "Fluoxetine": {
+                    "overdose": true, 
+                    "wrongly_prescribed": false, 
+                    "recommended_conditions_for_prescription": [
+                        ""
+                    ]
+                }
+            }
+        }, 
+        "ddi": {
+            "details": [
+                {
+                    "medA": "Amphetamine / Dextroamphetamine [Adderall]", 
+                    "medB": "Fluoxetine",
+                    "ingredient_details": [
+                        {
+                            "ingredient1": "Fluoxetine", 
+                            "ingredient2": "Amphetamine", 
+                            "severity": "moderate", 
+                            "description": "The serum concentration of Amphetamine can be increased when it is combined with Fluoxetine."
+                        }, 
+                        {
+                            "ingredient1": "Fluoxetine", 
+                            "ingredient2": "Dextroamphetamine", 
+                            "severity": "high", 
+                            "description": "The serum concentration of Dextroamphetamine can be increased when it is combined with Fluoxetine."
+                        }
+                    ], 
+                    "total_number_in_pair": 2
+                }, 
+                {
+                    "medA": "Medicine1",
+                    "medB": "Medicine2", 
+                    "ingredient_details": [
+                        {
+                            "ingredient1": "Ingredient1", 
+                            "ingredient2": "Ingredient2", 
+                            "severity": "low", 
+                            "description": "X of Ingredient1 can be increased when it is combined with Y of Ingredient2"
+                        }
+                    ], 
+                    "total_number_in_pair": 1
+                }
+            ],
+            "total_number": 1,
+            "weighted_number": 0.25,
+            "percentile": 3.8461538461538463,
+            "weighted_percentile": 3.8461538461538463
+        }
+    }
+}
