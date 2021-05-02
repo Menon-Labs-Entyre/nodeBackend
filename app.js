@@ -19,7 +19,11 @@ app.use(session({
   secret: 'keyboard warrior',
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: false }
+  cookie: { 
+    secure: false, 
+    httpOnly: false,
+    maxAge: null
+  }
 }))
 
 
