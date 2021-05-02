@@ -33,10 +33,16 @@ const populateIndications = (conditionData,products) => {
 	})
 	for(const product in products){
 		products[product]["indications"].forEach(indication => {
+			if (conditionVarients[indication] === undefined) {
+				return;
+			}
 			if(conditionVarients[indication['condition']['drugbank_id']]){
 				const similarConidition = conditionVarients[indication['condition']['drugbank_id']];
 				const newIndication = indication;
-				newIndication.condition = {"name":similarConidition,"drugbank_id":drugBank.conditonToId[similarConidition]}
+				newIndication.condition = {
+					"name": similarConidition,
+					"drugbank_id": drugBank.conditonToId[similarConidition]
+				}
 				products[product]["indications"].push(newIndication)
 			}
 		})

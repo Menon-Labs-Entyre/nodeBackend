@@ -179,9 +179,11 @@ async function generateReport(doctorName, userInput, results) {
         results = FAKERES;
     }
 
+    var i = 0;
     for (var e of userInput.diagnoses) {
-        e.overdose = results["validation"][e.diagnosis][e.medication].overdose;
-        e.wrong = results["validation"][e.diagnosis][e.medication].wrongly_prescribed;
+        e.overdose = results.validation[i].overdose;
+        e.wrong = results.validation[i].wrongly_prescribed;
+        ++i;
     }
 
     const path = `Summary-Report-${userInput.patientInfo.name}.pdf`;
@@ -214,3 +216,5 @@ async function generateReport(doctorName, userInput, results) {
 module.exports = {
     generateReport
 }
+
+//generateReport("Yiwen Zhu", FAKEUSER, FAKERES);

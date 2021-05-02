@@ -205,9 +205,23 @@ def check_medication_plan(data):
     medication_plan = data["medication_plan"]
     interactions = data["interactions"]
 
+    '''
+    [
+        {
+            "overdoes": true,
+            "wrongly_prescribed": false
+        },
+        {
+            "overdoes": false,
+            "wrontly_prescribed": true
+        }
+    ]
+    '''
     #basic check
     results_dict = {}
+    valid_check = []
     patient_conditions = list(medication_plan.keys())
+    
     for condition,medications in medication_plan.items():
         results_dict[condition] = {}
         for medication_dict in medications:
@@ -228,7 +242,14 @@ def check_medication_plan(data):
             is_drug_wrongly_prescribed = sum(list(wrongly_prescribed_dict.values())) == len(wrongly_prescribed_dict)
             results_dict[condition][drug_name]['wrongly_prescribed'] = is_drug_wrongly_prescribed
             results_dict[condition][drug_name]['recommended_conditions_for_prescription'] = drug_conditions
-
+            
+            valid_check.append(
+                {
+                    "overdoes": is_overdose, 
+                    "wrongly_prescribed": is_drug_wrongly_prescribed, 
+                    "recommended_conditions_for_prescription": drug_conditions
+                }
+            )
 
 
     interaction_result_l = check_interaction(interactions)
@@ -251,7 +272,7 @@ def check_medication_plan(data):
 
 
     output_results_dict = {}
-    output_results_dict["validation"] = results_dict
+    output_results_dict["validation"] = valid_check #results_dict
     output_results_dict["ddi"] = ddi
 
     return output_results_dict
@@ -264,5 +285,3 @@ def test(data):
 
 if __name__ =='__main__' :
     test(sys.argv[1])
-    #fstr = open(sys.argv[1]).read()
-    #test(fstr)
