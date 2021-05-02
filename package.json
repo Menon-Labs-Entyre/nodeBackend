@@ -24,7 +24,8 @@
     "nodemailer": "^6.5.0",
     "pdfkit": "^0.12.1",
     "redis": "^3.1.0",
-    "sequelize": "^6.6.2"
+    "sequelize": "^6.6.2",
+    "yarn": "^1.22.10"
   },
   "devDependencies": {
     "jest": "^26.6.3",
