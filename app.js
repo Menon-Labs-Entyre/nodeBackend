@@ -11,7 +11,7 @@ const usersRouter = require('./routes/users');
 const searchRouter = require('./routes/search');
 
 const app = express();
-app.use(cors({credentials: true, origin: 'http://localhost:8080'}));
+//app.use(cors({credentials: true, origin: 'http://localhost:8080'})); //no longer need cors
 
 app.set('trust proxy', 1) // trust first proxy
 app.use(session({

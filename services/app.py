@@ -235,7 +235,8 @@ def check_medication_plan(data):
 
             drug_conditions_dicts = medication_dict['indications']
             drug_conditions = list(set(
-                [condition_['condition']['name'] for condition_ in drug_conditions_dicts]))
+                [condition_['condition']['name'] for condition_ in drug_conditions_dicts if 'condition' in condition_]))
+
             wrongly_prescribed_dict = check_wrong_prescription(drug_conditions,patient_conditions)
             # need all True to returns True, it is because the drug only needs to be prescribed
             # for a single patient condition from all patient conditions
