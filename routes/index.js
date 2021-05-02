@@ -1,7 +1,6 @@
 /* Load packages */
 const express = require('express');
 const router = express.Router();
-const spawn = require('child_process').spawn;
 const utils = require('../services/utils');
 
 var numUsers = -1;
@@ -19,6 +18,8 @@ router.post('/doctor-contact', async function(req, res) {
 		"name": req.body.doctorName,
 		"email": req.body.doctorEmail
 	}
+	console.log(`User #: ${sess.user}`);
+	console.log(doctorContact[sess.user]);
 	res.sendStatus(200);
 })
 
